@@ -14,7 +14,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -46,10 +46,10 @@ body {
 
 /* Header compacto */
 .header {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 1rem 1.5rem;
     box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
     flex-shrink: 0;
@@ -66,14 +66,14 @@ body {
 .title-section h1 {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 700;
-    color: white;
+    color: #2c2c2c;
     margin-bottom: 0.5rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .subtitle {
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #555;
     font-weight: 500;
 }
 
@@ -84,7 +84,7 @@ body {
 }
 
 .new-page-btn {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(135deg, #2c2c2c 0%, #444 100%);
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -93,14 +93,15 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+    box-shadow: 0 4px 15px rgba(44, 44, 44, 0.4);
     text-decoration: none;
     display: inline-block;
 }
 
 .new-page-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+    box-shadow: 0 6px 20px rgba(44, 44, 44, 0.6);
+    background: linear-gradient(135deg, #444 0%, #555 100%);
 }
 
 .new-page-btn:active {
@@ -111,7 +112,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: #666;
     font-size: 0.9rem;
 }
 
@@ -136,10 +137,10 @@ body {
 
 /* Sidebar com largura otimizada */
 .sidebar {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 1.25rem;
     width: 320px;
     min-width: 300px;
@@ -149,10 +150,11 @@ body {
 }
 
 .filters-section h2 {
-    color: white;
+    color: #2c2c2c;
     font-size: 1.3rem;
     margin-bottom: 1.2rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    font-weight: 600;
 }
 
 .filter-group {
@@ -161,7 +163,7 @@ body {
 
 .filter-group label {
     display: block;
-    color: rgba(255, 255, 255, 0.9);
+    color: #2c2c2c;
     font-weight: 600;
     margin-bottom: 0.5rem;
     font-size: 1rem;
@@ -170,10 +172,10 @@ body {
 .filter-group select {
     width: 100%;
     padding: 0.75rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(0, 0, 0, 0.2);
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: rgba(255, 255, 255, 0.95);
+    color: #2c2c2c;
     font-size: 1rem;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
@@ -182,6 +184,7 @@ body {
 .filter-group select:focus {
     outline: none;
     border-color: #4facfe;
+    box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.2);
     box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.3);
     background: rgba(255, 255, 255, 0.15);
 }
@@ -251,13 +254,14 @@ body {
 .no-data-content h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: white;
+    color: #2c2c2c;
+    font-weight: 600;
 }
 
 .loading-content p,
 .no-data-content p {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #666;
     line-height: 1.6;
 }
 
@@ -278,7 +282,7 @@ body {
 }
 
 .school-header {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 0.75rem 1rem;
@@ -290,7 +294,7 @@ body {
 .school-title {
     font-size: 1.1rem;
     font-weight: 700;
-    color: white;
+    color: #2c2c2c;
     margin: 0;
     display: flex;
     align-items: center;
@@ -299,7 +303,7 @@ body {
 
 .school-meta {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: #666;
     margin: 0.3rem 0 0 0;
 }/* Grid de habilidades com melhor aproveitamento de espaço */
 .habilidades-grid {
@@ -314,10 +318,10 @@ body {
 }
 
 .habilidade-card {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(15px);
     border-radius: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(0, 0, 0, 0.1);
     padding: 0.8rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -344,7 +348,7 @@ body {
     font-size: 0.8rem;
     font-weight: 800;
     color: #ffffff;
-    background: rgba(79, 172, 254, 0.8);
+    background: rgba(44, 44, 44, 0.9);
     padding: 0.2rem 0.5rem;
     border-radius: 8px;
     margin: 0;
@@ -365,8 +369,8 @@ body {
 
 .habilidade-turma {
     font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.7);
     padding: 0.1rem 0.4rem;
     border-radius: 6px;
     text-align: center;
@@ -517,7 +521,7 @@ body {
 }
 
 .performance-indicator.performance-medium-low {
-    background: linear-gradient(90deg, #ff9500, #ff7300);
+    background: linear-gradient(90deg, #fa9304, #ff7300);
 }
 
 .performance-indicator.performance-medium-high {
@@ -530,7 +534,7 @@ body {
 
 /* Cores por performance */
 .skill-card.performance-baixo {
-    --performance-color: #ff4757;
+    --performance-color: #c40919;
 }
 
 .skill-card.performance-medio-baixo {
@@ -538,11 +542,11 @@ body {
 }
 
 .skill-card.performance-medio-alto {
-    --performance-color: #3742fa;
+    --performance-color: #0713f5;
 }
 
 .skill-card.performance-alto {
-    --performance-color: #2ed573;
+    --performance-color: #086e3be5;
 }
 
 .card-header {
@@ -585,7 +589,7 @@ body {
 }
 
 .data-badge.real {
-    background: rgba(46, 213, 115, 0.2);
+    background: rgba(15, 224, 102, 0.2);
     color: #2ed573;
     border: 1px solid rgba(46, 213, 115, 0.3);
 }
@@ -627,7 +631,7 @@ body {
     justify-content: space-between;
     align-items: center;
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(139, 50, 50, 0.7);
     margin-top: 1rem;
     padding-top: 0.75rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -662,16 +666,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(247, 198, 198, 0.5);
     backdrop-filter: blur(10px);
 }
 
 .modal-content {
     position: relative;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(25px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     max-width: 600px;
     width: 90%;
     max-height: 80vh;
@@ -701,7 +705,7 @@ body {
 }
 
 .modal-header h2 {
-    color: white;
+    color: rgb(43, 3, 3);
     font-size: 1.4rem;
     margin: 0;
 }
@@ -952,7 +956,7 @@ select:focus {
 
 .report-button {
     width: 100%;
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(135deg, #2c2c2c 0%, #444 100%);
     color: white;
     border: none;
     padding: 1rem 1.5rem;
@@ -965,15 +969,15 @@ select:focus {
     justify-content: center;
     gap: 0.5rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(44, 44, 44, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
 }
 
 .report-button:hover:not(:disabled) {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #444 0%, #555 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+    box-shadow: 0 6px 20px rgba(44, 44, 44, 0.6);
 }
 
 .report-button:active:not(:disabled) {
