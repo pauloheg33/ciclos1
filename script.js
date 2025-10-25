@@ -10,7 +10,8 @@ let appData = {
         ano: '',
         componente: '',
         escola: '',
-        turma: ''
+        turma: '',
+        performanceRange: 'todas'
     }
 };
 
@@ -153,6 +154,12 @@ function setupFilters() {
     if (escolaSelect) escolaSelect.addEventListener('change', handleEscolaChange);
     if (turmaSelect) turmaSelect.addEventListener('change', handleTurmaChange);
     
+    // Adicionar event listener para filtro de faixa de desempenho
+    const performanceRangeSelect = document.getElementById('performance-range');
+    if (performanceRangeSelect) {
+        performanceRangeSelect.addEventListener('change', handlePerformanceRangeChange);
+    }
+    
     console.log('✅ Filtros configurados!');
 }
 
@@ -164,6 +171,13 @@ function handleAnoChange(event) {
     appData.currentFilters.componente = '';
     appData.currentFilters.escola = '';
     appData.currentFilters.turma = '';
+    
+    // Resetar filtro de performance range quando ano muda
+    const performanceRangeSelect = document.getElementById('performance-range');
+    if (performanceRangeSelect) {
+        performanceRangeSelect.value = 'todas';
+        appData.currentFilters.performanceRange = 'todas';
+    }
     
     updateComponenteOptions();
     updateReportButton();
@@ -214,6 +228,13 @@ function handleComponenteChange(event) {
     appData.currentFilters.componente = componente;
     appData.currentFilters.escola = '';
     appData.currentFilters.turma = '';
+    
+    // Resetar filtro de performance range quando componente muda
+    const performanceRangeSelect = document.getElementById('performance-range');
+    if (performanceRangeSelect) {
+        performanceRangeSelect.value = 'todas';
+        appData.currentFilters.performanceRange = 'todas';
+    }
     
     updateEscolaOptions();
     updateReportButton();
@@ -310,6 +331,15 @@ function handleTurmaChange(event) {
     console.log('🔄 Turma selecionada:', turma);
     
     appData.currentFilters.turma = turma;
+    renderCards();
+    updateReportButton();
+}
+
+function handlePerformanceRangeChange(event) {
+    const performanceRange = event.target.value;
+    console.log('🔄 Faixa de desempenho selecionada:', performanceRange);
+    
+    appData.currentFilters.performanceRange = performanceRange;
     renderCards();
     updateReportButton();
 }
@@ -449,15 +479,13 @@ function createCard(item) {
     
     if (perc > 80) {
         classe = 'performance-high';
-        desempenho = 'Excelente (> 80%)';
-    } else if (perc > 60) {
+        desempenho = 'Adequado (> 80%)';
+    } else if (perc >= 60) {
         classe = 'performance-medium-high';
-        desempenho = 'Bom (60-80%)';
-    } else if (perc > 40) {
-        classe = 'performance-medium-low';
-        desempenho = 'Regular (40-60%)';
+        desempenho = 'Intermediário (60-80%)';
     } else {
-        desempenho = 'Necessita atenção (≤ 40%)';
+        classe = 'performance-medium-low';
+        desempenho = 'Crítico (< 60%)';
     }
     
     let tooltipText = getHabilidadeTooltip(item.habilidade);
@@ -477,7 +505,7 @@ function createCard(item) {
 }
 
 function getFilteredData() {
-    const { ano, componente, escola, turma } = appData.currentFilters;
+    const { ano, componente, escola, turma, performanceRange } = appData.currentFilters;
     
     if (!ano || !componente) return [];
     
@@ -495,6 +523,23 @@ function getFilteredData() {
         
         Object.entries(linha).forEach(([key, value]) => {
             if (key.startsWith('H') && typeof value === 'number') {
+                // Aplicar filtro de faixa de desempenho
+                if (performanceRange && performanceRange !== 'todas') {
+                    const percentage = parseFloat(value);
+                    
+                    switch (performanceRange) {
+                        case 'critico':
+                            if (percentage >= 60) return; // Só mostrar < 60%
+                            break;
+                        case 'intermediario':
+                            if (percentage < 60 || percentage > 80) return; // Só mostrar 60-80%
+                            break;
+                        case 'adequado':
+                            if (percentage <= 80) return; // Só mostrar > 80%
+                            break;
+                    }
+                }
+                
                 resultado.push({
                     escola: linha.Escola,
                     turma: linha.Turma,
@@ -606,16 +651,16 @@ async function generateReport() {
         await addReportHeader(doc, pageWidth, margin);
         
         // Informações dos filtros
-        let yPosition = addFilterInfo(doc, margin, 50);
+        let yPosition = addFilterInfo(doc, margin, 35);
         
         // Resumo estatístico
-        yPosition = addStatisticalSummary(doc, dadosFiltrados, margin, yPosition + 10);
+        yPosition = addStatisticalSummary(doc, dadosFiltrados, margin, yPosition + 5);
         
         // Tabela de habilidades
-        await addSkillsTable(doc, dadosFiltrados, yPosition + 15);
+        yPosition = await addSkillsTable(doc, dadosFiltrados, yPosition + 8);
         
         // Lista de descrições das habilidades
-        await addSkillDescriptions(doc, dadosFiltrados);
+        await addSkillDescriptions(doc, dadosFiltrados, yPosition);
         
         // Rodapé
         addReportFooter(doc, pageWidth, pageHeight, margin);
@@ -642,62 +687,62 @@ async function generateReport() {
 async function addReportHeader(doc, pageWidth, margin) {
     // Título principal
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(18);
+    doc.setFontSize(16);
     doc.setTextColor(44, 62, 80);
     
     const title = 'Relatório Educacional - Análise de Desempenho por Habilidade';
     const titleWidth = doc.getTextWidth(title);
     const titleX = (pageWidth - titleWidth) / 2;
     
-    doc.text(title, titleX, margin + 5);
+    doc.text(title, titleX, margin + 3);
     
     // Subtítulo
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(12);
+    doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
     
     const subtitle = 'Ciclos CNCA e PROEA 2025';
     const subtitleWidth = doc.getTextWidth(subtitle);
     const subtitleX = (pageWidth - subtitleWidth) / 2;
     
-    doc.text(subtitle, subtitleX, margin + 15);
+    doc.text(subtitle, subtitleX, margin + 12);
     
     // Linha separadora
     doc.setDrawColor(79, 172, 254);
-    doc.setLineWidth(0.5);
-    doc.line(margin, margin + 20, pageWidth - margin, margin + 20);
+    doc.setLineWidth(0.3);
+    doc.line(margin, margin + 17, pageWidth - margin, margin + 17);
     
     // Data de geração
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
+    doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
     
     const dataGeracao = new Date().toLocaleString('pt-BR');
-    doc.text(`Gerado em: ${dataGeracao}`, pageWidth - margin - 50, margin + 30);
+    doc.text(`Gerado em: ${dataGeracao}`, pageWidth - margin - 45, margin + 22);
 }
 
 function addFilterInfo(doc, margin, yStart) {
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(12);
+    doc.setFontSize(11);
     doc.setTextColor(44, 62, 80);
     doc.text('Filtros Aplicados:', margin, yStart);
     
     doc.setFont('helvetica', 'normal');
-    doc.setFontSize(10);
+    doc.setFontSize(9);
     doc.setTextColor(80, 80, 80);
     
-    let y = yStart + 8;
+    let y = yStart + 6;
     const { ano, componente, escola, turma } = appData.currentFilters;
     
-    doc.text(`• Ano Escolar: ${ano}`, margin + 5, y);
-    y += 6;
-    doc.text(`• Componente Curricular: ${componente}`, margin + 5, y);
-    y += 6;
-    doc.text(`• Escola: ${escola}`, margin + 5, y);
+    doc.text(`• Ano Escolar: ${ano}`, margin + 3, y);
+    y += 4;
+    doc.text(`• Componente Curricular: ${componente}`, margin + 3, y);
+    y += 4;
+    doc.text(`• Escola: ${escola}`, margin + 3, y);
     
     if (turma) {
-        y += 6;
-        doc.text(`• Turma: ${turma}`, margin + 5, y);
+        y += 4;
+        doc.text(`• Turma: ${turma}`, margin + 3, y);
     }
     
     return y;
@@ -707,11 +752,11 @@ function addStatisticalSummary(doc, dados, margin, yStart) {
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(12);
     doc.setTextColor(44, 62, 80);
-    doc.text('Resumo Estatístico:', margin, yStart);
+    doc.text('Resumo Estatístico', margin, yStart);
     
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(10);
-    doc.setTextColor(80, 80, 80);
+    doc.setTextColor(60, 60, 60);
     
     // Calcular estatísticas
     const percentuais = dados.map(item => parseFloat(item.percentage)).filter(p => !isNaN(p));
@@ -719,104 +764,131 @@ function addStatisticalSummary(doc, dados, margin, yStart) {
     const media = total > 0 ? (percentuais.reduce((a, b) => a + b, 0) / total).toFixed(1) : 0;
     
     // Contadores por faixa de desempenho
-    let excelente = 0, bom = 0, regular = 0, baixo = 0;
+    let adequado = 0, intermediario = 0, critico = 0;
     
     percentuais.forEach(perc => {
-        if (perc > 80) excelente++;
-        else if (perc > 60) bom++;
-        else if (perc > 40) regular++;
-        else baixo++;
+        if (perc > 80) adequado++;
+        else if (perc >= 60) intermediario++;
+        else critico++;
     });
     
     let y = yStart + 8;
-    doc.text(`• Total de habilidades avaliadas: ${total}`, margin + 5, y);
-    y += 6;
-    doc.text(`• Percentual médio de acerto: ${media}%`, margin + 5, y);
-    y += 6;
-    doc.text(`• Distribuição por desempenho:`, margin + 5, y);
-    y += 5;
-    doc.text(`  - Excelente (>80%): ${excelente} habilidades`, margin + 10, y);
-    y += 5;
-    doc.text(`  - Bom (60-80%): ${bom} habilidades`, margin + 10, y);
-    y += 5;
-    doc.text(`  - Regular (40-60%): ${regular} habilidades`, margin + 10, y);
-    y += 5;
-    doc.text(`  - Necessita atenção (≤40%): ${baixo} habilidades`, margin + 10, y);
     
-    return y;
+    // Formatação organizada e limpa
+    const estatisticas = [
+        `Total de habilidades: ${total}`,
+        `Média de acerto: ${media}%`,
+        `Adequado (>80%): ${adequado} habilidades`,
+        `Intermediário (60-80%): ${intermediario} habilidades`,
+        `Crítico (<60%): ${critico} habilidades`
+    ];
+    
+    estatisticas.forEach(texto => {
+        doc.text(`• ${texto}`, margin + 5, y);
+        y += 6; // Espaçamento consistente entre linhas
+    });
+    
+    return y + 5;
 }
 
 async function addSkillsTable(doc, dados, yStart) {
-    // Preparar dados da tabela
+    // Preparar dados da tabela com códigos completos
     const tableData = dados.map(item => {
         const perc = parseFloat(item.percentage);
-        let desempenho = 'Necessita atenção';
         
-        if (perc > 80) desempenho = 'Excelente';
-        else if (perc > 60) desempenho = 'Bom';
-        else if (perc > 40) desempenho = 'Regular';
+        // Obter código real da habilidade
+        let codigoReal = null;
+        const { ano, componente } = appData.currentFilters;
+        
+        if (ano && componente) {
+            const anoNum = ano.match(/(\d+)º/)?.[1];
+            const tabelaKey = `tabelas_${anoNum}o_ano_${componente}`;
+            const dadosTabela = appData.jsonData[tabelaKey];
+            
+            if (dadosTabela && Array.isArray(dadosTabela) && dadosTabela.length > 0) {
+                const headerRow = dadosTabela[0];
+                if (headerRow[item.habilidade]) {
+                    codigoReal = headerRow[item.habilidade];
+                }
+            }
+        }
+        
+        // Formato: H01: 1EF05_P
+        const habilidadeFormatada = codigoReal ? `${item.habilidade}: ${codigoReal}` : item.habilidade;
         
         return [
-            item.habilidade,
+            habilidadeFormatada,
             item.turma,
-            `${perc.toFixed(1)}%`,
-            desempenho
+            `${perc.toFixed(1)}%`
         ];
     });
     
-    // Configuração da tabela
-    doc.autoTable({
+    // Configuração da tabela otimizada
+    const tableConfig = {
         startY: yStart,
-        head: [['Habilidade', 'Turma', 'Percentual', 'Desempenho']],
+        head: [['Habilidade', 'Turma', 'Percentual']],
         body: tableData,
         theme: 'striped',
         headStyles: {
             fillColor: [79, 172, 254],
             textColor: 255,
             fontStyle: 'bold',
-            fontSize: 10
+            fontSize: 9
         },
         bodyStyles: {
-            fontSize: 9,
-            textColor: 60
+            fontSize: 8,
+            textColor: 60,
+            cellPadding: 2
         },
         alternateRowStyles: {
-            fillColor: [245, 245, 245]
+            fillColor: [248, 248, 248]
         },
         columnStyles: {
-            0: { cellWidth: 40 },
-            1: { cellWidth: 25, halign: 'center' },
-            2: { cellWidth: 30, halign: 'center' },
-            3: { cellWidth: 40, halign: 'center' }
+            0: { cellWidth: 'auto', minCellWidth: 50 },
+            1: { cellWidth: 20, halign: 'center' },
+            2: { cellWidth: 25, halign: 'center' }
         },
-        margin: { left: 20, right: 20 }
-    });
+        margin: { left: 20, right: 20 },
+        styles: {
+            cellPadding: 1.5,
+            fontSize: 8,
+            lineColor: [200, 200, 200],
+            lineWidth: 0.1
+        }
+    };
+    
+    doc.autoTable(tableConfig);
+    
+    // Retorna a posição Y após a tabela
+    return doc.lastAutoTable.finalY;
 }
 
-async function addSkillDescriptions(doc, dados) {
+async function addSkillDescriptions(doc, dados, startY) {
     // Obter habilidades únicas
     const habilidadesUnicas = [...new Set(dados.map(item => item.habilidade))];
     
-    // Nova página para descrições
-    doc.addPage();
+    const margin = 20;
+    const pageWidth = doc.internal.pageSize.width;
+    const pageHeight = doc.internal.pageSize.height;
+    const maxWidth = pageWidth - (margin * 2);
+    const lineHeight = 5; // Altura da linha consistente
     
+    // Verificar se há espaço suficiente na página atual
+    let y = startY + 15;
+    if (y > pageHeight - 80) {
+        doc.addPage();
+        y = 25;
+    }
+    
+    // Título da seção
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(14);
     doc.setTextColor(44, 62, 80);
-    doc.text('Descrições das Habilidades Avaliadas', 20, 25);
+    doc.text('Descrições das Habilidades Avaliadas', margin, y);
     
-    let y = 40;
-    const margin = 20;
-    const pageWidth = doc.internal.pageSize.width;
-    const maxWidth = pageWidth - (margin * 2);
+    y += 15; // Espaço após título
     
     for (const codigoH of habilidadesUnicas) {
-        // Verificar se precisa de nova página
-        if (y > 250) {
-            doc.addPage();
-            y = 25;
-        }
-        
         // Obter código real da habilidade
         let codigoReal = null;
         const { ano, componente } = appData.currentFilters;
@@ -837,43 +909,62 @@ async function addSkillDescriptions(doc, dados) {
         const habilidade = codigoReal ? appData.habilidadesData[codigoReal] : null;
         
         if (habilidade) {
-            // Código da habilidade
-            doc.setFont('helvetica', 'bold');
-            doc.setFontSize(11);
-            doc.setTextColor(79, 172, 254);
-            doc.text(`${codigoH} - ${habilidade.codigo}`, margin, y);
-            y += 7;
+            // Calcular espaço necessário para este item
+            let textoCompleto = `${codigoH}: ${habilidade.codigo} - ${habilidade.habilidade}`;
+            if (habilidade.bncc) {
+                textoCompleto += ` BNCC: "${habilidade.bncc}"`;
+            }
             
-            // Descrição
+            const linhasTexto = doc.splitTextToSize(textoCompleto, maxWidth);
+            const espacoNecessario = (linhasTexto.length * lineHeight) + (habilidade.ut ? lineHeight + 5 : 0) + 10;
+            
+            // Verificar se precisa de nova página
+            if (y + espacoNecessario > pageHeight - 30) {
+                doc.addPage();
+                y = 25;
+            }
+            
+            // Renderizar código da habilidade em negrito
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(10);
+            doc.setTextColor(44, 62, 80);
+            doc.text(`${codigoH}: ${habilidade.codigo}`, margin, y);
+            
+            y += lineHeight + 2;
+            
+            // Renderizar descrição da habilidade
             doc.setFont('helvetica', 'normal');
             doc.setFontSize(9);
             doc.setTextColor(60, 60, 60);
             
-            const descricaoLines = doc.splitTextToSize(habilidade.habilidade, maxWidth);
-            doc.text(descricaoLines, margin, y);
-            y += descricaoLines.length * 4 + 2;
+            const descricaoLinhas = doc.splitTextToSize(habilidade.habilidade, maxWidth - 10);
+            doc.text(descricaoLinhas, margin + 5, y);
+            y += descricaoLinhas.length * lineHeight + 3;
             
-            // Código BNCC
+            // BNCC em linha separada se existir
             if (habilidade.bncc) {
                 doc.setFont('helvetica', 'italic');
                 doc.setFontSize(8);
                 doc.setTextColor(100, 100, 100);
-                doc.text(`BNCC: ${habilidade.bncc}`, margin, y);
-                y += 5;
+                doc.text(`BNCC: "${habilidade.bncc}"`, margin + 5, y);
+                y += lineHeight + 2;
             }
             
-            // Unidade Temática (Matemática)
+            // Unidade Temática em linha separada se existir
             if (habilidade.ut) {
                 doc.setFont('helvetica', 'italic');
                 doc.setFontSize(8);
-                doc.setTextColor(100, 100, 100);
-                doc.text(`Unidade Temática: ${habilidade.ut}`, margin, y);
-                y += 5;
+                doc.setTextColor(120, 120, 120);
+                doc.text(`Unidade Temática: ${habilidade.ut}`, margin + 5, y);
+                y += lineHeight + 2;
             }
             
-            y += 8; // Espaço entre habilidades
+            // Espaço entre habilidades
+            y += 8;
         }
     }
+    
+    return y;
 }
 
 function addReportFooter(doc, pageWidth, pageHeight, margin) {
