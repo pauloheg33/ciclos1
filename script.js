@@ -5,6 +5,7 @@ console.log('🔄 Carregando versão simplificada do dashboard...');
 let appData = {
     jsonData: null,
     habilidadesData: null,
+    escolasData: null,
     currentFilters: {
         ano: '',
         componente: '',
@@ -26,8 +27,14 @@ async function init() {
         // Carregar habilidades
         await loadHabilidades();
         
+        // Carregar dados das escolas
+        await loadEscolas();
+        
         // Configurar filtros
         setupFilters();
+        
+        // Configurar botão de relatório
+        setupReportButton();
         
         console.log('✅ Dashboard inicializado com sucesso!');
         
@@ -53,15 +60,15 @@ async function loadHabilidades() {
     console.log('📚 Carregando dados das habilidades...');
     
     try {
-        const response = await fetch('./tabelas_sem_ciclos.yaml');
-        const yamlText = await response.text();
-        const yamlData = jsyaml.load(yamlText);
+        // Usar o arquivo JSON em vez do YAML para compatibilidade
+        const response = await fetch('./tabelas_sem_ciclos.json');
+        const jsonData = await response.json();
         
-        // Processar dados YAML em um mapa para lookup rápido
+        // Processar dados JSON em um mapa para lookup rápido
         appData.habilidadesData = {};
         
-        Object.keys(yamlData).forEach(categoria => {
-            const habilidades = yamlData[categoria];
+        Object.keys(jsonData).forEach(categoria => {
+            const habilidades = jsonData[categoria];
             if (Array.isArray(habilidades)) {
                 habilidades.forEach(hab => {
                     if (hab.CÓDIGO) {
@@ -82,6 +89,26 @@ async function loadHabilidades() {
     } catch (error) {
         console.error('❌ Erro ao carregar habilidades:', error);
         appData.habilidadesData = {};
+    }
+}
+
+
+
+async function loadEscolas() {
+    console.log('🏫 Carregando dados das escolas...');
+    
+    try {
+        const response = await fetch('./escolas.yaml');
+        const yamlText = await response.text();
+        const yamlData = jsyaml.load(yamlText);
+        
+        appData.escolasData = yamlData.escolas || [];
+        
+        console.log('✅ Escolas carregadas:', appData.escolasData.length);
+        
+    } catch (error) {
+        console.error('❌ Erro ao carregar escolas:', error);
+        appData.escolasData = [];
     }
 }
 
@@ -139,6 +166,7 @@ function handleAnoChange(event) {
     appData.currentFilters.turma = '';
     
     updateComponenteOptions();
+    updateReportButton();
 }
 
 function updateComponenteOptions() {
@@ -188,6 +216,7 @@ function handleComponenteChange(event) {
     appData.currentFilters.turma = '';
     
     updateEscolaOptions();
+    updateReportButton();
 }
 
 function updateEscolaOptions() {
@@ -237,6 +266,7 @@ function handleEscolaChange(event) {
     
     updateTurmaOptions();
     renderCards();
+    updateReportButton();
 }
 
 function updateTurmaOptions() {
@@ -281,6 +311,31 @@ function handleTurmaChange(event) {
     
     appData.currentFilters.turma = turma;
     renderCards();
+    updateReportButton();
+}
+
+function setupReportButton() {
+    const reportButton = document.getElementById('generate-report');
+    if (reportButton) {
+        reportButton.addEventListener('click', generateReport);
+        updateReportButton(); // Estado inicial
+    }
+}
+
+function updateReportButton() {
+    const reportButton = document.getElementById('generate-report');
+    if (!reportButton) return;
+    
+    const { ano, componente, escola } = appData.currentFilters;
+    const hasBasicFilters = ano && componente && escola;
+    
+    reportButton.disabled = !hasBasicFilters;
+    
+    if (hasBasicFilters) {
+        reportButton.querySelector('.report-text').textContent = 'Gerar Relatório';
+    } else {
+        reportButton.querySelector('.report-text').textContent = 'Selecione os filtros';
+    }
 }
 
 function renderCards() {
@@ -516,6 +571,352 @@ function initTooltipSystem() {
 window.debugApp = () => console.log('Debug:', appData);
 
 console.log('✅ Script simplificado carregado!');
+
+async function generateReport() {
+    const reportButton = document.getElementById('generate-report');
+    const reportIcon = reportButton.querySelector('.report-icon');
+    const reportText = reportButton.querySelector('.report-text');
+    
+    // Estado de loading
+    reportButton.classList.add('generating');
+    reportIcon.textContent = '⏳';
+    reportText.textContent = 'Gerando...';
+    
+    try {
+        console.log('📄 Iniciando geração de relatório...');
+        
+        // Obter dados filtrados
+        const dadosFiltrados = getFilteredData();
+        
+        if (dadosFiltrados.length === 0) {
+            alert('Nenhum dado encontrado com os filtros selecionados.');
+            return;
+        }
+        
+        // Criar documento PDF
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        // Configurações
+        const pageWidth = doc.internal.pageSize.width;
+        const pageHeight = doc.internal.pageSize.height;
+        const margin = 20;
+        
+        // Cabeçalho do relatório
+        await addReportHeader(doc, pageWidth, margin);
+        
+        // Informações dos filtros
+        let yPosition = addFilterInfo(doc, margin, 50);
+        
+        // Resumo estatístico
+        yPosition = addStatisticalSummary(doc, dadosFiltrados, margin, yPosition + 10);
+        
+        // Tabela de habilidades
+        await addSkillsTable(doc, dadosFiltrados, yPosition + 15);
+        
+        // Lista de descrições das habilidades
+        await addSkillDescriptions(doc, dadosFiltrados);
+        
+        // Rodapé
+        addReportFooter(doc, pageWidth, pageHeight, margin);
+        
+        // Gerar nome do arquivo
+        const fileName = generateFileName();
+        
+        // Salvar PDF
+        doc.save(fileName);
+        
+        console.log('✅ Relatório gerado com sucesso!');
+        
+    } catch (error) {
+        console.error('❌ Erro ao gerar relatório:', error);
+        alert('Erro ao gerar relatório. Tente novamente.');
+    } finally {
+        // Restaurar estado do botão
+        reportButton.classList.remove('generating');
+        reportIcon.textContent = '📄';
+        reportText.textContent = 'Gerar Relatório';
+    }
+}
+
+async function addReportHeader(doc, pageWidth, margin) {
+    // Título principal
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.setTextColor(44, 62, 80);
+    
+    const title = 'Relatório Educacional - Análise de Desempenho por Habilidade';
+    const titleWidth = doc.getTextWidth(title);
+    const titleX = (pageWidth - titleWidth) / 2;
+    
+    doc.text(title, titleX, margin + 5);
+    
+    // Subtítulo
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(12);
+    doc.setTextColor(100, 100, 100);
+    
+    const subtitle = 'Ciclos CNCA e PROEA 2025';
+    const subtitleWidth = doc.getTextWidth(subtitle);
+    const subtitleX = (pageWidth - subtitleWidth) / 2;
+    
+    doc.text(subtitle, subtitleX, margin + 15);
+    
+    // Linha separadora
+    doc.setDrawColor(79, 172, 254);
+    doc.setLineWidth(0.5);
+    doc.line(margin, margin + 20, pageWidth - margin, margin + 20);
+    
+    // Data de geração
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(150, 150, 150);
+    
+    const dataGeracao = new Date().toLocaleString('pt-BR');
+    doc.text(`Gerado em: ${dataGeracao}`, pageWidth - margin - 50, margin + 30);
+}
+
+function addFilterInfo(doc, margin, yStart) {
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.setTextColor(44, 62, 80);
+    doc.text('Filtros Aplicados:', margin, yStart);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(80, 80, 80);
+    
+    let y = yStart + 8;
+    const { ano, componente, escola, turma } = appData.currentFilters;
+    
+    doc.text(`• Ano Escolar: ${ano}`, margin + 5, y);
+    y += 6;
+    doc.text(`• Componente Curricular: ${componente}`, margin + 5, y);
+    y += 6;
+    doc.text(`• Escola: ${escola}`, margin + 5, y);
+    
+    if (turma) {
+        y += 6;
+        doc.text(`• Turma: ${turma}`, margin + 5, y);
+    }
+    
+    return y;
+}
+
+function addStatisticalSummary(doc, dados, margin, yStart) {
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.setTextColor(44, 62, 80);
+    doc.text('Resumo Estatístico:', margin, yStart);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(80, 80, 80);
+    
+    // Calcular estatísticas
+    const percentuais = dados.map(item => parseFloat(item.percentage)).filter(p => !isNaN(p));
+    const total = percentuais.length;
+    const media = total > 0 ? (percentuais.reduce((a, b) => a + b, 0) / total).toFixed(1) : 0;
+    
+    // Contadores por faixa de desempenho
+    let excelente = 0, bom = 0, regular = 0, baixo = 0;
+    
+    percentuais.forEach(perc => {
+        if (perc > 80) excelente++;
+        else if (perc > 60) bom++;
+        else if (perc > 40) regular++;
+        else baixo++;
+    });
+    
+    let y = yStart + 8;
+    doc.text(`• Total de habilidades avaliadas: ${total}`, margin + 5, y);
+    y += 6;
+    doc.text(`• Percentual médio de acerto: ${media}%`, margin + 5, y);
+    y += 6;
+    doc.text(`• Distribuição por desempenho:`, margin + 5, y);
+    y += 5;
+    doc.text(`  - Excelente (>80%): ${excelente} habilidades`, margin + 10, y);
+    y += 5;
+    doc.text(`  - Bom (60-80%): ${bom} habilidades`, margin + 10, y);
+    y += 5;
+    doc.text(`  - Regular (40-60%): ${regular} habilidades`, margin + 10, y);
+    y += 5;
+    doc.text(`  - Necessita atenção (≤40%): ${baixo} habilidades`, margin + 10, y);
+    
+    return y;
+}
+
+async function addSkillsTable(doc, dados, yStart) {
+    // Preparar dados da tabela
+    const tableData = dados.map(item => {
+        const perc = parseFloat(item.percentage);
+        let desempenho = 'Necessita atenção';
+        
+        if (perc > 80) desempenho = 'Excelente';
+        else if (perc > 60) desempenho = 'Bom';
+        else if (perc > 40) desempenho = 'Regular';
+        
+        return [
+            item.habilidade,
+            item.turma,
+            `${perc.toFixed(1)}%`,
+            desempenho
+        ];
+    });
+    
+    // Configuração da tabela
+    doc.autoTable({
+        startY: yStart,
+        head: [['Habilidade', 'Turma', 'Percentual', 'Desempenho']],
+        body: tableData,
+        theme: 'striped',
+        headStyles: {
+            fillColor: [79, 172, 254],
+            textColor: 255,
+            fontStyle: 'bold',
+            fontSize: 10
+        },
+        bodyStyles: {
+            fontSize: 9,
+            textColor: 60
+        },
+        alternateRowStyles: {
+            fillColor: [245, 245, 245]
+        },
+        columnStyles: {
+            0: { cellWidth: 40 },
+            1: { cellWidth: 25, halign: 'center' },
+            2: { cellWidth: 30, halign: 'center' },
+            3: { cellWidth: 40, halign: 'center' }
+        },
+        margin: { left: 20, right: 20 }
+    });
+}
+
+async function addSkillDescriptions(doc, dados) {
+    // Obter habilidades únicas
+    const habilidadesUnicas = [...new Set(dados.map(item => item.habilidade))];
+    
+    // Nova página para descrições
+    doc.addPage();
+    
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(14);
+    doc.setTextColor(44, 62, 80);
+    doc.text('Descrições das Habilidades Avaliadas', 20, 25);
+    
+    let y = 40;
+    const margin = 20;
+    const pageWidth = doc.internal.pageSize.width;
+    const maxWidth = pageWidth - (margin * 2);
+    
+    for (const codigoH of habilidadesUnicas) {
+        // Verificar se precisa de nova página
+        if (y > 250) {
+            doc.addPage();
+            y = 25;
+        }
+        
+        // Obter código real da habilidade
+        let codigoReal = null;
+        const { ano, componente } = appData.currentFilters;
+        
+        if (ano && componente) {
+            const anoNum = ano.match(/(\d+)º/)?.[1];
+            const tabelaKey = `tabelas_${anoNum}o_ano_${componente}`;
+            const dadosTabela = appData.jsonData[tabelaKey];
+            
+            if (dadosTabela && Array.isArray(dadosTabela) && dadosTabela.length > 0) {
+                const headerRow = dadosTabela[0];
+                if (headerRow[codigoH]) {
+                    codigoReal = headerRow[codigoH];
+                }
+            }
+        }
+        
+        const habilidade = codigoReal ? appData.habilidadesData[codigoReal] : null;
+        
+        if (habilidade) {
+            // Código da habilidade
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(11);
+            doc.setTextColor(79, 172, 254);
+            doc.text(`${codigoH} - ${habilidade.codigo}`, margin, y);
+            y += 7;
+            
+            // Descrição
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(9);
+            doc.setTextColor(60, 60, 60);
+            
+            const descricaoLines = doc.splitTextToSize(habilidade.habilidade, maxWidth);
+            doc.text(descricaoLines, margin, y);
+            y += descricaoLines.length * 4 + 2;
+            
+            // Código BNCC
+            if (habilidade.bncc) {
+                doc.setFont('helvetica', 'italic');
+                doc.setFontSize(8);
+                doc.setTextColor(100, 100, 100);
+                doc.text(`BNCC: ${habilidade.bncc}`, margin, y);
+                y += 5;
+            }
+            
+            // Unidade Temática (Matemática)
+            if (habilidade.ut) {
+                doc.setFont('helvetica', 'italic');
+                doc.setFontSize(8);
+                doc.setTextColor(100, 100, 100);
+                doc.text(`Unidade Temática: ${habilidade.ut}`, margin, y);
+                y += 5;
+            }
+            
+            y += 8; // Espaço entre habilidades
+        }
+    }
+}
+
+function addReportFooter(doc, pageWidth, pageHeight, margin) {
+    const pageCount = doc.internal.getNumberOfPages();
+    
+    for (let i = 1; i <= pageCount; i++) {
+        doc.setPage(i);
+        
+        // Linha separadora
+        doc.setDrawColor(200, 200, 200);
+        doc.setLineWidth(0.3);
+        doc.line(margin, pageHeight - 15, pageWidth - margin, pageHeight - 15);
+        
+        // Texto do rodapé
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(8);
+        doc.setTextColor(120, 120, 120);
+        
+        const footerText = 'Dashboard Educacional - Ciclos CNCA e PROEA 2025';
+        doc.text(footerText, margin, pageHeight - 8);
+        
+        // Numeração das páginas
+        const pageText = `Página ${i} de ${pageCount}`;
+        const pageTextWidth = doc.getTextWidth(pageText);
+        doc.text(pageText, pageWidth - margin - pageTextWidth, pageHeight - 8);
+    }
+}
+
+function generateFileName() {
+    const { ano, componente, escola, turma } = appData.currentFilters;
+    const timestamp = new Date().toISOString().slice(0, 10);
+    
+    let fileName = `Relatorio_${ano.replace('º Ano', 'ano')}_${componente}_${escola}`;
+    
+    if (turma) {
+        fileName += `_Turma${turma}`;
+    }
+    
+    fileName += `_${timestamp}.pdf`;
+    
+    // Limpar caracteres especiais
+    return fileName.replace(/[^a-zA-Z0-9._-]/g, '_');
+}
 
 // Inicializar sistema de tooltips quando DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {

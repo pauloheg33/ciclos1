@@ -36,6 +36,11 @@
     <!-- External Libraries -->
     <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
     <script src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    
+    <!-- PDF Generation Libraries -->
+    <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/jspdf-autotable@3.5.31/dist/jspdf.plugin.autotable.min.js"></script>
+    
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -109,6 +114,17 @@
                             <option value="alto">🟢 Acima de 80%</option>
                         </select>
                         <div id="performance-help" class="sr-only">Filtre por faixa de desempenho dos estudantes</div>
+                    </div>
+
+                    <!-- Botão de Relatório -->
+                    <div class="report-section">
+                        <button id="generate-report" class="report-button" disabled aria-describedby="report-help">
+                            <span class="report-icon">📄</span>
+                            <span class="report-text">Gerar Relatório</span>
+                        </button>
+                        <div id="report-help" class="report-help">
+                            Gere um relatório PDF com os dados filtrados
+                        </div>
                     </div>
                 </div>
             </aside>
