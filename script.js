@@ -11,6 +11,7 @@ const AppState = {
     },
     data: [],
     skillsData: {}, // Dados das habilidades carregados dos arquivos Excel
+    escolasData: null, // Dados das escolas carregados do YAML
     isLoading: true
 };
 
@@ -33,8 +34,7 @@ const elements = {
 // Inicialização da aplicação
 document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
-    loadExcelData();
-    populateFilterOptions();
+    loadAllData();
 });
 
 // Event listeners
@@ -56,24 +56,53 @@ function initializeEventListeners() {
     });
 }
 
-// Carregamento dos dados dos arquivos Excel
-async function loadExcelData() {
+// Carregamento de todos os dados necessários
+async function loadAllData() {
     try {
-        // Simulação do carregamento dos dados Excel
-        // Em uma implementação real, você usaria uma biblioteca como SheetJS ou enviaria os arquivos para um servidor
+        // Carregar dados das habilidades
         AppState.skillsData = {
             '2': await loadSkillsFor2ndYear(),
             '5': await loadSkillsFor5thYear(),
             '9': await loadSkillsFor9thYear()
         };
         
+        // Carregar dados das escolas
+        await loadEscolasData();
+        
+        // Popular filtros após carregar todos os dados
+        populateFilterOptions();
+        
         AppState.isLoading = false;
         showNoDataState();
-        announceToScreenReader('Dados das habilidades carregados. Use os filtros para visualizar os dados.');
+        announceToScreenReader('Dados carregados. Use os filtros para visualizar os dados.');
     } catch (error) {
-        console.error('Erro ao carregar dados das habilidades:', error);
+        console.error('Erro ao carregar dados:', error);
         AppState.isLoading = false;
         showNoDataState();
+    }
+}
+
+// Carregar dados das escolas do arquivo YAML
+async function loadEscolasData() {
+    try {
+        const response = await fetch('escolas.yaml');
+        const yamlText = await response.text();
+        AppState.escolasData = jsyaml.load(yamlText);
+    } catch (error) {
+        console.error('Erro ao carregar dados das escolas:', error);
+        // Fallback para dados básicos se não conseguir carregar o YAML
+        AppState.escolasData = {
+            escolas: [
+                { nome: "03 DE DEZEMBRO" },
+                { nome: "21 DE DEZEMBRO" },
+                { nome: "ANTONIO DE SOUSA BARROS" },
+                { nome: "FIRMINO JOSÉ" },
+                { nome: "JOAQUIM FERREIRA" },
+                { nome: "JOSE ALVES DE SENA" },
+                { nome: "MARIA AMELIA" },
+                { nome: "MOURÃO LIMA" }
+            ]
+        };
     }
 }
 
@@ -278,7 +307,13 @@ async function loadSkillsFor9thYear() {
 
 // Popular opções dos filtros baseado nos dados carregados
 function populateFilterOptions() {
-    // Popular anos escolares
+    populateAnosEscolares();
+    populateComponentesCurriculares();
+    populateEscolas();
+}
+
+// Popular anos escolares disponíveis
+function populateAnosEscolares() {
     const anoSelect = elements.anoEscolar;
     const anos = ['2º Ano', '5º Ano', '9º Ano'];
     anos.forEach(ano => {
@@ -287,8 +322,10 @@ function populateFilterOptions() {
         option.textContent = ano;
         anoSelect.appendChild(option);
     });
+}
 
-    // Popular componentes curriculares
+// Popular componentes curriculares
+function populateComponentesCurriculares() {
     const componenteSelect = elements.componente;
     const componentes = [
         { value: 'lingua-portuguesa', text: 'Língua Portuguesa' },
@@ -300,27 +337,68 @@ function populateFilterOptions() {
         option.textContent = comp.text;
         componenteSelect.appendChild(option);
     });
+}
 
-    // Popular escolas (exemplo)
+// Popular escolas baseado nos dados reais
+function populateEscolas() {
     const escolaSelect = elements.escola;
-    const escolas = [
-        'Escola Municipal João Silva',
-        'Escola Estadual Maria Santos',
-        'Escola Municipal Pedro Costa',
-        'Escola Estadual Ana Oliveira'
-    ];
-    escolas.forEach(escola => {
-        const option = document.createElement('option');
-        option.value = escola.toLowerCase().replace(/\s+/g, '-');
-        option.textContent = escola;
-        escolaSelect.appendChild(option);
-    });
+    
+    if (AppState.escolasData && AppState.escolasData.escolas) {
+        AppState.escolasData.escolas.forEach(escola => {
+            const option = document.createElement('option');
+            option.value = escola.nome.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+            option.textContent = escola.nome;
+            escolaSelect.appendChild(option);
+        });
+    }
+}
+
+// Obter escolas disponíveis para um ano específico
+function getEscolasForAno(anoEscolar) {
+    if (!AppState.escolasData || !AppState.escolasData.escolas) return [];
+    
+    const anoTexto = `${anoEscolar}º Ano`;
+    return AppState.escolasData.escolas.filter(escola => 
+        escola.anos && escola.anos.some(ano => ano.ano_escolar === anoTexto)
+    );
+}
+
+// Atualizar opções de escola quando o ano for selecionado
+function updateEscolasForSelectedAno() {
+    const anoEscolar = AppState.filters.anoEscolar;
+    const escolaSelect = elements.escola;
+    
+    // Limpar opções existentes (exceto as padrão)
+    while (escolaSelect.children.length > 2) {
+        escolaSelect.removeChild(escolaSelect.lastChild);
+    }
+    
+    if (anoEscolar) {
+        const escolasDisponiveis = getEscolasForAno(anoEscolar);
+        escolasDisponiveis.forEach(escola => {
+            const option = document.createElement('option');
+            option.value = escola.nome.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+            option.textContent = escola.nome;
+            escolaSelect.appendChild(option);
+        });
+    } else {
+        // Se nenhum ano selecionado, mostrar todas as escolas
+        populateEscolas();
+    }
 }
 
 // Manipulador de mudanças de filtro
 function handleFilterChange(event) {
     const filterId = event.target.id.replace('-', '');
+    const oldValue = AppState.filters[filterId];
     AppState.filters[filterId] = event.target.value;
+    
+    // Se o ano escolar mudou, atualizar as opções de escola
+    if (filterId === 'anoEscolar' && oldValue !== event.target.value) {
+        AppState.filters.escola = ''; // Resetar escola selecionada
+        elements.escola.value = '';
+        updateEscolasForSelectedAno();
+    }
     
     // Verificar se todos os filtros obrigatórios estão preenchidos
     const requiredFilters = ['anoEscolar', 'componente', 'escola'];
@@ -364,7 +442,7 @@ function getFilteredSkillsData() {
             ...skill,
             percentage: basePercentage,
             performance: performance,
-            students: getStudentCount(escola),
+            students: getStudentCount(escola, anoEscolar),
             year: anoEscolar,
             school: escola
         };
@@ -402,19 +480,61 @@ function getPerformanceLevel(percentage) {
     return 'alto';
 }
 
-// Obter número de estudantes baseado na escola
-function getStudentCount(school) {
-    if (school === 'geral') return 1240; // Total geral
+// Obter número de estudantes baseado na escola e ano
+function getStudentCount(school, anoEscolar) {
+    if (school === 'geral') {
+        // Calcular total geral baseado em todas as escolas
+        return calculateTotalStudents(anoEscolar);
+    }
     
-    // Números simulados diferentes para cada escola
-    const counts = {
-        'escola-municipal-joao-silva': 180,
-        'escola-estadual-maria-santos': 320,
-        'escola-municipal-pedro-costa': 240,
-        'escola-estadual-ana-oliveira': 280
-    };
+    // Encontrar escola específica e calcular estudantes baseado nas turmas
+    const escola = findEscolaByValue(school);
+    if (escola) {
+        return calculateStudentsForEscola(escola, anoEscolar);
+    }
     
-    return counts[school] || 200;
+    return 25; // Fallback
+}
+
+// Calcular total de estudantes para média geral
+function calculateTotalStudents(anoEscolar) {
+    if (!AppState.escolasData || !AppState.escolasData.escolas) return 500;
+    
+    let total = 0;
+    const anoTexto = `${anoEscolar}º Ano`;
+    
+    AppState.escolasData.escolas.forEach(escola => {
+        const ano = escola.anos?.find(a => a.ano_escolar === anoTexto);
+        if (ano && ano.turmas) {
+            // Estimar ~25 alunos por turma
+            total += ano.turmas.length * 25;
+        }
+    });
+    
+    return total || 500;
+}
+
+// Calcular estudantes para uma escola específica
+function calculateStudentsForEscola(escola, anoEscolar) {
+    const anoTexto = `${anoEscolar}º Ano`;
+    const ano = escola.anos?.find(a => a.ano_escolar === anoTexto);
+    
+    if (ano && ano.turmas) {
+        // Estimar ~25 alunos por turma
+        return ano.turmas.length * 25;
+    }
+    
+    return 25;
+}
+
+// Encontrar escola pelo valor do select
+function findEscolaByValue(schoolValue) {
+    if (!AppState.escolasData || !AppState.escolasData.escolas) return null;
+    
+    return AppState.escolasData.escolas.find(escola => {
+        const escolaValue = escola.nome.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+        return escolaValue === schoolValue;
+    });
 }
 
 
@@ -524,6 +644,10 @@ function openSkillModal(skillCode) {
                 <span>${skill.year}º Ano</span>
             </div>
             <div class="stat-item">
+                <strong>Escola:</strong> 
+                <span>${getEscolaDisplayName(skill.school)}</span>
+            </div>
+            <div class="stat-item">
                 <strong>Percentual de Acerto:</strong> 
                 <span class="performance-${skill.performance} highlight">${skill.percentage}%</span>
             </div>
@@ -614,6 +738,14 @@ function announceToScreenReader(message) {
     setTimeout(() => {
         elements.announcements.textContent = '';
     }, 1000);
+}
+
+// Obter nome de exibição da escola
+function getEscolaDisplayName(schoolValue) {
+    if (schoolValue === 'geral') return 'Média Geral - Todas as Escolas';
+    
+    const escola = findEscolaByValue(schoolValue);
+    return escola ? escola.nome : 'Escola não identificada';
 }
 
 // Funcões globais para o HTML

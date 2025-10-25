@@ -1,0 +1,62 @@
+escolas:
+  - nome: "03 DE DEZEMBRO"
+    anos:
+      - ano_escolar: "2º Ano"
+        turmas: ["A"]
+      - ano_escolar: "5º Ano"
+        turmas: ["A"]
+      - ano_escolar: "9º Ano"
+        turmas: ["A"]
+
+  - nome: "21 DE DEZEMBRO"
+    anos:
+      - ano_escolar: "9º Ano"
+        turmas: ["A", "B", "C"]
+
+  - nome: "ANTONIO DE SOUSA BARROS"
+    anos:
+      - ano_escolar: "2º Ano"
+        turmas: ["A"]
+      - ano_escolar: "5º Ano"
+        turmas: ["A"]
+      - ano_escolar: "9º Ano"
+        turmas: ["A"]
+
+  - nome: "FIRMINO JOSÉ"
+    anos:
+      - ano_escolar: "2º Ano"
+        turmas: ["A", "B"]
+      - ano_escolar: "5º Ano"
+        turmas: ["A", "B"]
+      - ano_escolar: "9º Ano"
+        turmas: ["A", "B"]
+
+  - nome: "JOAQUIM FERREIRA"
+    anos:
+      - ano_escolar: "2º Ano"
+        turmas: ["A"]
+      - ano_escolar: "5º Ano"
+        turmas: ["A"]
+
+  - nome: "JOSE ALVES DE SENA"
+    anos:
+      - ano_escolar: "2º Ano"
+        turmas: ["A"]
+      - ano_escolar: "5º Ano"
+        turmas: ["A"]
+      - ano_escolar: "9º Ano"
+        turmas: ["A"]
+
+  - nome: "MARIA AMELIA"
+    anos:
+      - ano_escolar: "2º Ano"
+        turmas: ["A"]
+      - ano_escolar: "5º Ano"
+        turmas: ["A"]
+
+  - nome: "MOURÃO LIMA"
+    anos:
+      - ano_escolar: "2º Ano"
+        turmas: ["A", "B"]
+      - ano_escolar: "5º Ano"
+        turmas: ["A", "B"]
