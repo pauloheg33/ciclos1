@@ -12,6 +12,7 @@ const AppState = {
     data: [],
     skillsData: {}, // Dados das habilidades carregados dos arquivos Excel
     escolasData: null, // Dados das escolas carregados do YAML
+    percentuaisData: null, // Dados reais de percentuais do arquivo Excel
     isLoading: true
 };
 
@@ -68,6 +69,9 @@ async function loadAllData() {
         
         // Carregar dados das escolas
         await loadEscolasData();
+        
+        // Carregar dados de percentuais do Excel
+        await loadPercentuaisData();
         
         // Popular filtros após carregar todos os dados
         populateFilterOptions();
@@ -167,6 +171,137 @@ async function loadEscolasData() {
             ]
         };
     }
+}
+
+// Carregar dados de percentuais do arquivo Excel
+async function loadPercentuaisData() {
+    try {
+        console.log('Carregando dados de percentuais do Excel...');
+        
+        const response = await fetch('codigos_com_percentuais_preenchidos.xlsx');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const arrayBuffer = await response.arrayBuffer();
+        const workbook = XLSX.read(arrayBuffer);
+        
+        console.log('Abas disponíveis no Excel:', workbook.SheetNames);
+        
+        // Processar todas as abas do Excel
+        AppState.percentuaisData = {};
+        
+        workbook.SheetNames.forEach(sheetName => {
+            const worksheet = workbook.Sheets[sheetName];
+            const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+            
+            console.log(`Processando aba: ${sheetName}`);
+            AppState.percentuaisData[sheetName] = processExcelSheet(jsonData, sheetName);
+        });
+        
+        console.log('Dados de percentuais carregados:', AppState.percentuaisData);
+        
+    } catch (error) {
+        console.error('Erro ao carregar dados de percentuais:', error);
+        AppState.percentuaisData = {}; // Usar dados simulados como fallback
+    }
+}
+
+// Processar dados de uma aba do Excel
+function processExcelSheet(jsonData, sheetName) {
+    if (!jsonData || jsonData.length === 0) return [];
+    
+    // Assumir que a primeira linha contém cabeçalhos
+    const headers = jsonData[0];
+    const processedData = [];
+    
+    console.log(`Headers da aba ${sheetName}:`, headers);
+    
+    // Processar cada linha (exceto cabeçalho)
+    for (let i = 1; i < jsonData.length; i++) {
+        const row = jsonData[i];
+        if (!row || row.length === 0) continue;
+        
+        const rowData = {};
+        headers.forEach((header, index) => {
+            if (header) {
+                rowData[header.toString().trim()] = row[index];
+            }
+        });
+        
+        // Adicionar dados processados se tiver informações essenciais
+        if (rowData.codigo || rowData.Codigo || rowData.CODIGO) {
+            processedData.push(rowData);
+        }
+    }
+    
+    console.log(`Dados processados da aba ${sheetName}:`, processedData.slice(0, 3)); // Mostrar apenas 3 primeiros
+    return processedData;
+}
+
+// Obter percentual real de uma habilidade específica
+function getPercentualReal(codigo, escola, ano, componente) {
+    if (!AppState.percentuaisData) {
+        return null;
+    }
+    
+    // Tentar encontrar dados na estrutura do Excel
+    let percentual = null;
+    
+    // Buscar em todas as abas
+    Object.keys(AppState.percentuaisData).forEach(abaNome => {
+        const dadosAba = AppState.percentuaisData[abaNome];
+        
+        if (Array.isArray(dadosAba)) {
+            const registro = dadosAba.find(item => {
+                const itemCodigo = item.codigo || item.Codigo || item.CODIGO || item['Código'] || '';
+                return itemCodigo.toString().trim().toUpperCase() === codigo.toUpperCase();
+            });
+            
+            if (registro && !percentual) {
+                // Tentar encontrar a coluna de percentual
+                const possiveisColunasPercentual = [
+                    'percentual', 'Percentual', 'PERCENTUAL', '%', 'percent',
+                    'acerto', 'Acerto', 'ACERTO', 'resultado', 'Resultado'
+                ];
+                
+                for (const coluna of possiveisColunasPercentual) {
+                    if (registro[coluna] !== undefined && registro[coluna] !== null) {
+                        let valor = parseFloat(registro[coluna]);
+                        if (!isNaN(valor)) {
+                            // Se o valor está entre 0 e 1, converter para percentual
+                            if (valor <= 1 && valor >= 0) {
+                                valor = Math.round(valor * 100);
+                            }
+                            percentual = Math.round(valor);
+                            break;
+                        }
+                    }
+                }
+                
+                // Se não encontrou coluna específica, tentar colunas que podem corresponder à escola
+                if (!percentual && escola && escola !== 'geral') {
+                    const nomeEscola = getEscolaDisplayName(escola);
+                    const colunaEscola = Object.keys(registro).find(key => 
+                        key.toUpperCase().includes(nomeEscola.substring(0, 10).toUpperCase())
+                    );
+                    
+                    if (colunaEscola && registro[colunaEscola] !== undefined) {
+                        let valor = parseFloat(registro[colunaEscola]);
+                        if (!isNaN(valor)) {
+                            if (valor <= 1 && valor >= 0) {
+                                valor = Math.round(valor * 100);
+                            }
+                            percentual = Math.round(valor);
+                        }
+                    }
+                }
+            }
+        }
+    });
+    
+    return percentual;
 }
 
 // Função para carregar habilidades do 2º ano
@@ -484,21 +619,13 @@ function populateEscolas() {
 // Obter escolas disponíveis para um ano específico
 function getEscolasForAno(anoEscolar) {
     if (!AppState.escolasData || !AppState.escolasData.escolas) {
-        console.log('Dados das escolas não carregados ainda');
         return [];
     }
     
     const anoTexto = `${anoEscolar}º Ano`;
-    console.log(`Filtrando escolas para: ${anoTexto}`);
-    
-    const escolasFiltradas = AppState.escolasData.escolas.filter(escola => {
-        const temAno = escola.anos && escola.anos.some(ano => ano.ano_escolar === anoTexto);
-        console.log(`Escola ${escola.nome}: ${temAno ? 'TEM' : 'NÃO TEM'} ${anoTexto}`);
-        return temAno;
-    });
-    
-    console.log(`Escolas filtradas para ${anoTexto}:`, escolasFiltradas.map(e => e.nome));
-    return escolasFiltradas;
+    return AppState.escolasData.escolas.filter(escola => 
+        escola.anos && escola.anos.some(ano => ano.ano_escolar === anoTexto)
+    );
 }
 
 // Obter anos disponíveis para uma escola específica
@@ -622,8 +749,6 @@ function handleFilterChange(event) {
         filterId = elementId;
     }
     
-    console.log(`Filtro alterado: ${elementId} -> ${filterId} = ${event.target.value}`);
-    
     const oldValue = AppState.filters[filterId];
     AppState.filters[filterId] = event.target.value;
     
@@ -672,9 +797,9 @@ function getFilteredSkillsData() {
     const yearData = AppState.skillsData[anoEscolar];
     const componentData = yearData[componente] || [];
     
-    // Adicionar percentuais simulados para cada habilidade
+    // Adicionar percentuais reais ou simulados para cada habilidade
     const skillsWithPercentage = componentData.map(skill => {
-        const basePercentage = generatePercentageForSkill(skill.code, escola);
+        const basePercentage = generatePercentageForSkill(skill.code, escola, anoEscolar, componente);
         const performance = getPerformanceLevel(basePercentage);
         
         return {
@@ -683,7 +808,8 @@ function getFilteredSkillsData() {
             performance: performance,
             students: getStudentCount(escola, anoEscolar),
             year: anoEscolar,
-            school: escola
+            school: escola,
+            isRealData: getPercentualReal(skill.code, escola, anoEscolar, componente) !== null
         };
     });
     
@@ -696,8 +822,17 @@ function getFilteredSkillsData() {
 }
 
 // Gerar percentual baseado no código da habilidade e escola
-function generatePercentageForSkill(skillCode, school) {
-    // Usar hash simples para gerar percentuais consistentes
+function generatePercentageForSkill(skillCode, school, ano, componente) {
+    // Primeiro tentar obter dados reais do Excel
+    const percentualReal = getPercentualReal(skillCode, school, ano, componente);
+    
+    if (percentualReal !== null && !isNaN(percentualReal)) {
+        console.log(`Usando percentual real para ${skillCode}: ${percentualReal}%`);
+        return percentualReal;
+    }
+    
+    // Fallback: usar hash para gerar percentuais consistentes
+    console.log(`Usando percentual simulado para ${skillCode}`);
     let hash = 0;
     const str = skillCode + (school || 'geral');
     for (let i = 0; i < str.length; i++) {
@@ -812,6 +947,7 @@ function createSkillCard(skill) {
                 <div class="card-code-badge">
                     <span class="card-code">${skill.code}</span>
                     <span class="card-component">${skill.component}</span>
+                    ${skill.isRealData ? '<span class="data-badge real">📊 Real</span>' : '<span class="data-badge simulated">🎲 Simulado</span>'}
                 </div>
                 <span class="card-percentage">${skill.percentage}%</span>
             </div>
@@ -889,6 +1025,7 @@ function openSkillModal(skillCode) {
             <div class="stat-item">
                 <strong>Percentual de Acerto:</strong> 
                 <span class="performance-${skill.performance} highlight">${skill.percentage}%</span>
+                ${skill.isRealData ? '<span class="data-source real">📊 Dado Real</span>' : '<span class="data-source simulated">🎲 Dado Simulado</span>'}
             </div>
             <div class="stat-item">
                 <strong>Número de Estudantes Avaliados:</strong> 
