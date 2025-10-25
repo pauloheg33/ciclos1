@@ -34,6 +34,9 @@ async function init() {
         // Configurar filtros
         setupFilters();
         
+        // Configurar pré-seleção dos filtros
+        setupDefaultFilters();
+        
         // Configurar botão de relatório
         setupReportButton();
         
@@ -161,6 +164,74 @@ function setupFilters() {
     }
     
     console.log('✅ Filtros configurados!');
+}
+
+function setupDefaultFilters() {
+    console.log('🎯 Configurando pré-seleção dos filtros...');
+    
+    // Aguardar um pequeno delay para garantir que os options foram populados
+    setTimeout(() => {
+        // Pré-selecionar 2º Ano
+        const anoSelect = document.getElementById('ano-escolar');
+        if (anoSelect) {
+            anoSelect.value = '2º Ano';
+            if (anoSelect.value === '2º Ano') {
+                appData.currentFilters.ano = '2º Ano';
+                console.log('✅ Pré-selecionado: 2º Ano');
+                
+                // Atualizar componentes
+                updateComponenteOptions();
+                
+                // Aguardar e selecionar Leitura
+                setTimeout(() => {
+                    const componenteSelect = document.getElementById('componente');
+                    if (componenteSelect) {
+                        componenteSelect.value = 'Leitura';
+                        if (componenteSelect.value === 'Leitura') {
+                            appData.currentFilters.componente = 'Leitura';
+                            console.log('✅ Pré-selecionado: Leitura');
+                            
+                            // Atualizar escolas
+                            updateEscolaOptions();
+                            
+                            // Aguardar e selecionar escola
+                            setTimeout(() => {
+                                const escolaSelect = document.getElementById('escola');
+                                if (escolaSelect) {
+                                    escolaSelect.value = '03 DE DEZEMBRO';
+                                    if (escolaSelect.value === '03 DE DEZEMBRO') {
+                                        appData.currentFilters.escola = '03 DE DEZEMBRO';
+                                        console.log('✅ Pré-selecionado: 03 DE DEZEMBRO');
+                                        
+                                        // Atualizar turmas
+                                        updateTurmaOptions();
+                                        
+                                        // Aguardar e selecionar turma A
+                                        setTimeout(() => {
+                                            const turmaSelect = document.getElementById('turma');
+                                            if (turmaSelect) {
+                                                turmaSelect.value = 'A';
+                                                if (turmaSelect.value === 'A') {
+                                                    appData.currentFilters.turma = 'A';
+                                                    console.log('✅ Pré-selecionado: Turma A');
+                                                    
+                                                    // Renderizar cards com filtros pré-selecionados
+                                                    renderCards();
+                                                    updateReportButton();
+                                                    
+                                                    console.log('🎯 Pré-seleção completa!');
+                                                }
+                                            }
+                                        }, 200);
+                                    }
+                                }
+                            }, 200);
+                        }
+                    }
+                }, 200);
+            }
+        }
+    }, 100);
 }
 
 function handleAnoChange(event) {
