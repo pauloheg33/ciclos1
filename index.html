@@ -92,6 +92,14 @@
                     </div>
 
                     <div class="filter-group">
+                        <label for="turma">🎪 Turma</label>
+                        <select id="turma" name="turma" aria-describedby="turma-help">
+                            <option value="">Selecione a turma</option>
+                        </select>
+                        <div id="turma-help" class="sr-only">Selecione a turma específica</div>
+                    </div>
+
+                    <div class="filter-group">
                         <label for="performance-range">📈 Faixa de desempenho</label>
                         <select id="performance-range" name="performance-range" aria-describedby="performance-help">
                             <option value="todas">Todas as faixas</option>
@@ -120,13 +128,13 @@
                 <div id="no-data" class="no-data-state" style="display: none;" aria-live="polite">
                     <div class="no-data-content">
                         <span class="no-data-icon" aria-hidden="true">🎯</span>
-                        <h3>Selecione todos os filtros para visualizar as habilidades</h3>
-                        <p>Use os filtros na barra lateral para exibir os dados de percentual de acerto por habilidade.</p>
+                        <h3 id="no-data-title">Selecione todos os filtros para visualizar as habilidades</h3>
+                        <p id="no-data-message">Use os filtros na barra lateral para exibir os dados reais de percentual de acerto por habilidade.</p>
                     </div>
                 </div>
 
                 <!-- Cards Container -->
-                <div id="cards-container" class="cards-grid" style="display: none;" aria-live="polite" aria-label="Grade de cards com dados de habilidades">
+                <div id="cards-container" class="cards-container" style="display: none;" aria-live="polite" aria-label="Dashboard de habilidades por escola">
                     <!-- Cards will be dynamically inserted here -->
                 </div>
             </section>

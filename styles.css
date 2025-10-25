@@ -258,46 +258,130 @@ body {
     line-height: 1.6;
 }
 
-/* Grid de cards */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    width: 100%;
+/* Cards Container */
+.cards-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.skill-card {
+.school-section {
+    margin-bottom: 3rem;
+}
+
+.school-header {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.school-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.school-meta {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.habilidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.habilidade-card {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 1.5rem;
     transition: all 0.3s ease;
-    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
 }
 
-.skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(31, 38, 135, 0.5);
-    border-color: rgba(255, 255, 255, 0.4);
+.habilidade-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
-.skill-card:focus {
-    outline: 3px solid rgba(79, 172, 254, 0.6);
-    outline-offset: 2px;
+.habilidade-code {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4facfe;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.skill-card::before {
-    content: '';
+.habilidade-percentage {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+.habilidade-turma {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    margin: 0;
+    font-weight: 500;
+}
+
+.performance-indicator {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 4px;
-    background: var(--performance-color, #4facfe);
-    border-radius: 16px 16px 0 0;
+    border-radius: 12px 12px 0 0;
+}
+
+.performance-low { 
+    color: #ff4444;
+}
+
+.performance-medium-low { 
+    color: #ff8800;
+}
+
+.performance-medium-high { 
+    color: #4488ff;
+}
+
+.performance-high { 
+    color: #00cc44;
+}
+
+.performance-indicator.performance-low {
+    background: linear-gradient(90deg, #ff4444, #ff6666);
+}
+
+.performance-indicator.performance-medium-low {
+    background: linear-gradient(90deg, #ff8800, #ffaa00);
+}
+
+.performance-indicator.performance-medium-high {
+    background: linear-gradient(90deg, #4488ff, #66aaff);
+}
+
+.performance-indicator.performance-high {
+    background: linear-gradient(90deg, #00cc44, #00dd55);
 }
 
 /* Cores por performance */
