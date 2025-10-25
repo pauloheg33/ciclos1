@@ -85,22 +85,85 @@ async function loadAllData() {
 // Carregar dados das escolas do arquivo YAML
 async function loadEscolasData() {
     try {
+        console.log('Tentando carregar escolas.yaml...');
         const response = await fetch('escolas.yaml');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const yamlText = await response.text();
+        console.log('YAML carregado:', yamlText.substring(0, 200) + '...');
+        
         AppState.escolasData = jsyaml.load(yamlText);
+        console.log('Dados das escolas carregados:', AppState.escolasData);
+        
     } catch (error) {
         console.error('Erro ao carregar dados das escolas:', error);
-        // Fallback para dados básicos se não conseguir carregar o YAML
+        console.log('Usando dados fixos como fallback');
+        
+        // Dados completos das escolas como fallback
         AppState.escolasData = {
             escolas: [
-                { nome: "03 DE DEZEMBRO" },
-                { nome: "21 DE DEZEMBRO" },
-                { nome: "ANTONIO DE SOUSA BARROS" },
-                { nome: "FIRMINO JOSÉ" },
-                { nome: "JOAQUIM FERREIRA" },
-                { nome: "JOSE ALVES DE SENA" },
-                { nome: "MARIA AMELIA" },
-                { nome: "MOURÃO LIMA" }
+                {
+                    nome: "03 DE DEZEMBRO",
+                    anos: [
+                        { ano_escolar: "2º Ano", turmas: ["A"] },
+                        { ano_escolar: "5º Ano", turmas: ["A"] },
+                        { ano_escolar: "9º Ano", turmas: ["A"] }
+                    ]
+                },
+                {
+                    nome: "21 DE DEZEMBRO",
+                    anos: [
+                        { ano_escolar: "9º Ano", turmas: ["A", "B", "C"] }
+                    ]
+                },
+                {
+                    nome: "ANTONIO DE SOUSA BARROS",
+                    anos: [
+                        { ano_escolar: "2º Ano", turmas: ["A"] },
+                        { ano_escolar: "5º Ano", turmas: ["A"] },
+                        { ano_escolar: "9º Ano", turmas: ["A"] }
+                    ]
+                },
+                {
+                    nome: "FIRMINO JOSÉ",
+                    anos: [
+                        { ano_escolar: "2º Ano", turmas: ["A", "B"] },
+                        { ano_escolar: "5º Ano", turmas: ["A", "B"] },
+                        { ano_escolar: "9º Ano", turmas: ["A", "B"] }
+                    ]
+                },
+                {
+                    nome: "JOAQUIM FERREIRA",
+                    anos: [
+                        { ano_escolar: "2º Ano", turmas: ["A"] },
+                        { ano_escolar: "5º Ano", turmas: ["A"] }
+                    ]
+                },
+                {
+                    nome: "JOSE ALVES DE SENA",
+                    anos: [
+                        { ano_escolar: "2º Ano", turmas: ["A"] },
+                        { ano_escolar: "5º Ano", turmas: ["A"] },
+                        { ano_escolar: "9º Ano", turmas: ["A"] }
+                    ]
+                },
+                {
+                    nome: "MARIA AMELIA",
+                    anos: [
+                        { ano_escolar: "2º Ano", turmas: ["A"] },
+                        { ano_escolar: "5º Ano", turmas: ["A"] }
+                    ]
+                },
+                {
+                    nome: "MOURÃO LIMA",
+                    anos: [
+                        { ano_escolar: "2º Ano", turmas: ["A", "B"] },
+                        { ano_escolar: "5º Ano", turmas: ["A", "B"] }
+                    ]
+                }
             ]
         };
     }
@@ -420,12 +483,22 @@ function populateEscolas() {
 
 // Obter escolas disponíveis para um ano específico
 function getEscolasForAno(anoEscolar) {
-    if (!AppState.escolasData || !AppState.escolasData.escolas) return [];
+    if (!AppState.escolasData || !AppState.escolasData.escolas) {
+        console.log('Dados das escolas não carregados ainda');
+        return [];
+    }
     
     const anoTexto = `${anoEscolar}º Ano`;
-    return AppState.escolasData.escolas.filter(escola => 
-        escola.anos && escola.anos.some(ano => ano.ano_escolar === anoTexto)
-    );
+    console.log(`Filtrando escolas para: ${anoTexto}`);
+    
+    const escolasFiltradas = AppState.escolasData.escolas.filter(escola => {
+        const temAno = escola.anos && escola.anos.some(ano => ano.ano_escolar === anoTexto);
+        console.log(`Escola ${escola.nome}: ${temAno ? 'TEM' : 'NÃO TEM'} ${anoTexto}`);
+        return temAno;
+    });
+    
+    console.log(`Escolas filtradas para ${anoTexto}:`, escolasFiltradas.map(e => e.nome));
+    return escolasFiltradas;
 }
 
 // Obter anos disponíveis para uma escola específica
@@ -537,7 +610,20 @@ function updateEscolasForSelectedAno() {
 
 // Manipulador de mudanças de filtro
 function handleFilterChange(event) {
-    const filterId = event.target.id.replace('-', '');
+    // Converter ID do elemento para camelCase
+    const elementId = event.target.id;
+    let filterId;
+    
+    if (elementId === 'ano-escolar') {
+        filterId = 'anoEscolar';
+    } else if (elementId === 'performance-range') {
+        filterId = 'performanceRange';
+    } else {
+        filterId = elementId;
+    }
+    
+    console.log(`Filtro alterado: ${elementId} -> ${filterId} = ${event.target.value}`);
+    
     const oldValue = AppState.filters[filterId];
     AppState.filters[filterId] = event.target.value;
     
