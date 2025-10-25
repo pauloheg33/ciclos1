@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard interativo para percentuais de acerto por habilidade - Análise de avaliação educacional">
+    <meta name="keywords" content="dashboard educacional, avaliação aprendizagem, percentual acerto, habilidades, CNCA, PROEA">
+    <meta name="author" content="Sistema Educacional">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="📊 Dashboard Educacional - Percentual de Acerto por Habilidade">
+    <meta property="og:description" content="Dashboard interativo para análise de percentuais de acerto por habilidade - Ciclos CNCA e PROEA 2025">
+    <meta property="og:image" content="">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="">
+    <meta property="twitter:title" content="📊 Dashboard Educacional - Percentual de Acerto por Habilidade">
+    <meta property="twitter:description" content="Dashboard interativo para análise de percentuais de acerto por habilidade - Ciclos CNCA e PROEA 2025">
+    <meta property="twitter:image" content="">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <title>📊 Dashboard Educacional - Percentual de Acerto por Habilidade</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- External Libraries -->
+    <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="title-section">
+                    <h1>📊 Percentual de Acerto por Habilidade</h1>
+                    <p class="subtitle">Ciclos CNCA e PROEA 2025</p>
+                </div>
+                <div class="header-controls">
+                    <button class="new-page-btn" onclick="window.location.href='analise-nova.html'" aria-label="Ir para análise dos indicadores">
+                        📈 Análise dos Indicadores
+                    </button>
+                    <div class="sync-indicator">
+                        <span class="sync-icon" aria-label="Auto-sincronização ativa">🔄</span>
+                        <span class="sync-text">Auto-sync</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar" role="complementary" aria-label="Filtros de pesquisa">
+                <div class="filters-section">
+                    <h2>🎯 Filtros</h2>
+                    
+                    <div class="filter-group">
+                        <label for="ano-escolar">🎓 Ano escolar</label>
+                        <select id="ano-escolar" name="ano-escolar" aria-describedby="ano-escolar-help">
+                            <option value="">Selecione o ano</option>
+                        </select>
+                        <div id="ano-escolar-help" class="sr-only">Selecione o ano escolar para filtrar os dados</div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="componente">📚 Componente curricular</label>
+                        <select id="componente" name="componente" aria-describedby="componente-help">
+                            <option value="">Selecione o componente</option>
+                        </select>
+                        <div id="componente-help" class="sr-only">Selecione o componente curricular para análise</div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="escola">🏫 Escola</label>
+                        <select id="escola" name="escola" aria-describedby="escola-help">
+                            <option value="">Selecione a escola</option>
+                            <option value="geral">📊 Média Geral</option>
+                        </select>
+                        <div id="escola-help" class="sr-only">Selecione uma escola específica ou a média geral</div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="performance-range">📈 Faixa de desempenho</label>
+                        <select id="performance-range" name="performance-range" aria-describedby="performance-help">
+                            <option value="todas">Todas as faixas</option>
+                            <option value="baixo">🔴 Até 40%</option>
+                            <option value="medio-baixo">🟠 De 41% a 60%</option>
+                            <option value="medio-alto">🔵 De 61% a 80%</option>
+                            <option value="alto">🟢 Acima de 80%</option>
+                        </select>
+                        <div id="performance-help" class="sr-only">Filtre por faixa de desempenho dos estudantes</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <section class="content-area" role="main" aria-label="Área principal do dashboard">
+                <!-- Loading State -->
+                <div id="loading" class="loading-state" aria-live="polite">
+                    <div class="loading-content">
+                        <div class="loading-spinner" aria-hidden="true">⏳</div>
+                        <h3>Carregando dados educacionais...</h3>
+                        <p>Aguarde enquanto preparamos os dados de avaliação. Os filtros serão pré-selecionados com base nas informações mais recentes disponíveis.</p>
+                    </div>
+                </div>
+
+                <!-- No Data State -->
+                <div id="no-data" class="no-data-state" style="display: none;" aria-live="polite">
+                    <div class="no-data-content">
+                        <span class="no-data-icon" aria-hidden="true">🎯</span>
+                        <h3>Selecione todos os filtros para visualizar as habilidades</h3>
+                        <p>Use os filtros na barra lateral para exibir os dados de percentual de acerto por habilidade.</p>
+                    </div>
+                </div>
+
+                <!-- Cards Container -->
+                <div id="cards-container" class="cards-grid" style="display: none;" aria-live="polite" aria-label="Grade de cards com dados de habilidades">
+                    <!-- Cards will be dynamically inserted here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description" style="display: none;">
+        <div class="modal-backdrop" aria-hidden="true"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Detalhes da Habilidade</h2>
+                <button class="modal-close" aria-label="Fechar modal" onclick="closeModal()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-description" class="modal-description">
+                    Descrição detalhada da habilidade será exibida aqui.
+                </div>
+                <div id="modal-details" class="modal-details">
+                    <!-- Detailed information will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen Reader Announcements -->
+    <div aria-live="assertive" aria-atomic="true" class="sr-only" id="announcements"></div>
+</body>
+</html>
