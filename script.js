@@ -310,6 +310,71 @@ function populateFilterOptions() {
     populateAnosEscolares();
     populateComponentesCurriculares();
     populateEscolas();
+    addFilterResetFunctionality();
+}
+
+// Adicionar funcionalidade de reset aos filtros
+function addFilterResetFunctionality() {
+    // Adicionar event listener para detectar quando um filtro é limpo
+    [elements.anoEscolar, elements.escola].forEach(select => {
+        select.addEventListener('change', function() {
+            if (this.value === '') {
+                resetDependentFilters(this.id);
+            }
+        });
+    });
+}
+
+// Resetar filtros dependentes quando um filtro pai é limpo
+function resetDependentFilters(changedFilterId) {
+    if (changedFilterId === 'ano-escolar') {
+        // Se o ano foi limpo, restaurar todas as escolas e resetar anos
+        populateEscolasComplete();
+        enableAllAnoOptions();
+        resetFilterLabels();
+    } else if (changedFilterId === 'escola') {
+        // Se a escola foi limpa, habilitar todos os anos
+        enableAllAnoOptions();
+        resetFilterLabels();
+    }
+}
+
+// Popular escolas completas (restaurar estado inicial)
+function populateEscolasComplete() {
+    const escolaSelect = elements.escola;
+    const currentValue = escolaSelect.value;
+    
+    // Preservar as duas primeiras opções
+    const defaultOptions = Array.from(escolaSelect.children).slice(0, 2);
+    
+    // Limpar e restaurar
+    escolaSelect.innerHTML = '';
+    defaultOptions.forEach(option => {
+        escolaSelect.appendChild(option.cloneNode(true));
+    });
+    
+    // Adicionar todas as escolas
+    if (AppState.escolasData && AppState.escolasData.escolas) {
+        AppState.escolasData.escolas.forEach(escola => {
+            const option = document.createElement('option');
+            option.value = escola.nome.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+            option.textContent = escola.nome;
+            escolaSelect.appendChild(option);
+        });
+    }
+    
+    // Restaurar valor selecionado se ainda válido
+    if (currentValue && Array.from(escolaSelect.options).some(opt => opt.value === currentValue)) {
+        escolaSelect.value = currentValue;
+    }
+}
+
+// Habilitar todas as opções de ano
+function enableAllAnoOptions() {
+    Array.from(elements.anoEscolar.options).forEach(option => {
+        option.disabled = false;
+        option.style.opacity = '1';
+    });
 }
 
 // Popular anos escolares disponíveis
@@ -339,7 +404,7 @@ function populateComponentesCurriculares() {
     });
 }
 
-// Popular escolas baseado nos dados reais
+// Popular escolas baseado nos dados reais (inicialmente todas)
 function populateEscolas() {
     const escolaSelect = elements.escola;
     
@@ -363,27 +428,110 @@ function getEscolasForAno(anoEscolar) {
     );
 }
 
+// Obter anos disponíveis para uma escola específica
+function getAnosForEscola(escolaValue) {
+    if (!AppState.escolasData || !AppState.escolasData.escolas || escolaValue === 'geral') {
+        return ['2', '5', '9']; // Para média geral, todos os anos estão disponíveis
+    }
+    
+    const escola = findEscolaByValue(escolaValue);
+    if (!escola || !escola.anos) return [];
+    
+    // Extrair os números dos anos (2, 5, 9)
+    return escola.anos.map(ano => ano.ano_escolar.charAt(0)).filter(Boolean);
+}
+
+// Atualizar opções de ano quando a escola for selecionada
+function updateAnosForSelectedEscola() {
+    const escolaValue = AppState.filters.escola;
+    const anoSelect = elements.anoEscolar;
+    
+    // Se "Média Geral" ou nenhuma escola selecionada, mostrar todos os anos
+    if (!escolaValue || escolaValue === 'geral') {
+        return; // Manter todos os anos disponíveis
+    }
+    
+    const anosDisponiveis = getAnosForEscola(escolaValue);
+    const anoAtualSelecionado = AppState.filters.anoEscolar;
+    
+    // Verificar se o ano atualmente selecionado ainda é válido
+    if (anoAtualSelecionado && !anosDisponiveis.includes(anoAtualSelecionado)) {
+        // Resetar ano se não estiver disponível na escola selecionada
+        AppState.filters.anoEscolar = '';
+        anoSelect.value = '';
+        announceToScreenReader('Ano escolar resetado - não disponível na escola selecionada');
+    }
+    
+    // Atualizar visual dos options (desabilitar os não disponíveis)
+    Array.from(anoSelect.options).forEach(option => {
+        if (option.value && option.value !== '') {
+            const isAvailable = anosDisponiveis.includes(option.value);
+            option.disabled = !isAvailable;
+            option.style.opacity = isAvailable ? '1' : '0.5';
+            
+            if (!isAvailable && option.selected) {
+                option.selected = false;
+            }
+        }
+    });
+    
+    if (anosDisponiveis.length > 0) {
+        updateFilterLabel('ano', anosDisponiveis.length);
+        announceToScreenReader(`Anos disponíveis na escola selecionada: ${anosDisponiveis.map(a => a + 'º').join(', ')}`);
+    }
+}
+
 // Atualizar opções de escola quando o ano for selecionado
 function updateEscolasForSelectedAno() {
     const anoEscolar = AppState.filters.anoEscolar;
     const escolaSelect = elements.escola;
     
-    // Limpar opções existentes (exceto as padrão)
-    while (escolaSelect.children.length > 2) {
-        escolaSelect.removeChild(escolaSelect.lastChild);
-    }
+    // Preservar as duas primeiras opções (placeholder e "Média Geral")
+    const defaultOptions = Array.from(escolaSelect.children).slice(0, 2);
+    
+    // Limpar todas as opções
+    escolaSelect.innerHTML = '';
+    
+    // Restaurar opções padrão
+    defaultOptions.forEach(option => {
+        escolaSelect.appendChild(option.cloneNode(true));
+    });
     
     if (anoEscolar) {
+        // Filtrar escolas que têm o ano selecionado
         const escolasDisponiveis = getEscolasForAno(anoEscolar);
-        escolasDisponiveis.forEach(escola => {
+        
+        if (escolasDisponiveis.length > 0) {
+            escolasDisponiveis.forEach(escola => {
+                const option = document.createElement('option');
+                option.value = escola.nome.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+                option.textContent = escola.nome;
+                escolaSelect.appendChild(option);
+            });
+            
+            // Atualizar label com contador
+            updateFilterLabel('escola', escolasDisponiveis.length);
+            announceToScreenReader(`${escolasDisponiveis.length} escolas disponíveis para o ${anoEscolar}º ano`);
+        } else {
+            // Se não há escolas para o ano selecionado
             const option = document.createElement('option');
-            option.value = escola.nome.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
-            option.textContent = escola.nome;
+            option.value = '';
+            option.textContent = 'Nenhuma escola disponível para este ano';
+            option.disabled = true;
             escolaSelect.appendChild(option);
-        });
+            
+            announceToScreenReader('Nenhuma escola disponível para o ano selecionado');
+        }
     } else {
         // Se nenhum ano selecionado, mostrar todas as escolas
-        populateEscolas();
+        if (AppState.escolasData && AppState.escolasData.escolas) {
+            AppState.escolasData.escolas.forEach(escola => {
+                const option = document.createElement('option');
+                option.value = escola.nome.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+                option.textContent = escola.nome;
+                escolaSelect.appendChild(option);
+            });
+        }
     }
 }
 
@@ -398,6 +546,11 @@ function handleFilterChange(event) {
         AppState.filters.escola = ''; // Resetar escola selecionada
         elements.escola.value = '';
         updateEscolasForSelectedAno();
+    }
+    
+    // Se a escola mudou, atualizar as opções de ano (se necessário)
+    if (filterId === 'escola' && oldValue !== event.target.value) {
+        updateAnosForSelectedEscola();
     }
     
     // Verificar se todos os filtros obrigatórios estão preenchidos
@@ -746,6 +899,32 @@ function getEscolaDisplayName(schoolValue) {
     
     const escola = findEscolaByValue(schoolValue);
     return escola ? escola.nome : 'Escola não identificada';
+}
+
+// Atualizar label dos filtros com contador de opções disponíveis
+function updateFilterLabel(filterId, count) {
+    const labelMap = {
+        'escola': 'escola',
+        'ano': 'ano-escolar'
+    };
+    
+    const targetId = labelMap[filterId] || filterId;
+    const label = document.querySelector(`label[for="${targetId}"]`);
+    
+    if (label) {
+        const originalText = label.textContent.split('(')[0].trim(); // Remove contador anterior
+        if (count !== undefined) {
+            label.textContent = `${originalText} (${count} disponível${count !== 1 ? 'is' : ''})`;
+        } else {
+            label.textContent = originalText;
+        }
+    }
+}
+
+// Resetar labels dos filtros
+function resetFilterLabels() {
+    updateFilterLabel('escola');
+    updateFilterLabel('ano');
 }
 
 // Funcões globais para o HTML

@@ -195,6 +195,12 @@ body {
     padding: 0.5rem;
 }
 
+.filter-group select option:disabled {
+    color: #666;
+    background: #222;
+    opacity: 0.5;
+}
+
 /* Área de conteúdo */
 .content-area {
     flex: 1;
