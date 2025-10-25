@@ -1,413 +1,360 @@
-// Dashboard Educacional - Script Principal Redesign
-// Processamento direto dos dados JSON com nova interface
+// Dashboard Educacional - VERSÃO SIMPLIFICADA FUNCIONAL
+console.log('🔄 Carregando versão simplificada do dashboard...');
 
-// Estado global da aplicação
-const AppState = {
-    filters: {
-        anoEscolar: '',
+// Estado global simples
+let appData = {
+    jsonData: null,
+    currentFilters: {
+        ano: '',
         componente: '',
         escola: '',
-        turma: '',
-        performanceRange: 'todas'
-    },
-    jsonData: null, // Dados do codigos_com_percentuais.json
-    escolasData: null, // Dados das escolas do YAML
-    isLoading: true
+        turma: ''
+    }
 };
 
-// Elementos DOM
-const elements = {
-    anoEscolar: document.getElementById('ano-escolar'),
-    componente: document.getElementById('componente'),
-    escola: document.getElementById('escola'),
-    turma: document.getElementById('turma'),
-    performanceRange: document.getElementById('performance-range'),
-    cardsContainer: document.getElementById('cards-container'),
-    loading: document.getElementById('loading'),
-    noData: document.getElementById('no-data')
-};
+// Aguardar DOM
+document.addEventListener('DOMContentLoaded', init);
 
-// Inicialização da aplicação
-document.addEventListener('DOMContentLoaded', function() {
-    initializeEventListeners();
-    loadAllData();
-});
-
-// Event listeners
-function initializeEventListeners() {
-    elements.anoEscolar?.addEventListener('change', handleFilterChange);
-    elements.componente?.addEventListener('change', handleFilterChange);
-    elements.escola?.addEventListener('change', handleFilterChange);
-    elements.turma?.addEventListener('change', handleFilterChange);
-    elements.performanceRange?.addEventListener('change', handleFilterChange);
-
-    // Keyboard events
-    document.addEventListener('keydown', handleKeyboardEvents);
-}
-
-// Carregamento de dados
-async function loadAllData() {
+async function init() {
+    console.log('🚀 Inicializando dashboard...');
+    
     try {
-        setLoadingState(true);
+        // Carregar dados
+        await loadData();
         
-        // Carregar dados JSON e YAML em paralelo
-        const [jsonData, escolasData] = await Promise.all([
-            loadJsonData(),
-            loadEscolasData()
-        ]);
+        // Configurar filtros
+        setupFilters();
         
-        AppState.jsonData = jsonData;
-        AppState.escolasData = escolasData;
-        
-        // Inicializar filtros com dados carregados
-        initializeFilters();
-        
-        // Renderizar cards iniciais
-        renderCards();
-        
-        setLoadingState(false);
+        console.log('✅ Dashboard inicializado com sucesso!');
         
     } catch (error) {
-        console.error('Erro ao carregar dados:', error);
-        showError('Erro ao carregar os dados. Verifique a conexão.');
-        setLoadingState(false);
+        console.error('❌ Erro na inicialização:', error);
     }
 }
 
-// Carregar dados JSON
-async function loadJsonData() {
-    try {
-        const response = await fetch('codigos_com_percentuais.json');
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        return await response.json();
-    } catch (error) {
-        console.error('Erro ao carregar JSON:', error);
-        throw error;
-    }
+async function loadData() {
+    console.log('📥 Carregando dados JSON...');
+    
+    const response = await fetch('./codigos_com_percentuais.json');
+    const text = await response.text();
+    
+    // Limpar NaN do JSON
+    const cleanText = text.replace(/:\s*NaN/g, ': null');
+    appData.jsonData = JSON.parse(cleanText);
+    
+    console.log('✅ Dados carregados:', Object.keys(appData.jsonData));
 }
 
-// Carregar dados das escolas
-async function loadEscolasData() {
-    try {
-        const response = await fetch('escolas.yaml');
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const yamlText = await response.text();
-        return jsyaml.load(yamlText);
-    } catch (error) {
-        console.error('Erro ao carregar YAML:', error);
-        throw error;
-    }
-}
-
-// Inicializar filtros com dados disponíveis
-function initializeFilters() {
-    if (!AppState.jsonData) return;
+function setupFilters() {
+    // Obter elementos
+    const anoSelect = document.getElementById('ano-escolar');
+    const componenteSelect = document.getElementById('componente');
+    const escolaSelect = document.getElementById('escola');
+    const turmaSelect = document.getElementById('turma');
     
-    // Obter anos disponíveis
-    const anos = Object.keys(AppState.jsonData).sort();
-    populateSelect(elements.anoEscolar, anos, 'Selecione o ano');
-    
-    // Configurar event listeners para filtros interdependentes
-    updateComponenteOptions();
-}
-
-// Atualizar opções de componente baseado no ano selecionado
-function updateComponenteOptions() {
-    const anoSelecionado = AppState.filters.anoEscolar;
-    elements.componente.innerHTML = '<option value="">Selecione o componente</option>';
-    elements.escola.innerHTML = '<option value="">Selecione a escola</option>';
-    elements.turma.innerHTML = '<option value="">Selecione a turma</option>';
-    
-    if (!anoSelecionado || !AppState.jsonData[anoSelecionado]) return;
-    
-    const componentes = Object.keys(AppState.jsonData[anoSelecionado]).sort();
-    populateSelect(elements.componente, componentes, 'Selecione o componente');
-}
-
-// Atualizar opções de escola baseado no componente selecionado
-function updateEscolaOptions() {
-    const { anoEscolar, componente } = AppState.filters;
-    elements.escola.innerHTML = '<option value="">Selecione a escola</option>';
-    elements.turma.innerHTML = '<option value="">Selecione a turma</option>';
-    
-    if (!anoEscolar || !componente || !AppState.jsonData[anoEscolar]?.[componente]) return;
-    
-    const escolas = Object.keys(AppState.jsonData[anoEscolar][componente]).sort();
-    populateSelect(elements.escola, escolas, 'Selecione a escola');
-}
-
-// Atualizar opções de turma baseado na escola selecionada
-function updateTurmaOptions() {
-    const { anoEscolar, componente, escola } = AppState.filters;
-    elements.turma.innerHTML = '<option value="">Selecione a turma</option>';
-    
-    if (!anoEscolar || !componente || !escola || !AppState.jsonData[anoEscolar]?.[componente]?.[escola]) return;
-    
-    const turmas = Object.keys(AppState.jsonData[anoEscolar][componente][escola]).sort();
-    populateSelect(elements.turma, turmas, 'Selecione a turma');
-}
-
-// Popular select com opções
-function populateSelect(selectElement, options, placeholderText) {
-    if (!selectElement) return;
-    
-    selectElement.innerHTML = `<option value="">${placeholderText}</option>`;
-    options.forEach(option => {
-        const optionElement = document.createElement('option');
-        optionElement.value = option;
-        optionElement.textContent = option;
-        selectElement.appendChild(optionElement);
-    });
-}
-
-// Manipulador de mudança de filtros
-function handleFilterChange(event) {
-    const filterId = event.target.id;
-    const value = event.target.value;
-    
-    // Mapear IDs para propriedades do estado
-    const filterMap = {
-        'ano-escolar': 'anoEscolar',
-        'componente': 'componente',
-        'escola': 'escola',
-        'turma': 'turma',
-        'performance-range': 'performanceRange'
-    };
-    
-    const filterProperty = filterMap[filterId];
-    if (filterProperty) {
-        AppState.filters[filterProperty] = value;
-        
-        // Atualizar filtros dependentes
-        if (filterProperty === 'anoEscolar') {
-            AppState.filters.componente = '';
-            AppState.filters.escola = '';
-            AppState.filters.turma = '';
-            updateComponenteOptions();
-        } else if (filterProperty === 'componente') {
-            AppState.filters.escola = '';
-            AppState.filters.turma = '';
-            updateEscolaOptions();
-        } else if (filterProperty === 'escola') {
-            AppState.filters.turma = '';
-            updateTurmaOptions();
-        }
-        
-        // Renderizar cards com novos filtros
-        renderCards();
-    }
-}
-
-// Renderizar cards
-function renderCards() {
-    if (!elements.cardsContainer) return;
-    
-    const filteredData = getFilteredData();
-    
-    if (filteredData.length === 0) {
-        showNoData();
+    if (!anoSelect) {
+        console.error('❌ Elemento ano-escolar não encontrado!');
         return;
     }
     
-    // Agrupar dados por escola
-    const dataBySchool = groupDataBySchool(filteredData);
+    console.log('📋 Configurando filtro de anos...');
+    
+    // Extrair anos únicos
+    const anos = new Set();
+    Object.keys(appData.jsonData).forEach(key => {
+        const match = key.match(/tabelas_(\d+)o_ano/);
+        if (match) {
+            anos.add(match[1] + 'º Ano');
+        }
+    });
+    
+    // Popular filtro de anos
+    const anosArray = Array.from(anos).sort();
+    console.log('📚 Anos encontrados:', anosArray);
+    
+    anoSelect.innerHTML = '<option value="">Selecione o ano</option>';
+    anosArray.forEach(ano => {
+        const option = document.createElement('option');
+        option.value = ano;
+        option.textContent = ano;
+        anoSelect.appendChild(option);
+    });
+    
+    // Event listeners
+    anoSelect.addEventListener('change', handleAnoChange);
+    if (componenteSelect) componenteSelect.addEventListener('change', handleComponenteChange);
+    if (escolaSelect) escolaSelect.addEventListener('change', handleEscolaChange);
+    if (turmaSelect) turmaSelect.addEventListener('change', handleTurmaChange);
+    
+    console.log('✅ Filtros configurados!');
+}
+
+function handleAnoChange(event) {
+    const ano = event.target.value;
+    console.log('🔄 Ano selecionado:', ano);
+    
+    appData.currentFilters.ano = ano;
+    appData.currentFilters.componente = '';
+    appData.currentFilters.escola = '';
+    appData.currentFilters.turma = '';
+    
+    updateComponenteOptions();
+}
+
+function updateComponenteOptions() {
+    const componenteSelect = document.getElementById('componente');
+    const escolaSelect = document.getElementById('escola');
+    const turmaSelect = document.getElementById('turma');
+    
+    // Limpar selects dependentes
+    if (componenteSelect) componenteSelect.innerHTML = '<option value="">Selecione o componente</option>';
+    if (escolaSelect) escolaSelect.innerHTML = '<option value="">Selecione a escola</option>';
+    if (turmaSelect) turmaSelect.innerHTML = '<option value="">Selecione a turma</option>';
+    
+    const ano = appData.currentFilters.ano;
+    if (!ano) return;
+    
+    const anoNum = ano.match(/(\d+)º/)?.[1];
+    if (!anoNum) return;
+    
+    // Buscar componentes
+    const componentes = new Set();
+    Object.keys(appData.jsonData).forEach(key => {
+        const match = key.match(/tabelas_(\d+)o_ano_(.+)/);
+        if (match && match[1] === anoNum) {
+            componentes.add(match[2]);
+        }
+    });
+    
+    const componentesArray = Array.from(componentes).sort();
+    console.log('📖 Componentes para', ano, ':', componentesArray);
+    
+    if (componenteSelect) {
+        componentesArray.forEach(comp => {
+            const option = document.createElement('option');
+            option.value = comp;
+            option.textContent = comp;
+            componenteSelect.appendChild(option);
+        });
+    }
+}
+
+function handleComponenteChange(event) {
+    const componente = event.target.value;
+    console.log('🔄 Componente selecionado:', componente);
+    
+    appData.currentFilters.componente = componente;
+    appData.currentFilters.escola = '';
+    appData.currentFilters.turma = '';
+    
+    updateEscolaOptions();
+}
+
+function updateEscolaOptions() {
+    const escolaSelect = document.getElementById('escola');
+    const turmaSelect = document.getElementById('turma');
+    
+    if (escolaSelect) escolaSelect.innerHTML = '<option value="">Selecione a escola</option>';
+    if (turmaSelect) turmaSelect.innerHTML = '<option value="">Selecione a turma</option>';
+    
+    const { ano, componente } = appData.currentFilters;
+    if (!ano || !componente) return;
+    
+    const anoNum = ano.match(/(\d+)º/)?.[1];
+    const tabelaKey = `tabelas_${anoNum}o_ano_${componente}`;
+    const dados = appData.jsonData[tabelaKey];
+    
+    if (!dados || !Array.isArray(dados)) return;
+    
+    // Extrair escolas
+    const escolas = new Set();
+    dados.slice(1).forEach(linha => {
+        if (linha.Escola && typeof linha.Escola === 'string' && 
+            linha.Escola !== null && linha.Escola.trim() !== '') {
+            escolas.add(linha.Escola);
+        }
+    });
+    
+    const escolasArray = Array.from(escolas).sort();
+    console.log('🏫 Escolas para', componente, ':', escolasArray);
+    
+    if (escolaSelect) {
+        escolasArray.forEach(escola => {
+            const option = document.createElement('option');
+            option.value = escola;
+            option.textContent = escola;
+            escolaSelect.appendChild(option);
+        });
+    }
+}
+
+function handleEscolaChange(event) {
+    const escola = event.target.value;
+    console.log('🔄 Escola selecionada:', escola);
+    
+    appData.currentFilters.escola = escola;
+    appData.currentFilters.turma = '';
+    
+    updateTurmaOptions();
+    renderCards();
+}
+
+function updateTurmaOptions() {
+    const turmaSelect = document.getElementById('turma');
+    
+    if (turmaSelect) turmaSelect.innerHTML = '<option value="">Selecione a turma</option>';
+    
+    const { ano, componente, escola } = appData.currentFilters;
+    if (!ano || !componente || !escola) return;
+    
+    const anoNum = ano.match(/(\d+)º/)?.[1];
+    const tabelaKey = `tabelas_${anoNum}o_ano_${componente}`;
+    const dados = appData.jsonData[tabelaKey];
+    
+    if (!dados || !Array.isArray(dados)) return;
+    
+    // Extrair turmas
+    const turmas = new Set();
+    dados.slice(1).forEach(linha => {
+        if (linha.Escola === escola && linha.Turma && 
+            typeof linha.Turma === 'string' && linha.Turma !== null) {
+            turmas.add(linha.Turma);
+        }
+    });
+    
+    const turmasArray = Array.from(turmas).sort();
+    console.log('🎪 Turmas para', escola, ':', turmasArray);
+    
+    if (turmaSelect) {
+        turmasArray.forEach(turma => {
+            const option = document.createElement('option');
+            option.value = turma;
+            option.textContent = turma;
+            turmaSelect.appendChild(option);
+        });
+    }
+}
+
+function handleTurmaChange(event) {
+    const turma = event.target.value;
+    console.log('🔄 Turma selecionada:', turma);
+    
+    appData.currentFilters.turma = turma;
+    renderCards();
+}
+
+function renderCards() {
+    console.log('🎨 Renderizando cards com filtros:', appData.currentFilters);
+    
+    const container = document.getElementById('cards-container');
+    const noDataDiv = document.getElementById('no-data');
+    
+    if (!container) return;
+    
+    const dados = getFilteredData();
+    
+    if (dados.length === 0) {
+        container.style.display = 'none';
+        if (noDataDiv) noDataDiv.style.display = 'flex';
+        return;
+    }
+    
+    // Ocultar no-data e mostrar container
+    if (noDataDiv) noDataDiv.style.display = 'none';
+    container.style.display = 'flex';
+    
+    // Agrupar por escola
+    const porEscola = new Map();
+    dados.forEach(item => {
+        if (!porEscola.has(item.escola)) {
+            porEscola.set(item.escola, []);
+        }
+        porEscola.get(item.escola).push(item);
+    });
     
     let html = '';
+    let schoolCount = 0;
     
-    for (const [schoolCode, schoolData] of dataBySchool) {
-        const schoolName = getSchoolName(schoolCode);
+    for (const [escola, items] of porEscola) {
+        schoolCount++;
+        // Aproveitar melhor o espaço da tela com mais habilidades
+        const maxItemsPerSchool = appData.currentFilters.turma ? 
+            Math.min(45, items.length) : // Se turma específica, mostra mais
+            Math.min(30, items.length);   // Se geral, quantidade moderada
+        
+        const limitedItems = items.slice(0, maxItemsPerSchool);
         
         html += `
             <div class="school-section">
                 <div class="school-header">
-                    <h2 class="school-title">
-                        🏫 ${schoolName}
-                        <span style="font-size: 0.7em; color: rgba(255,255,255,0.6);">(${schoolCode})</span>
-                    </h2>
-                    <p class="school-meta">
-                        ${schoolData.length} habilidades • ${AppState.filters.anoEscolar} • ${AppState.filters.componente}
-                        ${AppState.filters.turma ? ` • Turma ${AppState.filters.turma}` : ''}
-                    </p>
+                    <h2 class="school-title">🏫 ${escola}</h2>
+                    <p class="school-meta">${appData.currentFilters.turma ? `Turma ${appData.currentFilters.turma} - ` : ''}${limitedItems.length}${limitedItems.length < items.length ? `/${items.length}` : ''} habilidades</p>
                 </div>
                 <div class="habilidades-grid">
-                    ${schoolData.map(item => createHabilidadeCard(item)).join('')}
+                    ${limitedItems.map(createCard).join('')}
                 </div>
             </div>
         `;
-    }
-    
-    elements.cardsContainer.innerHTML = html;
-    elements.cardsContainer.style.display = 'block';
-    
-    if (elements.noData) elements.noData.style.display = 'none';
-}
-
-// Obter dados filtrados
-function getFilteredData() {
-    const { anoEscolar, componente, escola, turma, performanceRange } = AppState.filters;
-    
-    if (!anoEscolar || !componente) return [];
-    
-    const data = [];
-    const yearData = AppState.jsonData[anoEscolar];
-    
-    if (!yearData || !yearData[componente]) return [];
-    
-    const componentData = yearData[componente];
-    
-    // Se escola específica foi selecionada
-    if (escola && componentData[escola]) {
-        const schoolData = componentData[escola];
         
-        // Se turma específica foi selecionada
-        if (turma && schoolData[turma]) {
-            const turmaData = schoolData[turma];
-            Object.entries(turmaData).forEach(([habilidade, percentage]) => {
-                if (matchesPerformanceFilter(percentage, performanceRange)) {
-                    data.push({
-                        escola: escola,
-                        turma: turma,
-                        habilidade: habilidade,
-                        percentage: percentage
-                    });
-                }
-            });
-        } else if (!turma) {
-            // Mostrar todas as turmas da escola
-            Object.entries(schoolData).forEach(([turmaKey, turmaData]) => {
-                Object.entries(turmaData).forEach(([habilidade, percentage]) => {
-                    if (matchesPerformanceFilter(percentage, performanceRange)) {
-                        data.push({
-                            escola: escola,
-                            turma: turmaKey,
-                            habilidade: habilidade,
-                            percentage: percentage
-                        });
-                    }
-                });
-            });
-        }
-    } else {
-        // Mostrar todas as escolas
-        Object.entries(componentData).forEach(([schoolCode, schoolData]) => {
-            Object.entries(schoolData).forEach(([turmaKey, turmaData]) => {
-                if (!turma || turmaKey === turma) {
-                    Object.entries(turmaData).forEach(([habilidade, percentage]) => {
-                        if (matchesPerformanceFilter(percentage, performanceRange)) {
-                            data.push({
-                                escola: schoolCode,
-                                turma: turmaKey,
-                                habilidade: habilidade,
-                                percentage: percentage
-                            });
-                        }
-                    });
-                }
-            });
-        });
+        // Mostrar mais escolas aproveitando o espaço
+        if (schoolCount >= 4 && !appData.currentFilters.turma) break;
+        if (schoolCount >= 2 && appData.currentFilters.turma) break;
     }
     
-    return data;
+    container.innerHTML = html;
 }
 
-// Verificar se percentual atende ao filtro de performance
-function matchesPerformanceFilter(percentage, performanceRange) {
-    if (performanceRange === 'todas') return true;
+function createCard(item) {
+    const perc = parseFloat(item.percentage);
+    let classe = 'performance-low';
     
-    const perc = parseFloat(percentage);
-    
-    switch (performanceRange) {
-        case 'baixo': return perc <= 40;
-        case 'medio-baixo': return perc > 40 && perc <= 60;
-        case 'medio-alto': return perc > 60 && perc <= 80;
-        case 'alto': return perc > 80;
-        default: return true;
-    }
-}
-
-// Agrupar dados por escola
-function groupDataBySchool(data) {
-    const grouped = new Map();
-    
-    data.forEach(item => {
-        if (!grouped.has(item.escola)) {
-            grouped.set(item.escola, []);
-        }
-        grouped.get(item.escola).push(item);
-    });
-    
-    return grouped;
-}
-
-// Obter nome da escola
-function getSchoolName(schoolCode) {
-    if (AppState.escolasData && AppState.escolasData.escolas) {
-        const school = AppState.escolasData.escolas.find(e => e.codigo === schoolCode);
-        return school ? school.nome : schoolCode;
-    }
-    return schoolCode;
-}
-
-// Criar card de habilidade
-function createHabilidadeCard(item) {
-    const percentage = parseFloat(item.percentage);
-    const performanceClass = getPerformanceClass(percentage);
+    if (perc > 80) classe = 'performance-high';
+    else if (perc > 60) classe = 'performance-medium-high';
+    else if (perc > 40) classe = 'performance-medium-low';
     
     return `
-        <div class="habilidade-card">
-            <div class="performance-indicator ${performanceClass}"></div>
+        <div class="habilidade-card ${classe}">
+            <div class="performance-indicator ${classe}"></div>
             <div class="habilidade-code">${item.habilidade}</div>
-            <div class="habilidade-percentage ${performanceClass}">${percentage.toFixed(1)}%</div>
+            <div class="habilidade-percentage">${perc.toFixed(1)}%</div>
             <div class="habilidade-turma">Turma ${item.turma}</div>
         </div>
     `;
 }
 
-// Obter classe de performance baseada no percentual
-function getPerformanceClass(percentage) {
-    if (percentage <= 40) return 'performance-low';
-    if (percentage <= 60) return 'performance-medium-low';
-    if (percentage <= 80) return 'performance-medium-high';
-    return 'performance-high';
-}
-
-// Estados visuais
-function setLoadingState(isLoading) {
-    AppState.isLoading = isLoading;
+function getFilteredData() {
+    const { ano, componente, escola, turma } = appData.currentFilters;
     
-    if (elements.loading) {
-        elements.loading.style.display = isLoading ? 'flex' : 'none';
-    }
+    if (!ano || !componente) return [];
     
-    if (elements.cardsContainer) {
-        elements.cardsContainer.style.display = isLoading ? 'none' : 'block';
-    }
-}
-
-function showNoData() {
-    if (elements.cardsContainer) {
-        elements.cardsContainer.style.display = 'none';
-    }
+    const anoNum = ano.match(/(\d+)º/)?.[1];
+    const tabelaKey = `tabelas_${anoNum}o_ano_${componente}`;
+    const dados = appData.jsonData[tabelaKey];
     
-    if (elements.noData) {
-        elements.noData.style.display = 'flex';
-    }
+    if (!dados || !Array.isArray(dados)) return [];
+    
+    const resultado = [];
+    
+    dados.slice(1).forEach(linha => {
+        if (escola && linha.Escola !== escola) return;
+        if (turma && linha.Turma !== turma) return;
+        
+        Object.entries(linha).forEach(([key, value]) => {
+            if (key.startsWith('H') && typeof value === 'number') {
+                resultado.push({
+                    escola: linha.Escola,
+                    turma: linha.Turma,
+                    habilidade: key,
+                    percentage: value
+                });
+            }
+        });
+    });
+    
+    return resultado;
 }
 
-function showError(message) {
-    console.error('Erro na aplicação:', message);
-    // Implementar notificação de erro se necessário
-}
+// Debug global
+window.debugApp = () => console.log('Debug:', appData);
 
-// Eventos de teclado
-function handleKeyboardEvents(event) {
-    // Implementar navegação por teclado se necessário
-    if (event.key === 'Escape') {
-        // Limpar filtros ou fechar modals
-    }
-}
-
-// Utilitários para debugging
-window.AppState = AppState;
-window.debugFilters = () => console.log('Filtros atuais:', AppState.filters);
-window.debugData = () => console.log('Dados carregados:', AppState.jsonData);
+console.log('✅ Script simplificado carregado!');
