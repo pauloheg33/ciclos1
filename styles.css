@@ -318,13 +318,13 @@ body {
 }
 
 .habilidade-card {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(15px);
     border-radius: 12px;
-    border: 2px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     padding: 0.8rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     position: relative;
     overflow: hidden;
     height: 90px;
@@ -346,9 +346,9 @@ body {
 
 .habilidade-code {
     font-size: 0.8rem;
-    font-weight: 800;
+    font-weight: 700;
     color: #ffffff;
-    background: rgba(44, 44, 44, 0.9);
+    background: rgba(44, 44, 44, 0.8);
     padding: 0.2rem 0.5rem;
     border-radius: 8px;
     margin: 0;
@@ -360,11 +360,12 @@ body {
 
 .habilidade-percentage {
     font-size: 1.3rem;
-    font-weight: 900;
+    font-weight: 700;
     margin: 0.3rem 0;
     text-align: center;
     line-height: 1;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    color: #2c2c2c;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .habilidade-turma {
@@ -480,39 +481,43 @@ body {
     border-bottom: 6px solid rgba(20, 30, 48, 0.98);
 }/* Cards com cores de performance */
 .habilidade-card.performance-low { 
-    background: linear-gradient(135deg, rgba(255, 71, 87, 0.2), rgba(255, 56, 56, 0.15));
+    background: linear-gradient(135deg, rgba(255, 71, 87, 0.25), rgba(255, 56, 56, 0.15));
     border-color: rgba(255, 71, 87, 0.4);
 }
 
 .habilidade-card.performance-low .habilidade-percentage {
-    color: #ff4757;
+    color: #2c2c2c;
+    font-weight: 700;
 }
 
 .habilidade-card.performance-medium-low { 
-    background: linear-gradient(135deg, rgba(255, 149, 0, 0.2), rgba(255, 115, 0, 0.15));
+    background: linear-gradient(135deg, rgba(255, 149, 0, 0.25), rgba(255, 115, 0, 0.15));
     border-color: rgba(255, 149, 0, 0.4);
 }
 
 .habilidade-card.performance-medium-low .habilidade-percentage {
-    color: #ff9500;
+    color: #2c2c2c;
+    font-weight: 700;
 }
 
 .habilidade-card.performance-medium-high { 
-    background: linear-gradient(135deg, rgba(55, 66, 250, 0.2), rgba(47, 50, 226, 0.15));
+    background: linear-gradient(135deg, rgba(55, 66, 250, 0.25), rgba(47, 50, 226, 0.15));
     border-color: rgba(55, 66, 250, 0.4);
 }
 
 .habilidade-card.performance-medium-high .habilidade-percentage {
-    color: #3742fa;
+    color: #2c2c2c;
+    font-weight: 700;
 }
 
 .habilidade-card.performance-high { 
-    background: linear-gradient(135deg, rgba(46, 213, 115, 0.2), rgba(23, 192, 235, 0.15));
+    background: linear-gradient(135deg, rgba(46, 213, 115, 0.25), rgba(23, 192, 235, 0.15));
     border-color: rgba(46, 213, 115, 0.4);
 }
 
 .habilidade-card.performance-high .habilidade-percentage {
-    color: #2ed573;
+    color: #2c2c2c;
+    font-weight: 700;
 }
 
 /* Indicadores de performance */
