@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Análise avançada dos indicadores educacionais dos Ciclos I, II e III de 2025. Visualize distribuição de estudantes por níveis de aprendizagem">
+    <meta name="keywords" content="análise indicadores, ciclos educacionais, níveis aprendizagem, distribuição estudantes, dashboard educacional">
+    <meta name="author" content="Paulo">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Análise dos Indicadores - CICLOS">
+    <meta property="og:description" content="Análise detalhada dos indicadores educacionais com distribuição por níveis de aprendizagem">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://pauloheg33.github.io/ciclos/assets/analytics-preview.png">
+    <meta property="og:url" content="https://pauloheg33.github.io/ciclos/analise-nova.html">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Análise dos Indicadores - CICLOS">
+    <meta name="twitter:description" content="Visualização avançada de indicadores educacionais por ciclos">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pauloheg33.github.io/ciclos/analise-nova.html">
+    
+    <title>Análise dos Indicadores - CICLOS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js" defer></script>
+</head>
+<body>
+    <main>
+        <div class="analytics-container">
+            <!-- Indicador de Auto Sync -->
+            <div class="sync-status" id="sync-status">
+                <span class="sync-icon">🔄</span>
+                <span class="sync-text">Auto Sync Ativo</span>
+                <span class="sync-timestamp" id="sync-timestamp">Carregando...</span>
+            </div>
+            
+            <!-- Filtros no topo -->
+            <div class="top-filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>📋 Avaliação</label>
+                        <select id="avaliacao">
+                            <option value="">Selecione uma avaliação</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>🎓 Ano escolar</label>
+                        <select id="ano-escolar">
+                            <option value="">Selecione o ano</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>📚 Componente curricular</label>
+                        <select id="componente">
+                            <option value="">Selecione o componente</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>🏛️ Rede</label>
+                        <select id="rede">
+                            <option value="">Selecione a rede</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>🏫 Escola</label>
+                        <select id="escola">
+                            <option value="">Selecione a escola</option>
+                            <option value="geral">📊 Média Geral</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>📈 Faixa de desempenho</label>
+                        <select id="performance-range">
+                            <option value="all">Todas as faixas</option>
+                            <option value="0-40">🔴 Até 40%</option>
+                            <option value="41-60">🟠 De 41% a 60%</option>
+                            <option value="61-80">🔵 De 61% a 80%</option>
+                            <option value="81-100">🟢 Acima de 80%</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cards dos Ciclos -->
+            <div class="cycles-grid">
+                <div class="cycle-card" id="ciclo-1-card">
+                    <h2>2025 - Ciclo I</h2>
+                    <div class="cycle-main">
+                        <div class="adequado-section">
+                            <span class="adequado-label">Média de Desempenho</span>
+                            <div class="percentage-large">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="distribution-section">
+                        <h4>Distribuição dos estudantes por níveis de aprendizagem</h4>
+                        <div class="progress-bar-horizontal">
+                            <div class="segment defasagem" style="width: 1%"></div>
+                            <div class="segment intermediario" style="width: 2%"></div>
+                            <div class="segment adequado" style="width: 98%"></div>
+                        </div>
+                        <div class="legend-list">
+                            <div class="legend-item">
+                                <span class="legend-dot defasagem"></span>
+                                <span class="legend-text">Defasagem</span>
+                                <span class="legend-percent">1%</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot intermediario"></span>
+                                <span class="legend-text">Aprendizado intermediário</span>
+                                <span class="legend-percent">2%</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot adequado"></span>
+                                <span class="legend-text">Aprendizado adequado</span>
+                                <span class="legend-percent">98%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cycle-card" id="ciclo-2-card">
+                    <h2>2025 - Ciclo II</h2>
+                    <div class="cycle-main">
+                        <div class="adequado-section">
+                            <span class="adequado-label">Média de Desempenho</span>
+                            <div class="percentage-large">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="distribution-section">
+                        <h4>Distribuição das habilidades por níveis de desempenho</h4>
+                        <div class="progress-bar-horizontal">
+                            <div class="segment defasagem" style="width: 1%"></div>
+                            <div class="segment intermediario" style="width: 1%"></div>
+                            <div class="segment adequado" style="width: 98%"></div>
+                        </div>
+                        <div class="legend-list">
+                            <div class="legend-item">
+                                <span class="legend-dot defasagem"></span>
+                                <span class="legend-text">Defasagem</span>
+                                <span class="legend-percent">1%</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot intermediario"></span>
+                                <span class="legend-text">Aprendizado intermediário</span>
+                                <span class="legend-percent">1%</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot adequado"></span>
+                                <span class="legend-text">Aprendizado adequado</span>
+                                <span class="legend-percent">98%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cycle-card" id="ciclo-3-card">
+                    <h2>2025 - Ciclo III</h2>
+                    <div class="cycle-main">
+                        <div class="adequado-section">
+                            <span class="adequado-label">Média de Desempenho</span>
+                            <div class="percentage-large">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="distribution-section">
+                        <h4>Distribuição das habilidades por níveis de desempenho</h4>
+                        <div class="progress-bar-horizontal">
+                            <div class="segment defasagem" style="width: 1%"></div>
+                            <div class="segment intermediario" style="width: 2%"></div>
+                            <div class="segment adequado" style="width: 97%"></div>
+                        </div>
+                        <div class="legend-list">
+                            <div class="legend-item">
+                                <span class="legend-dot defasagem"></span>
+                                <span class="legend-text">Defasagem</span>
+                                <span class="legend-percent">1%</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot intermediario"></span>
+                                <span class="legend-text">Aprendizado intermediário</span>
+                                <span class="legend-percent">2%</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot adequado"></span>
+                                <span class="legend-text">Aprendizado adequado</span>
+                                <span class="legend-percent">97%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="back-button" onclick="goToDashboard()" aria-label="Voltar para o dashboard principal">← Voltar ao Dashboard</button>
+        </div>
+    </main>
+
+    <script src="analytics.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+ANÁLISE DE DESEMPENHO POR ESCOLA, ANO E COMPONENTE (EM %)
+Critérios: Defasagem <60% | Intermediário 60–79% | Adequado ≥80%
+--------------------------------------------------------------------------------
+
+📘 CICLO I – 6º ao 9º ano do Ensino Fundamental
+
+📗 Língua Portuguesa (Leitura)
+6º ano do Ensino Fundamental – Língua Portuguesa (Leitura)
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 21.8% | Intermediário: 30.2% | Adequado: 48.0% | Média Geral: 77.6% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 19.7% | Intermediário: 31.6% | Adequado: 48.8% | Média Geral: 78.1% | Predomínio: Intermediário
+- EEF FRANCISCO MOURAO LIMA - 23177071
+  Defasagem: 22.4% | Intermediário: 34.7% | Adequado: 42.8% | Média Geral: 76.5% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 23.4% | Intermediário: 30.6% | Adequado: 46.0% | Média Geral: 77.0% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 20.5% | Intermediário: 30.2% | Adequado: 49.3% | Média Geral: 78.0% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 19.3% | Intermediário: 33.5% | Adequado: 47.2% | Média Geral: 77.8% | Predomínio: Intermediário
+
+7º ano do Ensino Fundamental – Língua Portuguesa (Leitura)
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 18.2% | Intermediário: 31.8% | Adequado: 50.0% | Média Geral: 78.5% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 21.9% | Intermediário: 33.8% | Adequado: 44.3% | Média Geral: 76.9% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 19.3% | Intermediário: 34.1% | Adequado: 46.6% | Média Geral: 77.7% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 22.9% | Intermediário: 30.0% | Adequado: 47.1% | Média Geral: 77.3% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 22.8% | Intermediário: 34.9% | Adequado: 42.3% | Média Geral: 76.4% | Predomínio: Intermediário
+
+8º ano do Ensino Fundamental – Língua Portuguesa (Leitura)
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 20.0% | Intermediário: 31.1% | Adequado: 48.9% | Média Geral: 78.0% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 23.7% | Intermediário: 32.4% | Adequado: 43.9% | Média Geral: 76.6% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 18.6% | Intermediário: 31.4% | Adequado: 50.0% | Média Geral: 78.4% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 23.1% | Intermediário: 34.2% | Adequado: 42.7% | Média Geral: 76.5% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 22.8% | Intermediário: 35.1% | Adequado: 42.0% | Média Geral: 76.3% | Predomínio: Intermediário
+
+9º ano do Ensino Fundamental – Língua Portuguesa (Leitura)
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 21.2% | Intermediário: 36.8% | Adequado: 42.0% | Média Geral: 76.6% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 20.3% | Intermediário: 33.9% | Adequado: 45.9% | Média Geral: 77.5% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 23.0% | Intermediário: 34.3% | Adequado: 42.7% | Média Geral: 76.5% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 23.2% | Intermediário: 34.0% | Adequado: 42.8% | Média Geral: 76.5% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 22.2% | Intermediário: 30.3% | Adequado: 47.5% | Média Geral: 77.4% | Predomínio: Intermediário
+
+📗 Matemática
+6º ano do Ensino Fundamental – Matemática
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 19.4% | Intermediário: 32.0% | Adequado: 48.6% | Média Geral: 78.0% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 18.5% | Intermediário: 31.6% | Adequado: 49.9% | Média Geral: 78.4% | Predomínio: Intermediário
+- EEF FRANCISCO MOURAO LIMA - 23177071
+  Defasagem: 18.6% | Intermediário: 31.9% | Adequado: 49.4% | Média Geral: 78.2% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 21.8% | Intermediário: 32.6% | Adequado: 45.6% | Média Geral: 77.2% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 20.2% | Intermediário: 31.5% | Adequado: 48.3% | Média Geral: 77.9% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 19.6% | Intermediário: 36.6% | Adequado: 43.8% | Média Geral: 77.1% | Predomínio: Intermediário
+
+7º ano do Ensino Fundamental – Matemática
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 21.9% | Intermediário: 34.3% | Adequado: 43.8% | Média Geral: 76.8% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 19.0% | Intermediário: 35.1% | Adequado: 45.9% | Média Geral: 77.6% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 19.0% | Intermediário: 32.7% | Adequado: 48.4% | Média Geral: 78.1% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 23.9% | Intermediário: 34.5% | Adequado: 41.6% | Média Geral: 76.1% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 21.3% | Intermediário: 34.8% | Adequado: 43.9% | Média Geral: 76.9% | Predomínio: Intermediário
+
+8º ano do Ensino Fundamental – Matemática
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 23.1% | Intermediário: 35.4% | Adequado: 41.5% | Média Geral: 76.2% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 19.4% | Intermediário: 30.6% | Adequado: 50.0% | Média Geral: 78.3% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 19.9% | Intermediário: 31.9% | Adequado: 48.2% | Média Geral: 77.9% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 19.3% | Intermediário: 36.6% | Adequado: 44.1% | Média Geral: 77.2% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 23.3% | Intermediário: 32.2% | Adequado: 44.5% | Média Geral: 76.7% | Predomínio: Intermediário
+
+9º ano do Ensino Fundamental – Matemática
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 21.9% | Intermediário: 32.8% | Adequado: 45.3% | Média Geral: 77.1% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 23.5% | Intermediário: 33.2% | Adequado: 43.3% | Média Geral: 76.5% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 19.6% | Intermediário: 31.7% | Adequado: 48.7% | Média Geral: 78.0% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 21.4% | Intermediário: 31.8% | Adequado: 46.8% | Média Geral: 77.4% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 21.5% | Intermediário: 36.3% | Adequado: 42.2% | Média Geral: 76.6% | Predomínio: Intermediário
+
+--------------------------------------------------------------------------------
+📘 CICLO II – 6º ao 9º ano do Ensino Fundamental
+
+📗 Língua Portuguesa (Leitura)
+6º ano do Ensino Fundamental – Língua Portuguesa (Leitura)
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 27.0% | Intermediário: 43.3% | Adequado: 29.7% | Média Geral: 70.4% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 30.0% | Intermediário: 45.1% | Adequado: 25.0% | Média Geral: 69.3% | Predomínio: Intermediário
+- EEF FRANCISCO MOURAO LIMA - 23177071
+  Defasagem: 25.5% | Intermediário: 42.3% | Adequado: 32.3% | Média Geral: 71.1% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 25.5% | Intermediário: 45.8% | Adequado: 28.7% | Média Geral: 70.5% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 29.0% | Intermediário: 44.5% | Adequado: 26.5% | Média Geral: 69.6% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 25.3% | Intermediário: 44.3% | Adequado: 30.4% | Média Geral: 70.8% | Predomínio: Intermediário
+
+7º ano do Ensino Fundamental – Língua Portuguesa (Leitura)
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 30.0% | Intermediário: 45.0% | Adequado: 25.0% | Média Geral: 69.2% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 29.9% | Intermediário: 45.1% | Adequado: 25.0% | Média Geral: 69.3% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 25.1% | Intermediário: 46.3% | Adequado: 28.6% | Média Geral: 70.5% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 28.4% | Intermediário: 45.2% | Adequado: 26.4% | Média Geral: 69.7% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 26.3% | Intermediário: 45.8% | Adequado: 27.8% | Média Geral: 70.2% | Predomínio: Intermediário
+
+8º ano do Ensino Fundamental – Língua Portuguesa (Leitura)
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 25.6% | Intermediário: 44.6% | Adequado: 29.8% | Média Geral: 70.6% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 27.3% | Intermediário: 47.7% | Adequado: 25.0% | Média Geral: 69.7% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 29.4% | Intermediário: 43.6% | Adequado: 27.0% | Média Geral: 69.6% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 27.5% | Intermediário: 43.1% | Adequado: 29.4% | Média Geral: 70.3% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 29.6% | Intermediário: 45.4% | Adequado: 25.0% | Média Geral: 69.3% | Predomínio: Intermediário
+
+9º ano do Ensino Fundamental – Língua Portuguesa (Leitura)
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 26.5% | Intermediário: 45.8% | Adequado: 27.7% | Média Geral: 70.2% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 28.0% | Intermediário: 42.9% | Adequado: 29.0% | Média Geral: 70.1% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 28.8% | Intermediário: 45.2% | Adequado: 26.0% | Média Geral: 69.6% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 28.9% | Intermediário: 45.2% | Adequado: 25.9% | Média Geral: 69.5% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 25.0% | Intermediário: 43.9% | Adequado: 31.1% | Média Geral: 70.9% | Predomínio: Intermediário
+
+📗 Matemática
+6º ano do Ensino Fundamental – Matemática
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 25.1% | Intermediário: 47.6% | Adequado: 27.3% | Média Geral: 70.3% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 29.4% | Intermediário: 45.6% | Adequado: 25.0% | Média Geral: 69.3% | Predomínio: Intermediário
+- EEF FRANCISCO MOURAO LIMA - 23177071
+  Defasagem: 26.5% | Intermediário: 42.3% | Adequado: 31.1% | Média Geral: 70.6% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 29.4% | Intermediário: 45.6% | Adequado: 25.0% | Média Geral: 69.3% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 25.4% | Intermediário: 44.9% | Adequado: 29.7% | Média Geral: 70.6% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 25.3% | Intermediário: 46.6% | Adequado: 28.1% | Média Geral: 70.4% | Predomínio: Intermediário
+
+7º ano do Ensino Fundamental – Matemática
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 28.8% | Intermediário: 42.8% | Adequado: 28.4% | Média Geral: 69.9% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 27.4% | Intermediário: 45.3% | Adequado: 27.3% | Média Geral: 70.0% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 26.3% | Intermediário: 47.2% | Adequado: 26.4% | Média Geral: 69.9% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 27.1% | Intermediário: 43.3% | Adequado: 29.6% | Média Geral: 70.4% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 27.7% | Intermediário: 46.4% | Adequado: 25.9% | Média Geral: 69.7% | Predomínio: Intermediário
+
+8º ano do Ensino Fundamental – Matemática
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 26.0% | Intermediário: 43.9% | Adequado: 30.1% | Média Geral: 70.6% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 30.0% | Intermediário: 45.0% | Adequado: 25.0% | Média Geral: 69.2% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 27.2% | Intermediário: 45.1% | Adequado: 27.7% | Média Geral: 70.1% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 25.6% | Intermediário: 43.3% | Adequado: 31.0% | Média Geral: 70.7% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 26.7% | Intermediário: 45.5% | Adequado: 27.8% | Média Geral: 70.2% | Predomínio: Intermediário
+
+9º ano do Ensino Fundamental – Matemática
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 26.2% | Intermediário: 43.3% | Adequado: 30.5% | Média Geral: 70.6% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 25.4% | Intermediário: 45.8% | Adequado: 28.9% | Média Geral: 70.6% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 26.1% | Intermediário: 47.4% | Adequado: 26.4% | Média Geral: 70.0% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 29.3% | Intermediário: 42.4% | Adequado: 28.3% | Média Geral: 69.8% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 26.2% | Intermediário: 46.0% | Adequado: 27.8% | Média Geral: 70.2% | Predomínio: Intermediário
+
+--------------------------------------------------------------------------------
+📘 CICLO III – 6º ao 9º ano do Ensino Fundamental
+
+📗 Língua Portuguesa (Leitura)
+6º ano do Ensino Fundamental – Língua Portuguesa (Leitura)
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 37.1% | Intermediário: 37.9% | Adequado: 25.0% | Média Geral: 64.8% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 44.4% | Intermediário: 40.6% | Adequado: 15.0% | Média Geral: 62.1% | Predomínio: Intermediário
+- EEF FRANCISCO MOURAO LIMA - 23177071
+  Defasagem: 39.7% | Intermediário: 42.8% | Adequado: 17.4% | Média Geral: 63.2% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 43.1% | Intermediário: 36.9% | Adequado: 20.0% | Média Geral: 63.0% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 36.0% | Intermediário: 39.3% | Adequado: 24.7% | Média Geral: 65.0% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 39.2% | Intermediário: 39.7% | Adequado: 21.1% | Média Geral: 63.9% | Predomínio: Intermediário
+
+7º ano do Ensino Fundamental – Língua Portuguesa (Leitura)
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 42.3% | Intermediário: 41.7% | Adequado: 16.0% | Média Geral: 62.6% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 44.8% | Intermediário: 36.0% | Adequado: 19.2% | Média Geral: 62.6% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 39.0% | Intermediário: 38.4% | Adequado: 22.6% | Média Geral: 64.1% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 43.6% | Intermediário: 37.5% | Adequado: 18.9% | Média Geral: 62.8% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 36.9% | Intermediário: 39.5% | Adequado: 23.6% | Média Geral: 64.7% | Predomínio: Intermediário
+
+8º ano do Ensino Fundamental – Língua Portuguesa (Leitura)
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 39.2% | Intermediário: 37.8% | Adequado: 23.0% | Média Geral: 64.2% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 37.5% | Intermediário: 44.2% | Adequado: 18.3% | Média Geral: 63.8% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 39.4% | Intermediário: 43.6% | Adequado: 17.0% | Média Geral: 63.3% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 40.5% | Intermediário: 35.5% | Adequado: 24.0% | Média Geral: 64.1% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 45.0% | Intermediário: 40.0% | Adequado: 15.0% | Média Geral: 62.0% | Predomínio: Intermediário
+
+9º ano do Ensino Fundamental – Língua Portuguesa (Leitura)
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 44.7% | Intermediário: 40.3% | Adequado: 15.0% | Média Geral: 62.1% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 43.5% | Intermediário: 36.7% | Adequado: 19.8% | Média Geral: 62.9% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 39.9% | Intermediário: 37.1% | Adequado: 23.0% | Média Geral: 64.0% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 39.0% | Intermediário: 36.0% | Adequado: 25.0% | Média Geral: 64.5% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 38.8% | Intermediário: 44.9% | Adequado: 16.4% | Média Geral: 63.4% | Predomínio: Intermediário
+
+📗 Matemática
+6º ano do Ensino Fundamental – Matemática
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 37.7% | Intermediário: 42.8% | Adequado: 19.5% | Média Geral: 63.9% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 39.6% | Intermediário: 39.2% | Adequado: 21.2% | Média Geral: 63.8% | Predomínio: Intermediário
+- EEF FRANCISCO MOURAO LIMA - 23177071
+  Defasagem: 44.6% | Intermediário: 40.4% | Adequado: 15.0% | Média Geral: 62.1% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 40.6% | Intermediário: 42.2% | Adequado: 17.3% | Média Geral: 63.2% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 36.5% | Intermediário: 38.5% | Adequado: 25.0% | Média Geral: 64.9% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 44.7% | Intermediário: 40.3% | Adequado: 15.0% | Média Geral: 62.1% | Predomínio: Intermediário
+
+7º ano do Ensino Fundamental – Matemática
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 40.4% | Intermediário: 42.5% | Adequado: 17.1% | Média Geral: 63.1% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 35.6% | Intermediário: 40.8% | Adequado: 23.6% | Média Geral: 64.9% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 40.0% | Intermediário: 43.5% | Adequado: 16.4% | Média Geral: 63.0% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 36.6% | Intermediário: 44.6% | Adequado: 18.8% | Média Geral: 64.0% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 35.8% | Intermediário: 39.2% | Adequado: 25.0% | Média Geral: 65.1% | Predomínio: Intermediário
+
+8º ano do Ensino Fundamental – Matemática
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 41.0% | Intermediário: 41.8% | Adequado: 17.3% | Média Geral: 63.1% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 37.4% | Intermediário: 37.6% | Adequado: 25.0% | Média Geral: 64.8% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 43.9% | Intermediário: 37.5% | Adequado: 18.6% | Média Geral: 62.7% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 40.9% | Intermediário: 41.2% | Adequado: 17.9% | Média Geral: 63.1% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 39.2% | Intermediário: 40.8% | Adequado: 20.0% | Média Geral: 63.7% | Predomínio: Intermediário
+
+9º ano do Ensino Fundamental – Matemática
+- EEF 21 DE DEZEMBRO - 23084707
+  Defasagem: 40.2% | Intermediário: 44.3% | Adequado: 15.4% | Média Geral: 62.9% | Predomínio: Intermediário
+- EEF FIRMINO JOSE - 23084766
+  Defasagem: 37.0% | Intermediário: 42.2% | Adequado: 20.8% | Média Geral: 64.3% | Predomínio: Intermediário
+- EEIEF 03 DE DEZEMBRO - 23084715
+  Defasagem: 37.4% | Intermediário: 39.0% | Adequado: 23.7% | Média Geral: 64.7% | Predomínio: Intermediário
+- EEIEF ANTONIO DE SOUSA BARROS - 23084685
+  Defasagem: 41.7% | Intermediário: 38.0% | Adequado: 20.3% | Média Geral: 63.3% | Predomínio: Intermediário
+- EEIEF JOSE ALVES DE SENA - 23084952
+  Defasagem: 38.2% | Intermediário: 42.5% | Adequado: 19.3% | Média Geral: 63.8% | Predomínio: Intermediário
+
+--------------------------------------------------------------------------------
