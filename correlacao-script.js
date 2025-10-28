@@ -35,6 +35,12 @@ async function init() {
     }
 }
 
+function cleanHabilityCode(codigo) {
+    // Remove prefixos como "CNCA 2025", "PROEA 2025", etc.
+    // Mantém apenas o código final (ex: "9EF14_M")
+    return codigo.replace(/^(CNCA|PROEA)\s+\d+\s+/, '').trim();
+}
+
 function loadCorrelationDataFromProcessor() {
     console.log('📥 Carregando dados do arquivo relacao_habilidades_correlacionadas_corrigida.txt...');
     
@@ -52,7 +58,8 @@ function loadCorrelationDataFromProcessor() {
         // Para cada descritor SPAECE, criar uma entrada para cada código correlacionado
         item.correlacionados.forEach(correlacionado => {
             correlationData.push({
-                codigo_habilidade: correlacionado.codigo,
+                codigo_habilidade: cleanHabilityCode(correlacionado.codigo),
+                codigo_habilidade_completo: correlacionado.codigo, // Manter original para referência
                 descricao_habilidade: correlacionado.descricao,
                 bncc: '', // Não especificado no arquivo
                 spaece: item.spaece.descricao,
@@ -142,7 +149,7 @@ function renderTable() {
     }
     
     const html = filteredData.map(item => `
-        <tr onclick="showDetails('${item.codigo_habilidade}')" style="cursor: pointer;" title="Clique para ver detalhes">
+        <tr onclick="showDetails('${item.codigo_habilidade_completo}')" style="cursor: pointer;" title="Clique para ver detalhes">
             <td class="cnca-cell">
                 <div class="skill-code">${item.codigo_habilidade}</div>
                 <div class="skill-description">${item.descricao_habilidade}</div>
@@ -188,8 +195,8 @@ function updateStatistics() {
     }
 }
 
-function showDetails(codigoHabilidade) {
-    const item = correlationData.find(h => h.codigo_habilidade === codigoHabilidade);
+function showDetails(codigoHabilidadeCompleto) {
+    const item = correlationData.find(h => h.codigo_habilidade_completo === codigoHabilidadeCompleto);
     if (!item) return;
     
     const modal = document.getElementById('detail-modal');
@@ -205,6 +212,7 @@ function showDetails(codigoHabilidade) {
             <h3>🎯 Habilidade CNCA</h3>
             <div class="detail-content">
                 <strong>Código:</strong> ${item.codigo_habilidade}<br>
+                <strong>Código Completo:</strong> ${item.codigo_habilidade_completo}<br>
                 <strong>Descrição:</strong> ${item.descricao_habilidade}<br>
                 <strong>Componente:</strong> ${item.componente}<br>
                 <strong>Ano:</strong> ${item.ano}
