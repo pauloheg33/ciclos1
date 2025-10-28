@@ -604,9 +604,12 @@ function createCard(item) {
     } else if (perc >= 60) {
         classe = 'performance-medium-high';
         desempenho = 'Intermediário (60-80%)';
-    } else {
+    } else if (perc >= 45) {
         classe = 'performance-medium-low';
-        desempenho = 'Crítico (< 60%)';
+        desempenho = 'Crítico (45-60%)';
+    } else {
+        classe = 'performance-very-low';
+        desempenho = 'Muito Crítico (< 45%)';
     }
     
     let tooltipText = getHabilidadeTooltip(item.habilidade);
@@ -650,8 +653,11 @@ function getFilteredData() {
                     const percentage = parseFloat(value);
                     
                     switch (performanceRange) {
+                        case 'muito-critico':
+                            if (percentage >= 45) return; // Só mostrar < 45%
+                            break;
                         case 'critico':
-                            if (percentage >= 60) return; // Só mostrar < 60%
+                            if (percentage < 45 || percentage >= 60) return; // Só mostrar 45-60%
                             break;
                         case 'intermediario':
                             if (percentage < 60 || percentage > 80) return; // Só mostrar 60-80%
@@ -923,8 +929,11 @@ function addFilterInfo(doc, margin, yStart) {
         y += 4;
         let performanceTexto;
         switch (performanceRange) {
+            case 'muito-critico':
+                performanceTexto = 'Muito Crítico (< 45%)';
+                break;
             case 'critico':
-                performanceTexto = 'Crítico (< 60%)';
+                performanceTexto = 'Crítico (45-60%)';
                 break;
             case 'intermediario':
                 performanceTexto = 'Intermediário (60-80%)';
@@ -957,12 +966,13 @@ function addStatisticalSummary(doc, dados, margin, yStart) {
     const media = total > 0 ? (percentuais.reduce((a, b) => a + b, 0) / total).toFixed(1) : 0;
     
     // Contadores por faixa de desempenho
-    let adequado = 0, intermediario = 0, critico = 0;
+    let adequado = 0, intermediario = 0, critico = 0, muitoCritico = 0;
     
     percentuais.forEach(perc => {
         if (perc > 80) adequado++;
         else if (perc >= 60) intermediario++;
-        else critico++;
+        else if (perc >= 45) critico++;
+        else muitoCritico++;
     });
     
     // Contar escolas e turmas únicas para relatórios gerais
@@ -983,7 +993,8 @@ function addStatisticalSummary(doc, dados, margin, yStart) {
         `Distribuição por faixa de desempenho:`,
         `  • Adequado (>80%): ${adequado} registros (${total > 0 ? ((adequado/total)*100).toFixed(1) : 0}%)`,
         `  • Intermediário (60-80%): ${intermediario} registros (${total > 0 ? ((intermediario/total)*100).toFixed(1) : 0}%)`,
-        `  • Crítico (<60%): ${critico} registros (${total > 0 ? ((critico/total)*100).toFixed(1) : 0}%)`
+        `  • Crítico (45-60%): ${critico} registros (${total > 0 ? ((critico/total)*100).toFixed(1) : 0}%)`,
+        `  • Muito Crítico (<45%): ${muitoCritico} registros (${total > 0 ? ((muitoCritico/total)*100).toFixed(1) : 0}%)`
     ];
     
     estatisticas.forEach(texto => {
@@ -1037,11 +1048,12 @@ function addSchoolSummary(doc, dados, margin, yStart) {
             (percentuais.reduce((a, b) => a + b, 0) / percentuais.length).toFixed(1) : 0;
         
         // Contar por faixa de desempenho
-        let adequado = 0, intermediario = 0, critico = 0;
+        let adequado = 0, intermediario = 0, critico = 0, muitoCritico = 0;
         percentuais.forEach(perc => {
             if (perc > 80) adequado++;
             else if (perc >= 60) intermediario++;
-            else critico++;
+            else if (perc >= 45) critico++;
+            else muitoCritico++;
         });
         
         const turmasUnicas = new Set(dadosEscola.map(item => item.turma));
@@ -1055,14 +1067,15 @@ function addSchoolSummary(doc, dados, margin, yStart) {
             dadosEscola.length.toString(),
             `${media}%`,
             adequado.toString(),
-            critico.toString()
+            critico.toString(),
+            muitoCritico.toString()
         ]);
     });
     
     // Configuração da tabela de resumo
     const summaryConfig = {
         startY: yStart + 8,
-        head: [['Escola', 'Turmas', 'Hab.', 'Média', 'Adeq.', 'Crít.']],
+        head: [['Escola', 'Turmas', 'Hab.', 'Média', 'Adeq.', 'Crít.', 'M.Crít.']],
         body: summaryData,
         theme: 'striped',
         headStyles: {
@@ -1080,12 +1093,13 @@ function addSchoolSummary(doc, dados, margin, yStart) {
             fillColor: [248, 248, 248]
         },
         columnStyles: {
-            0: { cellWidth: 'auto', minCellWidth: 40 }, // Escola
-            1: { cellWidth: 18, halign: 'center' }, // Turmas
-            2: { cellWidth: 18, halign: 'center' }, // Habilidades
-            3: { cellWidth: 20, halign: 'center' }, // Média
-            4: { cellWidth: 18, halign: 'center' }, // Adequado
-            5: { cellWidth: 18, halign: 'center' }  // Crítico
+            0: { cellWidth: 'auto', minCellWidth: 35 }, // Escola
+            1: { cellWidth: 16, halign: 'center' }, // Turmas
+            2: { cellWidth: 16, halign: 'center' }, // Habilidades
+            3: { cellWidth: 18, halign: 'center' }, // Média
+            4: { cellWidth: 16, halign: 'center' }, // Adequado
+            5: { cellWidth: 16, halign: 'center' }, // Crítico
+            6: { cellWidth: 16, halign: 'center' }  // Muito Crítico
         },
         margin: { left: 20, right: 20 },
         styles: {
@@ -1103,7 +1117,7 @@ function addSchoolSummary(doc, dados, margin, yStart) {
     doc.setFont('helvetica', 'italic');
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
-    doc.text('Legenda: Hab. = Total de Habilidades | Adeq. = Adequado (>80%) | Crít. = Crítico (<60%)', margin, legendY);
+    doc.text('Legenda: Hab. = Total de Habilidades | Adeq. = Adequado (>80%) | Crít. = Crítico (45-60%) | M.Crít. = Muito Crítico (<45%)', margin, legendY);
     
     return legendY + 8;
 }
@@ -1467,6 +1481,9 @@ function generateFileName() {
     // Adicionar filtro de performance se aplicado
     if (performanceRange && performanceRange !== 'todas') {
         switch (performanceRange) {
+            case 'muito-critico':
+                fileName += '_MuitoCritico';
+                break;
             case 'critico':
                 fileName += '_Critico';
                 break;

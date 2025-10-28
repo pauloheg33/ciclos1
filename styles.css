@@ -513,6 +513,16 @@ body {
     font-weight: 700;
 }
 
+.habilidade-card.performance-very-low { 
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.35), rgba(139, 69, 19, 0.25));
+    border-color: rgba(139, 69, 19, 0.5);
+}
+
+.habilidade-card.performance-very-low .habilidade-percentage {
+    color: #2c2c2c;
+    font-weight: 700;
+}
+
 .habilidade-card.performance-medium-low { 
     background: linear-gradient(135deg, rgba(255, 149, 0, 0.25), rgba(255, 115, 0, 0.15));
     border-color: rgba(255, 149, 0, 0.4);
@@ -546,6 +556,10 @@ body {
 /* Indicadores de performance */
 .performance-indicator.performance-low {
     background: linear-gradient(90deg, #ff4757, #ff3838);
+}
+
+.performance-indicator.performance-very-low {
+    background: linear-gradient(90deg, #8b4513, #654321);
 }
 
 .performance-indicator.performance-medium-low {
