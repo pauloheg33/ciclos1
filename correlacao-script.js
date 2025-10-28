@@ -31,7 +31,7 @@ async function init() {
         
     } catch (error) {
         console.error('❌ Erro na inicialização:', error);
-        showError('Erro ao carregar os dados de correlação');
+        showError('Erro ao carregar os dados de correlação', error);
     }
 }
 
@@ -524,13 +524,33 @@ async function exportToPDF() {
     }
 }
 
-function showError(message) {
+function showError(message, error = null) {
     const tbody = document.getElementById('correlations-tbody');
     if (tbody) {
+        let errorDetails = '';
+        
+        if (error) {
+            if (error.message.includes('fetch')) {
+                errorDetails = `
+                    <div style="margin-top: 1rem; padding: 1rem; background: #fff3cd; border-radius: 6px; text-align: left;">
+                        <strong>💡 Solução:</strong><br>
+                        Para visualizar os dados, abra um servidor local:<br>
+                        <code style="background: #f8f9fa; padding: 0.2rem 0.4rem; border-radius: 3px;">
+                            python -m http.server 8000
+                        </code><br>
+                        Depois acesse: <a href="http://localhost:8000/correlacao-proposta.html" target="_blank">
+                            http://localhost:8000/correlacao-proposta.html
+                        </a>
+                    </div>
+                `;
+            }
+        }
+        
         tbody.innerHTML = `
             <tr>
                 <td colspan="3" style="text-align: center; padding: 2rem; color: #e53e3e;">
                     ❌ ${message}
+                    ${errorDetails}
                 </td>
             </tr>
         `;

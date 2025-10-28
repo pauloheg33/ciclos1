@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔗 Teste - Correlação de Habilidades</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background: #f5f7fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .status {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+        .success { background: #e8f5e8; color: #2e7d32; }
+        .error { background: #ffebee; color: #c62828; }
+        .loading { background: #e3f2fd; color: #1565c0; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔗 Teste de Correlação de Habilidades</h1>
+        </div>
+        
+        <div id="status" class="status loading">
+            ⏳ Carregando dados de correlação...
+        </div>
+        
+        <div id="content"></div>
+    </div>
+
+    <script>
+        async function testLoad() {
+            const statusDiv = document.getElementById('status');
+            const contentDiv = document.getElementById('content');
+            
+            try {
+                statusDiv.className = 'status loading';
+                statusDiv.innerHTML = '⏳ Carregando dados de correlação...';
+                
+                // Tentar carregar os arquivos
+                const response1 = await fetch('./Correção sugerida ao SPAECE.json');
+                const response2 = await fetch('./correlacao_total_spaece_2024.json');
+                
+                if (!response1.ok) {
+                    throw new Error(`Erro no arquivo 1: ${response1.status} - ${response1.statusText}`);
+                }
+                if (!response2.ok) {
+                    throw new Error(`Erro no arquivo 2: ${response2.status} - ${response2.statusText}`);
+                }
+                
+                const data1 = await response1.json();
+                const data2 = await response2.json();
+                
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = '✅ Dados carregados com sucesso!';
+                
+                // Processar dados para teste
+                const processedData = combineData(data1, data2);
+                
+                contentDiv.innerHTML = `
+                    <h3>📊 Resumo dos Dados:</h3>
+                    <table>
+                        <tr>
+                            <th>Arquivo</th>
+                            <th>Registros</th>
+                            <th>Com SPAECE</th>
+                        </tr>
+                        <tr>
+                            <td>Correção sugerida ao SPAECE.json</td>
+                            <td>${data1.length}</td>
+                            <td>${data1.filter(item => item.spaece).length}</td>
+                        </tr>
+                        <tr>
+                            <td>correlacao_total_spaece_2024.json</td>
+                            <td>${data2.length}</td>
+                            <td>${data2.filter(item => item.spaece).length}</td>
+                        </tr>
+                        <tr style="background: #f0f8ff;">
+                            <td><strong>Dados Combinados</strong></td>
+                            <td><strong>${processedData.length}</strong></td>
+                            <td><strong>${processedData.filter(item => item.spaece).length}</strong></td>
+                        </tr>
+                    </table>
+                    
+                    <h3>📋 Primeiros 5 Registros Combinados:</h3>
+                    <table>
+                        <tr>
+                            <th>Código</th>
+                            <th>Habilidade</th>
+                            <th>BNCC</th>
+                            <th>SPAECE</th>
+                        </tr>
+                        ${processedData.slice(0, 5).map(item => `
+                            <tr>
+                                <td>${item.codigo_habilidade}</td>
+                                <td>${item.descricao_habilidade.substring(0, 50)}...</td>
+                                <td>${item.bncc || 'Sem correlação'}</td>
+                                <td>${item.spaece || 'Sem correlação'}</td>
+                            </tr>
+                        `).join('')}
+                    </table>
+                `;
+                
+            } catch (error) {
+                console.error('Erro detalhado:', error);
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `❌ Erro: ${error.message}`;
+                
+                contentDiv.innerHTML = `
+                    <h3>🔍 Diagnóstico:</h3>
+                    <ul>
+                        <li><strong>Erro:</strong> ${error.message}</li>
+                        <li><strong>Tipo:</strong> ${error.name}</li>
+                        <li><strong>Possíveis causas:</strong></li>
+                        <ul>
+                            <li>Arquivo não encontrado</li>
+                            <li>Problema de CORS (Cross-Origin Resource Sharing)</li>
+                            <li>Arquivo JSON com formato inválido</li>
+                            <li>Servidor local necessário</li>
+                        </ul>
+                    </ul>
+                `;
+            }
+        }
+        
+        function combineData(data1, data2) {
+            const combinedMap = new Map();
+            
+            // Adicionar dados do segundo arquivo primeiro
+            data2.forEach(item => {
+                if (item.codigo_habilidade) {
+                    combinedMap.set(item.codigo_habilidade, {
+                        ...item,
+                        spaece: item.spaece?.descricao || item.spaece?.descricao_descritor || '',
+                        fonte: 'correlacao_total_2024'
+                    });
+                }
+            });
+            
+            // Sobrescrever com dados do primeiro arquivo se mais completos
+            data1.forEach(item => {
+                if (item.codigo_habilidade) {
+                    const existingItem = combinedMap.get(item.codigo_habilidade);
+                    combinedMap.set(item.codigo_habilidade, {
+                        codigo_habilidade: item.codigo_habilidade,
+                        descricao_habilidade: item.descricao_habilidade || existingItem?.descricao_habilidade || '',
+                        bncc: item.bncc || existingItem?.bncc || '',
+                        spaece: item.spaece?.descricao_descritor || item.spaece?.descricao || existingItem?.spaece || '',
+                        componente: item.componente || existingItem?.componente || '',
+                        ano: item.ano || existingItem?.ano || '',
+                        fonte: existingItem ? 'combinado' : 'correcao_sugerida'
+                    });
+                }
+            });
+            
+            return Array.from(combinedMap.values());
+        }
+        
+        // Executar teste quando a página carregar
+        document.addEventListener('DOMContentLoaded', testLoad);
+    </script>
+</body>
+</html>
