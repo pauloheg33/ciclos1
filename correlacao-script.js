@@ -133,7 +133,7 @@ function renderTable() {
     if (filteredData.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="3" style="text-align: center; padding: 2rem; color: #666;">
+                <td colspan="2" style="text-align: center; padding: 2rem; color: #666;">
                     🔍 Nenhuma habilidade encontrada com os filtros aplicados
                 </td>
             </tr>
@@ -150,9 +150,6 @@ function renderTable() {
                     📚 ${item.componente} | 🎓 ${item.ano}
                 </div>
             </td>
-            <td class="bncc-cell">
-                ${item.bncc ? `<div class="bncc-code">${item.bncc}</div>` : '<div class="no-correlation">Sem correlação</div>'}
-            </td>
             <td class="spaece-cell">
                 ${item.spaece ? `
                     <div class="spaece-code">${item.spaece_descritor}</div>
@@ -168,26 +165,13 @@ function renderTable() {
 function updateStatistics() {
     const totalCount = document.getElementById('total-count');
     const spaeceCount = document.getElementById('spaece-count');
-    const bnccCoverage = document.getElementById('bncc-coverage');
-    const spaeceCoverage = document.getElementById('spaece-coverage');
     const componentStats = document.getElementById('component-stats');
     
     const total = filteredData.length;
     const withSpaece = filteredData.filter(item => item.spaece).length;
-    const withBncc = filteredData.filter(item => item.bncc).length;
     
     if (totalCount) totalCount.textContent = total;
     if (spaeceCount) spaeceCount.textContent = withSpaece;
-    
-    if (bnccCoverage) {
-        const percentage = total > 0 ? Math.round((withBncc / total) * 100) : 0;
-        bnccCoverage.textContent = `${percentage}%`;
-    }
-    
-    if (spaeceCoverage) {
-        const percentage = total > 0 ? Math.round((withSpaece / total) * 100) : 0;
-        spaeceCoverage.textContent = `${percentage}%`;
-    }
     
     if (componentStats) {
         const componentCounts = {};
@@ -224,13 +208,6 @@ function showDetails(codigoHabilidade) {
                 <strong>Descrição:</strong> ${item.descricao_habilidade}<br>
                 <strong>Componente:</strong> ${item.componente}<br>
                 <strong>Ano:</strong> ${item.ano}
-            </div>
-        </div>
-        
-        <div class="detail-section">
-            <h3>📚 Correlação BNCC</h3>
-            <div class="detail-content">
-                ${item.bncc ? `<strong>Código BNCC:</strong> ${item.bncc}` : '<em>Sem correlação identificada</em>'}
             </div>
         </div>
         
