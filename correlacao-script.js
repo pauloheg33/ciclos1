@@ -154,7 +154,10 @@ function renderTable() {
                 ${item.bncc ? `<div class="bncc-code">${item.bncc}</div>` : '<div class="no-correlation">Sem correlação</div>'}
             </td>
             <td class="spaece-cell">
-                ${item.spaece ? `<div class="spaece-description">${item.spaece}</div>` : '<div class="no-correlation">Sem correlação</div>'}
+                ${item.spaece ? `
+                    <div class="spaece-code">${item.spaece_descritor}</div>
+                    <div class="spaece-description">${item.spaece}</div>
+                ` : '<div class="no-correlation">Sem correlação</div>'}
             </td>
         </tr>
     `).join('');
