@@ -346,11 +346,8 @@ function updateEscolaOptions() {
     dados.slice(1).forEach(linha => {
         if (linha.Escola && typeof linha.Escola === 'string' && 
             linha.Escola !== null && linha.Escola.trim() !== '') {
-            // Limpar o nome da escola antes de adicionar ao conjunto
-            const escolaLimpa = cleanSchoolName(linha.Escola);
-            if (escolaLimpa && escolaLimpa !== 'Nome Indefinido' && escolaLimpa !== 'Escola Sem Nome') {
-                escolas.add(escolaLimpa);
-            }
+            // Manter o nome original para os filtros, limpeza só será feita no PDF
+            escolas.add(linha.Escola);
         }
     });
     
@@ -496,10 +493,15 @@ function renderCards() {
     // Agrupar por escola
     const porEscola = new Map();
     dados.forEach(item => {
-        if (!porEscola.has(item.escola)) {
-            porEscola.set(item.escola, []);
+        // Usar nome limpo apenas para agrupar no PDF
+        const escolaLimpa = cleanSchoolName(item.escola);
+        if (!porEscola.has(escolaLimpa)) {
+            porEscola.set(escolaLimpa, []);
         }
-        porEscola.get(item.escola).push(item);
+        porEscola.get(escolaLimpa).push({
+            ...item,
+            escola: escolaLimpa // Substituir pelo nome limpo apenas no contexto do PDF
+        });
     });
     
     let html = '';
@@ -635,10 +637,8 @@ function getFilteredData() {
     const resultado = [];
     
     dados.slice(1).forEach(linha => {
-        const escolaLimpa = cleanSchoolName(linha.Escola);
-        
         // Se escola é "TODAS_ESCOLAS", não filtrar por escola específica
-        if (escola && escola !== 'TODAS_ESCOLAS' && escolaLimpa !== escola) return;
+        if (escola && escola !== 'TODAS_ESCOLAS' && linha.Escola !== escola) return;
         if (turma && linha.Turma !== turma) return;
         
         Object.entries(linha).forEach(([key, value]) => {
@@ -661,7 +661,7 @@ function getFilteredData() {
                 }
                 
                 resultado.push({
-                    escola: escolaLimpa,
+                    escola: linha.Escola, // Manter nome original aqui
                     turma: linha.Turma,
                     habilidade: key,
                     percentage: value
@@ -738,25 +738,19 @@ function cleanSchoolName(schoolName) {
         return 'Nome Indefinido';
     }
     
-    // Log para debug
-    console.log('Nome original da escola:', schoolName, 'Códigos:', [...schoolName].map(c => c.charCodeAt(0)));
-    
-    // Remove caracteres de controle, símbolos problemáticos e emojis
-    // Mantém letras, números, espaços e acentos portugueses/brasileiros
+    // Abordagem minimalista - remover apenas os caracteres que realmente causam problema no PDF
+    // Manter o máximo possível do nome original
     let cleaned = schoolName
-        .replace(/[\u0000-\u001F\u007F-\u009F]/g, '') // Remove caracteres de controle
-        .replace(/[\u2000-\u206F\u2E00-\u2E7F]/g, '') // Remove pontuação especial e espaços especiais
-        .replace(/[\u1F000-\u1F9FF]/g, '') // Remove emojis
-        .replace(/[^\w\s\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF]/g, '') // Remove outros símbolos especiais
-        .replace(/\s+/g, ' ') // Normaliza espaços múltiplos
-        .trim(); // Remove espaços das extremidades
+        .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '') // Remove caracteres de controle específicos
+        .replace(/\uFEFF/g, '') // Remove BOM se presente
+        .replace(/\s+/g, ' ') // Normaliza espaços
+        .trim();
     
-    // Se após limpeza ficou vazio, usar fallback
+    // Se o resultado ficou vazio, usar o nome original sem modificação
     if (!cleaned) {
-        cleaned = 'Escola Sem Nome';
+        cleaned = schoolName;
     }
     
-    console.log('Nome limpo da escola:', cleaned);
     return cleaned;
 }
 
@@ -1020,10 +1014,12 @@ function addSchoolSummary(doc, dados, margin, yStart) {
     const dadosPorEscola = new Map();
     
     dados.forEach(item => {
-        if (!dadosPorEscola.has(item.escola)) {
-            dadosPorEscola.set(item.escola, []);
+        // Usar nome limpo apenas para o PDF
+        const escolaLimpa = cleanSchoolName(item.escola);
+        if (!dadosPorEscola.has(escolaLimpa)) {
+            dadosPorEscola.set(escolaLimpa, []);
         }
-        dadosPorEscola.get(item.escola).push(item);
+        dadosPorEscola.get(escolaLimpa).push(item);
     });
     
     // Preparar dados para tabela de resumo
