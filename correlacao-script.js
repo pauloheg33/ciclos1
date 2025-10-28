@@ -1,4 +1,4 @@
-// Script para a página de correlação proposta
+// Script para a página de correlação proposta baseado no arquivo relacao_habilidades_correlacionadas_corrigida.txt
 console.log('🔗 Carregando página de correlação...');
 
 // Estado global da aplicação
@@ -12,8 +12,8 @@ async function init() {
     console.log('🚀 Inicializando página de correlação...');
     
     try {
-        // Carregar dados
-        await loadCorrelationData();
+        // Carregar dados do processador
+        loadCorrelationDataFromProcessor();
         
         // Configurar filtros
         setupFilters();
@@ -35,172 +35,56 @@ async function init() {
     }
 }
 
-async function loadCorrelationData() {
-    console.log('📥 Carregando dados de correlação de múltiplas fontes...');
+function loadCorrelationDataFromProcessor() {
+    console.log('📥 Carregando dados do arquivo relacao_habilidades_correlacionadas_corrigida.txt...');
     
-    try {
-        // Carregar ambos os arquivos JSON em paralelo para melhor performance
-        const [response1, response2] = await Promise.all([
-            fetch('./Correção sugerida ao SPAECE.json'),
-            fetch('./correlacao_total_spaece_2024.json')
-        ]);
-        
-        if (!response1.ok) {
-            throw new Error(`Erro ao carregar Correção sugerida ao SPAECE.json: ${response1.status}`);
-        }
-        if (!response2.ok) {
-            throw new Error(`Erro ao carregar correlacao_total_spaece_2024.json: ${response2.status}`);
-        }
-        
-        const [data1, data2] = await Promise.all([
-            response1.json(),
-            response2.json()
-        ]);
-        
-        console.log('📊 Arquivo 1 (Correção sugerida):', data1.length, 'registros');
-        console.log('📊 Arquivo 2 (Correlação total 2024):', data2.length, 'registros');
-        
-        // Combinar e processar dados das duas fontes
-        correlationData = combineAndProcessData(data1, data2);
-        filteredData = [...correlationData];
-        
-        console.log('✅ Dados combinados carregados:', correlationData.length, 'habilidades');
-        
-    } catch (error) {
-        console.error('❌ Erro ao carregar dados:', error);
-        throw error;
+    if (!window.correlacaoDataProcessor) {
+        throw new Error('Processador de dados não encontrado. Verifique se correlacao-data-processor.js foi carregado.');
     }
-}
-
-function processCorrelationData(rawData) {
-    return rawData.map(item => {
-        // Processar dados SPAECE
-        let spaeceDescricao = '';
-        let spaeceDescritor = '';
-        
-        if (item.spaece && typeof item.spaece === 'object') {
-            spaeceDescricao = item.spaece.descricao_descritor || item.spaece.descricao || '';
-            spaeceDescritor = item.spaece.codigo_descritor || '';
-        }
-        
-        return {
-            codigo_habilidade: item.codigo_habilidade || '',
-            descricao_habilidade: item.descricao_habilidade || '',
-            bncc: item.bncc || '',
-            spaece: spaeceDescricao,
-            spaece_descritor: spaeceDescritor,
-            componente: item.componente || '',
-            ano: item.ano || ''
-        };
-    }).filter(item => item.codigo_habilidade); // Filtrar itens inválidos
-}
-
-function combineAndProcessData(data1, data2) {
-    console.log('🔄 Combinando dados das duas fontes...');
     
-    // Processar dados do primeiro arquivo (Correção sugerida ao SPAECE.json)
-    const processedData1 = data1.map(item => {
-        let spaeceDescricao = '';
-        let spaeceDescritor = '';
-        
-        if (item.spaece && typeof item.spaece === 'object') {
-            spaeceDescricao = item.spaece.descricao_descritor || item.spaece.descricao || '';
-            spaeceDescritor = item.spaece.codigo_descritor || item.spaece.descritor || '';
-        }
-        
-        return {
-            codigo_habilidade: item.codigo_habilidade || '',
-            descricao_habilidade: item.descricao_habilidade || '',
-            bncc: item.bncc || '',
-            spaece: spaeceDescricao,
-            spaece_descritor: spaeceDescritor,
-            componente: item.componente || '',
-            ano: item.ano || '',
-            fonte: '2024_correcao_sugerida'
-        };
-    });
+    const rawData = window.correlacaoDataProcessor.correlacoes;
+    console.log('📊 Dados brutos carregados:', rawData.length, 'descritores SPAECE');
     
-    // Processar dados do segundo arquivo (correlacao_total_spaece_2024.json)
-    const processedData2 = data2.map(item => {
-        let spaeceDescricao = '';
-        let spaeceDescritor = '';
-        
-        if (item.spaece && typeof item.spaece === 'object') {
-            spaeceDescricao = item.spaece.descricao || '';
-            spaeceDescritor = item.spaece.descritor || '';
-        }
-        
-        return {
-            codigo_habilidade: item.codigo_habilidade || '',
-            descricao_habilidade: item.descricao_habilidade || '',
-            bncc: item.bncc || '',
-            spaece: spaeceDescricao,
-            spaece_descritor: spaeceDescritor,
-            componente: item.componente || '',
-            ano: item.ano || '',
-            fonte: '2024_correlacao_total'
-        };
-    });
+    // Converter dados para o formato esperado pela interface
+    correlationData = [];
     
-    // Criar um mapa para evitar duplicatas, priorizando dados mais completos
-    const combinedMap = new Map();
-    
-    // Adicionar dados do segundo arquivo primeiro (base)
-    processedData2.forEach(item => {
-        if (item.codigo_habilidade) {
-            combinedMap.set(item.codigo_habilidade, item);
-        }
-    });
-    
-    // Sobrescrever/atualizar com dados do primeiro arquivo se tiverem mais informações SPAECE
-    processedData1.forEach(item => {
-        if (item.codigo_habilidade) {
-            const existingItem = combinedMap.get(item.codigo_habilidade);
-            
-            // Se não existe ou se o item atual tem mais informações SPAECE, usar o atual
-            if (!existingItem || (item.spaece && !existingItem.spaece)) {
-                combinedMap.set(item.codigo_habilidade, {
-                    ...existingItem,
-                    ...item,
-                    // Manter informação sobre as fontes
-                    fonte: existingItem ? `${existingItem.fonte}+${item.fonte}` : item.fonte
-                });
-            }
-        }
-    });
-    
-    let combinedData = Array.from(combinedMap.values())
-        .filter(item => item.codigo_habilidade);
-    
-    // Aplicar correlações adicionais da Matriz SPAECE 2024
-    if (typeof findSpaeceCorrelation === 'function') {
-        combinedData = combinedData.map(item => {
-            // Se já tem correlação SPAECE, manter
-            if (item.spaece && item.spaece.trim() !== '') {
-                return item;
-            }
-            
-            // Tentar encontrar correlação usando a matriz SPAECE 2024
-            const correlacao = findSpaeceCorrelation(item, item.componente, item.ano);
-            if (correlacao) {
-                return {
-                    ...item,
-                    spaece: correlacao.descricao,
-                    spaece_descritor: correlacao.descritor,
-                    fonte: item.fonte + '+matriz2024'
-                };
-            }
-            
-            return item;
+    rawData.forEach(item => {
+        // Para cada descritor SPAECE, criar uma entrada para cada código correlacionado
+        item.correlacionados.forEach(correlacionado => {
+            correlationData.push({
+                codigo_habilidade: correlacionado.codigo,
+                descricao_habilidade: correlacionado.descricao,
+                bncc: '', // Não especificado no arquivo
+                spaece: item.spaece.descricao,
+                spaece_descritor: item.spaece.codigo,
+                componente: item.componente,
+                ano: item.anoEscolar,
+                fonte: 'relacao_habilidades_correlacionadas_corrigida'
+            });
         });
-    }
+    });
     
-    console.log('✅ Dados combinados:', combinedData.length, 'habilidades únicas');
-    console.log('📊 Com correlação SPAECE original:', combinedData.filter(item => item.spaece && !item.fonte.includes('matriz2024')).length);
-    console.log('🎯 Com correlação SPAECE da Matriz 2024:', combinedData.filter(item => item.fonte.includes('matriz2024')).length);
-    console.log('📈 Total com correlação SPAECE:', combinedData.filter(item => item.spaece).length);
+    filteredData = [...correlationData];
     
-    return combinedData;
+    console.log('✅ Dados processados:', correlationData.length, 'habilidades correlacionadas');
+    console.log('📊 Distribuição por componente:', getComponenteDistribution());
+    console.log('🎓 Distribuição por ano:', getAnoDistribution());
+}
+
+function getComponenteDistribution() {
+    const distribution = {};
+    correlationData.forEach(item => {
+        distribution[item.componente] = (distribution[item.componente] || 0) + 1;
+    });
+    return distribution;
+}
+
+function getAnoDistribution() {
+    const distribution = {};
+    correlationData.forEach(item => {
+        distribution[item.ano] = (distribution[item.ano] || 0) + 1;
+    });
+    return distribution;
 }
 
 function setupFilters() {
@@ -370,19 +254,13 @@ function showDetails(codigoHabilidade) {
 
 function getFonteDescription(fonte) {
     const fontes = {
-        '2024_correcao_sugerida': '📝 Correção Sugerida ao SPAECE',
-        '2024_correlacao_total': '📊 Correlação Total SPAECE',
-        '2024_correcao_sugerida+2024_correlacao_total': '📝📊 Dados Combinados',
-        '2024_correlacao_total+2024_correcao_sugerida': '📝📊 Dados Combinados',
+        'relacao_habilidades_correlacionadas_corrigida': '� Relação de Habilidades Correlacionadas (TF-IDF)',
+        '2024_correcao_sugerida': '� Correção Sugerida ao SPAECE',
+        '2024_correlacao_total': ' Correlação Total SPAECE',
         'combinado': '🔗 Dados Combinados',
         'correcao_sugerida': '📝 Correção Sugerida',
         'correlacao_total_2024': '📊 Correlação Total'
     };
-    
-    if (fonte && fonte.includes('+matriz2024')) {
-        const baseFonte = fonte.replace('+matriz2024', '');
-        return `${fontes[baseFonte] || baseFonte} + 🎯 Matriz SPAECE 2024`;
-    }
     
     return fontes[fonte] || `📄 ${fonte}`;
 }

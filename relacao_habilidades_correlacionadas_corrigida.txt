@@ -1,0 +1,721 @@
+
+Relação de habilidades entre a Matriz SPAECE 2024 e as matrizes CNCA 2025 (2º e 5º anos) e PROEA 2025 (9º ano)
+As correspondências foram obtidas por análise textual (similaridade TF‑IDF), considerando palavras-chave nas descrições.
+
+2º Ano - Língua portuguesa
+--------------------------
+Descritor D02: Ler palavras.
+  Códigos correlacionados:
+    - CNCA 2025 1EF09_P: Ler palavras formadas por sílabas não canônicas.
+    - CNCA 2025 1EF08_P: Ler palavras formadas exclusivamente por sílabas canônicas.
+    - CNCA 2025 5EF06_P: Inferir, em textos de nível 2, o sentido de palavras ou expressões não coloquiais, com apoio de pistas co-textuais (sinonímia, antonímia, palavras do mesmo campo semântico e outras sinalizações).
+    - CNCA 2025 1EF07_P: Identificar semelhanças entre sílabas (inicial, medial, final) de palavras.
+
+Descritor D03: Ler frases.
+  Códigos correlacionados:
+    - CNCA 2025 2EF06_P: Ler frases (ordem direta, estrutura canônica: sujeito, verbo, objeto - mais de um complemento).
+    - CNCA 2025 3EF06_P: Ler frases (sujeito, verbo, objeto direto e objeto indireto ou frase na ordem indireta).
+    - CNCA 2025 1EF09_P: Ler palavras formadas por sílabas não canônicas.
+    - CNCA 2025 1EF08_P: Ler palavras formadas exclusivamente por sílabas canônicas.
+
+Descritor D04: Localizar informações explícitas em textos.
+  Códigos correlacionados:
+    - CNCA 2025 2EF08_P: Localizar informações explícitas em textos, recuperadas por meio de paráfrase.
+    - CNCA 2025 2EF08_P: Localizar informações explícitas em textos, recuperadas por meio de paráfrase.
+    - CNCA 2025 2EF07_P: Localizar informações explícitas em textos, recuperadas por meio de repetição.
+    - PROEA 2025 8EF01_P: Localizar informações explícitas, em textos de nível 3, recuperando-as por meio de paráfrase, estando a informação em outra posição que não o início do texto.
+
+Descritor D05: Reconhecer a finalidade de um texto.
+  Códigos correlacionados:
+    - CNCA 2025 1EF15_P: Identificar a finalidade de um texto do campo de atuação da vida cotidiana.
+    - PROEA 2025 8EF09_P: Identificar a finalidade de textos de opinião.
+    - CNCA 2025 1EF12_P: Reconhecer o assunto de um texto ouvido.
+    - CNCA 2025 5EF17_P: Identificar a finalidade de textos dramáticos.
+    - CNCA 2025 2EF17_P: Reconhecer o gênero de um texto do campo de atuação artístico-literário.
+    - PROEA 2025 9EF12_P: Identificar a finalidade de textos de opinião que tratam de temas especializados.
+    - CNCA 2025 1EF14_P: Reconhecer o gênero de um texto que circula no campo de atuação da vida cotidiana.
+    - CNCA 2025 2EF11_P: Reconhecer o assunto de um texto quando o assunto é tópico do primeiro parágrafo.
+    - PROEA 2025 9EF22_P: Identificar, em texto de nível 3, o referente de um pronome relativo.
+    - CNCA 2025 2EF10_P: Reconhecer o assunto de um texto quando o assunto está indicado no título.
+
+Descritor D06: Inferir o assunto de um texto.
+  Códigos correlacionados:
+    - CNCA 2025 1EF12_P: Reconhecer o assunto de um texto ouvido.
+    - CNCA 2025 2EF11_P: Reconhecer o assunto de um texto quando o assunto é tópico do primeiro parágrafo.
+    - CNCA 2025 2EF10_P: Reconhecer o assunto de um texto quando o assunto está indicado no título.
+    - PROEA 2025 9EF04_P: Reconhecer o assunto de textos de nível 3, a partir da leitura global do texto.
+    - CNCA 2025 5EF04_P: Reconhecer o assunto de textos de qualquer campo de atuação quando o assunto é indicado indiretamente pelo título e/ou é tópico do primeiro parágrafo do texto.
+    - PROEA 2025 8EF03_P: Reconhecer o assunto de textos de nível 3, considerando a recorrência de tópicos ou de um tópico.
+    - CNCA 2025 2EF13_P: Inferir informação em texto exclusivamente verbal.
+    - PROEA 2025 8EF07_P: Inferir informação em textos de nível 3 considerando a relação entre enunciados de um trecho ou parágrafo do texto.
+    - CNCA 2025 5EF05_P: Inferir o assunto de textos dos campos de atuação da vida cotidiana, jornalístico midiático ou de estudos e pesquisas pela compreensão global.
+    - PROEA 2025 9EF10_P: Inferir informação em textos de nível 3 considerando a leitura global do texto.
+
+Descritor D07: Inferir informações em textos verbais.
+  Códigos correlacionados:
+    - CNCA 2025 2EF08_P: Localizar informações explícitas em textos, recuperadas por meio de paráfrase.
+    - CNCA 2025 2EF08_P: Localizar informações explícitas em textos, recuperadas por meio de paráfrase.
+    - CNCA 2025 2EF07_P: Localizar informações explícitas em textos, recuperadas por meio de repetição.
+    - PROEA 2025 9EF10_P: Inferir informação em textos de nível 3 considerando a leitura global do texto.
+    - PROEA 2025 8EF05_P: Inferir, em textos de nível 3, o sentido de metáforas, a partir da leitura global do texto.
+
+Descritor D08: Inferir informações em textos que articulam linguagem verbal e não verbal.
+  Códigos correlacionados:
+    - CNCA 2025 1EF13_P: Inferir informação em texto que articula linguagem verbal e não verbal.
+    - CNCA 2025 4EF14_P: Inferir efeitos de humor em textos que conjugam linguagem verbal e não verbal.
+    - CNCA 2025 5EF09_P: Inferir efeitos de crítica em textos que conjugam linguagem verbal e não verbal.
+    - CNCA 2025 2EF13_P: Inferir informação em texto exclusivamente verbal.
+    - PROEA 2025 8EF01_P: Localizar informações explícitas, em textos de nível 3, recuperando-as por meio de paráfrase, estando a informação em outra posição que não o início do texto.
+
+
+2º Ano - Matemática
+-------------------
+Descritor D01: Reconhecer o que os números naturais indicam em diferentes situações: quantidade, ordem, medida ou código de identificação.
+  Códigos correlacionados:
+    - CNCA 2025 5EF05_M: Reconhecer polígonos em relação à quantidade de lados, vértices ou ângulos.
+
+Descritor D03: Escrever números naturais de até 3 ordens em sua representação por algarismos ou em língua materna OU associar o registro numérico de números naturais de até 3 ordens ao registro em língua materna.
+  Códigos correlacionados:
+    - CNCA 2025 2EF01_M: Contar a quantidade de objetos de uma coleção contendo até 50 elementos, apresentando o resultado em registro numérico.
+    - CNCA 2025 2EF04_M: Efetuar a operação de adição entre números naturais formados por até três algarismos.
+    - CNCA 2025 4EF06_M: Efetuar a operação de multiplicação entre números naturais formados por até quatro algarismos.
+    - CNCA 2025 2EF07_M: Determinar termos ausentes em sequências repetitivas de números naturais formados por até três algarismos.
+    - CNCA 2025 3EF07_M: Utilizar a operação de adição entre números naturais, formados por até quatro algarismos, envolvendo o significado de juntar ou de acrescentar, na resolução de problema.
+    - CNCA 2025 4EF02_M: Corresponder composições a decomposições de números naturais formados por até cinco algarismos.
+    - CNCA 2025 2EF05_M: Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 3EF09_M: Utilizar a operação de subtração entre números naturais, formados por até quatro algarismos, envolvendo o significado de separar, de retirar, de comparar ou de completar, na resolução de problema.
+    - CNCA 2025 2EF06_M: Utilizar a operação de subtração entre números naturais, formados por até três algarismos, envolvendo o significado de separar ou de retirar, com ou sem suporte de imagens, na resolução de problema.
+
+Descritor D04: Comparar OU ordenar quantidades de objetos (até 2 ordens).
+  Códigos correlacionados:
+    - CNCA 2025 2EF02_M: Comparar quantidades de objetos de duas coleções, contendo até 50 elementos cada, com suporte de imagens, indicando qual tem mais objetos e quantos a mais, qual tem menos objetos e quantos a menos ou se têm a mesma quantidade de objetos e qual é essa quantidade.
+
+Descritor D05: Comparar OU ordenar números naturais de até 3 ordens com ou sem suporte da reta numérica.
+  Códigos correlacionados:
+    - CNCA 2025 2EF05_M: Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 2EF06_M: Utilizar a operação de subtração entre números naturais, formados por até três algarismos, envolvendo o significado de separar ou de retirar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 3EF09_M: Utilizar a operação de subtração entre números naturais, formados por até quatro algarismos, envolvendo o significado de separar, de retirar, de comparar ou de completar, na resolução de problema.
+    - CNCA 2025 2EF03_M: Comparar números naturais formados por até três algarismos, indicando o menor, o maior, a ordenação crescente ou a decrescente deles.
+    - CNCA 2025 4EF01_M: Comparar números naturais formados por até cinco algarismos, indicando o menor, o maior, a ordenação crescente ou a decrescente deles.
+
+Descritor D06: Identificar a ordem ocupada por um algarismo OU seu valor posicional (ou valor relativo) em um número natural de até 3 ordens.
+  Códigos correlacionados:
+    - CNCA 2025 4EF04_M: Identificar o valor posicional de um algarismo em um número natural formado por até cinco algarismos.
+    - CNCA 2025 4EF03_M: Identificar a ordem ocupada por um algarismo ou o algarismo que ocupa uma determinada ordem, em um número natural formado por até cinco algarismos.
+    - CNCA 2025 4EF08_M: Efetuar a operação de divisão de um número natural, formado por até quatro algarismos, por outro, formado por até dois algarismos.
+    - CNCA 2025 4EF09_M: Utilizar a operação de divisão de um número natural, formado por até quatro algarismos, por outro, formado por até dois algarismos, envolvendo o significado de repartição equitativa ou de medida, na resolução de problema.
+
+Descritor D07: Calcular o resultado de adições ou subtrações, envolvendo números naturais de até 3 ordens.
+  Códigos correlacionados:
+    - CNCA 2025 3EF07_M: Utilizar a operação de adição entre números naturais, formados por até quatro algarismos, envolvendo o significado de juntar ou de acrescentar, na resolução de problema.
+    - CNCA 2025 3EF09_M: Utilizar a operação de subtração entre números naturais, formados por até quatro algarismos, envolvendo o significado de separar, de retirar, de comparar ou de completar, na resolução de problema.
+    - CNCA 2025 2EF05_M: Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 2EF06_M: Utilizar a operação de subtração entre números naturais, formados por até três algarismos, envolvendo o significado de separar ou de retirar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 4EF07_M: Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.
+
+Descritor D08: Compor OU decompor números naturais de até 3 ordens por meio de diferentes adições.
+  Códigos correlacionados:
+    - CNCA 2025 2EF04_M: Efetuar a operação de adição entre números naturais formados por até três algarismos.
+    - CNCA 2025 4EF06_M: Efetuar a operação de multiplicação entre números naturais formados por até quatro algarismos.
+    - CNCA 2025 3EF07_M: Utilizar a operação de adição entre números naturais, formados por até quatro algarismos, envolvendo o significado de juntar ou de acrescentar, na resolução de problema.
+    - CNCA 2025 3EF09_M: Utilizar a operação de subtração entre números naturais, formados por até quatro algarismos, envolvendo o significado de separar, de retirar, de comparar ou de completar, na resolução de problema.
+    - CNCA 2025 2EF05_M: Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 2EF06_M: Utilizar a operação de subtração entre números naturais, formados por até três algarismos, envolvendo o significado de separar ou de retirar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 4EF02_M: Corresponder composições a decomposições de números naturais formados por até cinco algarismos.
+    - CNCA 2025 4EF07_M: Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.
+
+Descritor D09: Resolver problemas de adição ou de subtração, envolvendo números naturais de até 3 ordens, com os significados de juntar, acrescentar, separar ou retirar.
+  Códigos correlacionados:
+    - CNCA 2025 2EF06_M: Utilizar a operação de subtração entre números naturais, formados por até três algarismos, envolvendo o significado de separar ou de retirar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 3EF07_M: Utilizar a operação de adição entre números naturais, formados por até quatro algarismos, envolvendo o significado de juntar ou de acrescentar, na resolução de problema.
+    - CNCA 2025 2EF05_M: Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 3EF09_M: Utilizar a operação de subtração entre números naturais, formados por até quatro algarismos, envolvendo o significado de separar, de retirar, de comparar ou de completar, na resolução de problema.
+    - CNCA 2025 4EF07_M: Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.
+    - CNCA 2025 2EF04_M: Efetuar a operação de adição entre números naturais formados por até três algarismos.
+
+Descritor D10: Resolver problemas de multiplicação ou de divisão (por 2, 3, 4 ou 5), envolvendo números naturais, com os significados de formação de grupos iguais ou proporcionalidade (incluindo dobro, metade, triplo ou terça parte).
+  Códigos correlacionados:
+    - CNCA 2025 4EF07_M: Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.
+    - CNCA 2025 2EF05_M: Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 2EF06_M: Utilizar a operação de subtração entre números naturais, formados por até três algarismos, envolvendo o significado de separar ou de retirar, com ou sem suporte de imagens, na resolução de problema.
+
+Descritor D11: Analisar argumentações sobre a resolução de problemas de adição, subtração, multiplicação ou divisão envolvendo números naturais.
+  Códigos correlacionados:
+    - CNCA 2025 4EF07_M: Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.
+    - CNCA 2025 3EF07_M: Utilizar a operação de adição entre números naturais, formados por até quatro algarismos, envolvendo o significado de juntar ou de acrescentar, na resolução de problema.
+    - CNCA 2025 3EF09_M: Utilizar a operação de subtração entre números naturais, formados por até quatro algarismos, envolvendo o significado de separar, de retirar, de comparar ou de completar, na resolução de problema.
+    - CNCA 2025 2EF06_M: Utilizar a operação de subtração entre números naturais, formados por até três algarismos, envolvendo o significado de separar ou de retirar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 2EF05_M: Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.
+
+Descritor D13: Inferir OU descrever atributos ou propriedades comuns que os elementos que constituem uma sequência de números naturais apresentam.
+  Códigos correlacionados:
+    - CNCA 2025 4EF13_M: Identificar, dentre resultados possíveis de um experimento aleatório, os que apresentam maiores ou menores chances de ocorrência.
+
+Descritor D14: Inferir o padrão ou a regularidade de uma sequência de números naturais ordenados, de objetos ou de figuras.
+  Códigos correlacionados:
+    - CNCA 2025 3EF09_M: Utilizar a operação de subtração entre números naturais, formados por até quatro algarismos, envolvendo o significado de separar, de retirar, de comparar ou de completar, na resolução de problema.
+    - CNCA 2025 2EF05_M: Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 2EF06_M: Utilizar a operação de subtração entre números naturais, formados por até três algarismos, envolvendo o significado de separar ou de retirar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 4EF07_M: Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.
+    - CNCA 2025 3EF07_M: Utilizar a operação de adição entre números naturais, formados por até quatro algarismos, envolvendo o significado de juntar ou de acrescentar, na resolução de problema.
+
+Descritor D15: Inferir os elementos ausentes em uma sequência de números naturais ordenados, de objetos ou de figuras.
+  Códigos correlacionados:
+    - CNCA 2025 1EF07_M: Determinar termos ausentes em sequências de figuras.
+    - CNCA 2025 2EF07_M: Determinar termos ausentes em sequências repetitivas de números naturais formados por até três algarismos.
+    - CNCA 2025 2EF01_M: Contar a quantidade de objetos de uma coleção contendo até 50 elementos, apresentando o resultado em registro numérico.
+
+Descritor D16: Identificar a localização OU a descrição/esboço do deslocamento de pessoas e/ou de objetos em representações bidimensionais (mapas, croquis, etc.).
+  Códigos correlacionados:
+    - CNCA 2025 2EF08_M: Interpretar localização de pessoas, animais ou objetos no espaço, considerando um ou mais de um ponto de referência e noções de orientação (à direita, à esquerda, em frente, atrás, em cima e/ou embaixo).
+
+Descritor D17: Reconhecer/nomear figuras geométricas espaciais (cubo, bloco retangular, pirâmide, cone, cilindro e esfera), relacionando-as com objetos do mundo físico.
+  Códigos correlacionados:
+    - CNCA 2025 2EF09_M: Reconhecer figura geométrica espacial (cone, cilindro, esfera, cubo, bloco retangular ou pirâmide) em objetos do mundo físico, pela sua forma ou sua denominação.
+    - CNCA 2025 5EF04_M: Corresponder figuras geométricas espaciais (cilindro, cone, prisma ou pirâmide) à uma de suas planificações.
+
+Descritor D18: Reconhecer/nomear figuras geométricas planas (círculo, quadrado, retângulo e triângulo).
+  Códigos correlacionados:
+    - CNCA 2025 1EF10_M: Reconhecer figuras geométricas planas (círculo, quadrado, retângulo ou triângulo) desenhadas em diferentes disposições.
+    - PROEA 2025 9EF08_M: Utilizar relações métricas do triângulo retângulo na resolução de problema.
+    - CNCA 2025 4EF10_M: Reconhecer ângulos retos e ângulos não retos em figuras geométricas planas.
+
+Descritor D21: Estimar/inferir medida de comprimento, capacidade ou massa de objetos, utilizando unidades de medida convencionais ou não OU medir comprimento, capacidade ou massa de objetos.
+  Códigos correlacionados:
+    - CNCA 2025 5EF06_M: Converter unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade.
+    - PROEA 2025 8EF07_M: Utilizar cálculo de medida de comprimento de circunferência na resolução de problema.
+    - CNCA 2025 2EF10_M: Medir comprimento, usando unidades de medidas padronizadas (metro, centímetro ou milímetro).
+    - PROEA 2025 8EF09_M: Utilizar conversão entre unidades de medida da grandeza capacidade: litro e decímetro cúbico ou litro e metro cúbico, na resolução de problema.
+
+Descritor D22: Identificar a medida do comprimento, da capacidade ou da massa de objetos, dada a imagem de um instrumento de medida.
+  Códigos correlacionados:
+    - CNCA 2025 5EF06_M: Converter unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade.
+    - PROEA 2025 8EF07_M: Utilizar cálculo de medida de comprimento de circunferência na resolução de problema.
+    - PROEA 2025 7EF13_M: Utilizar cálculo de medida de perímetro de polígonos na resolução de problema.
+    - PROEA 2025 8EF08_M: Utilizar cálculo de medida de área de círculos na resolução de problema.
+    - PROEA 2025 8EF09_M: Utilizar conversão entre unidades de medida da grandeza capacidade: litro e decímetro cúbico ou litro e metro cúbico, na resolução de problema.
+
+Descritor D23: Reconhecer unidades de medidas e/ou instrumentos utilizados para medir comprimento, tempo, massa ou capacidade.
+  Códigos correlacionados:
+    - CNCA 2025 5EF06_M: Converter unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade.
+    - CNCA 2025 2EF10_M: Medir comprimento, usando unidades de medidas padronizadas (metro, centímetro ou milímetro).
+
+Descritor D26: Relacionar valores de moedas e/ou cédulas do sistema monetário brasileiro, com base nas imagens desses objetos.
+  Códigos correlacionados:
+    - CNCA 2025 1EF12_M: Reconhecer valores convencionados de moedas ou de cédulas do sistema monetário brasileiro, em situações do cotidiano.
+    - CNCA 2025 4EF12_M: Utilizar valores do sistema monetário brasileiro em situações do cotidiano, na resolução de problema.
+    - CNCA 2025 2EF12_M: Corresponder coleções distintas de moedas e/ou de cédulas do sistema monetário brasileiro que representam uma mesma quantia, em situações do cotidiano.
+
+Descritor D27: Determinar a data de início, a data de término ou a duração de um acontecimento entre duas datas.
+  Códigos correlacionados:
+    - PROEA 2025 8EF03_M: Determinar conjunto solução de um sistema de equações polinomiais de 1º grau, com duas incógnitas.
+
+Descritor D28: Determinar o horário de início, o horário de término ou a duração de um acontecimento.
+  Códigos correlacionados:
+    - CNCA 2025 2EF11_M: Reconhecer horário em relógio digital (hora e minuto).
+
+Descritor D29: Resolver problemas que envolvam moedas e/ou cédulas do sistema monetário brasileiro.
+  Códigos correlacionados:
+    - CNCA 2025 1EF12_M: Reconhecer valores convencionados de moedas ou de cédulas do sistema monetário brasileiro, em situações do cotidiano.
+    - CNCA 2025 2EF12_M: Corresponder coleções distintas de moedas e/ou de cédulas do sistema monetário brasileiro que representam uma mesma quantia, em situações do cotidiano.
+    - CNCA 2025 4EF12_M: Utilizar valores do sistema monetário brasileiro em situações do cotidiano, na resolução de problema.
+
+Descritor D30: Classificar resultados de eventos cotidianos aleatórios como “pouco prováveis” , “muito prováveis” , “certos” ou “impossíveis”.
+  Códigos correlacionados:
+    - CNCA 2025 2EF13_M: Classificar chance de ocorrência de evento, associado a um experimento aleatório, empregando termos como: impossível, certo, pouco provável ou muito provável, em situações do cotidiano.
+
+Descritor D31: Ler/identificar OU comparar dados estatísticos ou informações expressos em tabelas (simples ou de dupla entrada).
+  Códigos correlacionados:
+    - CNCA 2025 2EF14_M: Identificar dados estatísticos dispostos em tabelas de dupla entrada.
+    - CNCA 2025 1EF13_M: Identificar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+    - CNCA 2025 2EF15_M: Interpretar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+    - PROEA 2025 8EF12_M: Interpretar o significado das medidas de tendência central (média aritmética simples, moda ou mediana) ou da amplitude de um conjunto de dados estatísticos.
+
+Descritor D32: Ler/identificar OU comparar dados estatísticos expressos em gráficos (barras simples, colunas simples ou pictóricos).
+  Códigos correlacionados:
+    - CNCA 2025 1EF13_M: Identificar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+    - CNCA 2025 2EF15_M: Interpretar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+    - CNCA 2025 5EF07_M: Interpretar dados estatísticos dispostos em gráficos de colunas agrupadas, de barras agrupadas ou de linhas.
+    - PROEA 2025 8EF12_M: Interpretar o significado das medidas de tendência central (média aritmética simples, moda ou mediana) ou da amplitude de um conjunto de dados estatísticos.
+
+Descritor D33: Representar os dados de uma pesquisa estatística ou de um levantamento em listas, tabelas (simples ou de dupla entrada) ou gráficos (barras simples, colunas simples ou pictóricos). 5° ANO - ANOS INICIAIS
+  Códigos correlacionados:
+    - CNCA 2025 1EF13_M: Identificar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+    - CNCA 2025 2EF15_M: Interpretar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+    - CNCA 2025 2EF14_M: Identificar dados estatísticos dispostos em tabelas de dupla entrada.
+    - CNCA 2025 5EF07_M: Interpretar dados estatísticos dispostos em gráficos de colunas agrupadas, de barras agrupadas ou de linhas.
+    - PROEA 2025 8EF12_M: Interpretar o significado das medidas de tendência central (média aritmética simples, moda ou mediana) ou da amplitude de um conjunto de dados estatísticos.
+
+
+5º Ano - Língua portuguesa
+--------------------------
+Descritor D01: Localizar informações explícitas em um texto.
+  Códigos correlacionados:
+    - CNCA 2025 2EF08_P: Localizar informações explícitas em textos, recuperadas por meio de paráfrase.
+    - CNCA 2025 2EF08_P: Localizar informações explícitas em textos, recuperadas por meio de paráfrase.
+    - CNCA 2025 2EF07_P: Localizar informações explícitas em textos, recuperadas por meio de repetição.
+    - PROEA 2025 8EF01_P: Localizar informações explícitas, em textos de nível 3, recuperando-as por meio de paráfrase, estando a informação em outra posição que não o início do texto.
+    - CNCA 2025 5EF03_P: Localizar informação em textos de nível 2, quando a informação é retomada, no texto, por um processo de referenciação quando o referente está próximo.
+
+Descritor D03: Inferir o sentido de uma palavra ou expressão.
+  Códigos correlacionados:
+    - CNCA 2025 2EF14_P: Inferir o sentido de palavra ou expressão idiomática própria da linguagem informal, com base em pistas co-textuais (sinonímia, palavra do mesmo campo semântico).
+    - CNCA 2025 5EF10_P: Inferir o sentido de palavra ou expressão idiomática e outras expressões metafóricas, sem apoio em pistas co-textuais.
+    - CNCA 2025 1EF05_P: Reconhecer o local de inserção de uma palavra na ordem alfabética.
+    - PROEA 2025 9EF06_P: Inferir o sentido de termos técnicos ou especializados, com apoio de pistas co-textuais.
+    - CNCA 2025 5EF11_P: Inferir informação com base no sentido global do texto.
+    - PROEA 2025 9EF07_P: Inferir o sentido de termos técnicos ou especializados, a partir da leitura global do texto.
+    - PROEA 2025 8EF05_P: Inferir, em textos de nível 3, o sentido de metáforas, a partir da leitura global do texto.
+    - PROEA 2025 9EF08_P: Inferir o sentido de vocabulário erudito, com apoio de pistas co-textuais.
+    - CNCA 2025 5EF23_P: Identificar o referente de uma expressão nominal com pronome adjetivo (possessivo, demonstrativo, indefinido) ou de elipses.
+    - CNCA 2025 4EF13_P: Inferir o sentido de metáforas poéticas em textos do campo artístico literário.
+
+Descritor D04: Inferir uma informação implícita em um texto.
+  Códigos correlacionados:
+    - CNCA 2025 2EF13_P: Inferir informação em texto exclusivamente verbal.
+    - PROEA 2025 9EF10_P: Inferir informação em textos de nível 3 considerando a leitura global do texto.
+    - CNCA 2025 5EF11_P: Inferir informação com base no sentido global do texto.
+    - PROEA 2025 8EF07_P: Inferir informação em textos de nível 3 considerando a relação entre enunciados de um trecho ou parágrafo do texto.
+    - CNCA 2025 1EF13_P: Inferir informação em texto que articula linguagem verbal e não verbal.
+    - CNCA 2025 5EF03_P: Localizar informação em textos de nível 2, quando a informação é retomada, no texto, por um processo de referenciação quando o referente está próximo.
+
+Descritor D06: Identificar o tema de um texto.
+  Códigos correlacionados:
+    - PROEA 2025 9EF22_P: Identificar, em texto de nível 3, o referente de um pronome relativo.
+    - PROEA 2025 9EF25_P: Identificar a tese de um texto de nível 3, a partir de sua leitura global.
+    - CNCA 2025 1EF15_P: Identificar a finalidade de um texto do campo de atuação da vida cotidiana.
+    - PROEA 2025 8EF23_P: Identificar, em um texto de nível 3, a tese quando apresentada por meio de paráfrase.
+    - CNCA 2025 1EF12_P: Reconhecer o assunto de um texto ouvido.
+    - CNCA 2025 2EF17_P: Reconhecer o gênero de um texto do campo de atuação artístico-literário.
+
+Descritor D09: Identificar a finalidade de textos de diferentes gêneros.
+  Códigos correlacionados:
+    - PROEA 2025 8EF09_P: Identificar a finalidade de textos de opinião.
+    - CNCA 2025 5EF17_P: Identificar a finalidade de textos dramáticos.
+    - PROEA 2025 9EF12_P: Identificar a finalidade de textos de opinião que tratam de temas especializados.
+    - CNCA 2025 5EF19_P: Reconhecer o efeito de sentido do uso de aspas, reticências e parênteses em textos de diferentes gêneros.
+    - CNCA 2025 5EF21_P: Reconhecer relações lógico-discursivas marcadas por conjunções mais usuais em textos de diferentes gêneros.
+    - CNCA 2025 4EF23_P: Reconhecer relações lógico-discursivas marcadas por advérbios e expressões adverbiais de tempo em textos de diferentes gêneros.
+    - CNCA 2025 1EF15_P: Identificar a finalidade de um texto do campo de atuação da vida cotidiana.
+    - CNCA 2025 5EF22_P: Identificar o referente de pronomes pessoais do caso reto (anafórico) com referente próximo ou saliente (tópico do texto) ou de substituições lexicais (substantivos por sinônimos) em textos de diferentes gêneros.
+    - CNCA 2025 5EF16_P: Identificar a finalidade de textos dos campos de atuação da vida cotidiana, jornalístico midiático ou de estudos e pesquisas pela compreensão global.
+    - CNCA 2025 5EF15_P: Reconhecer o gênero de textos que circulam nos diferentes campos de atuação.
+
+Descritor D15: Reconhecer diferentes formas de tratar uma informação na comparação de textos que tratam do mesmo tema, em função das condições em que ele foi produzido e daquelas em que será recebido.
+  Códigos correlacionados:
+    - PROEA 2025 9EF14_P: Reconhecer o gênero de textos de opinião que tratam de temas especializados.
+    - PROEA 2025 9EF12_P: Identificar a finalidade de textos de opinião que tratam de temas especializados.
+
+Descritor D02: Estabelecer relações entre partes de um texto, identificando repetições ou substituições que contribuem para a continuidade de um texto.
+  Códigos correlacionados:
+    - CNCA 2025 1EF12_P: Reconhecer o assunto de um texto ouvido.
+
+Descritor D07: Identificar o conflito gerador do enredo e os elementos que constroem a narrativa.
+  Códigos correlacionados:
+    - CNCA 2025 5EF14_P: Reconhecer o conflito gerador do enredo em narrativas ficcionais.
+    - PROEA 2025 9EF16_P: Identificar elementos de uma narrativa não linear/não canônica de nível 3: personagem principal, tempo/lugar, conflito, narrador.
+
+Descritor D08: Estabelecer relação causa/consequência entre partes e elementos do texto.
+  Códigos correlacionados:
+    - PROEA 2025 8EF07_P: Inferir informação em textos de nível 3 considerando a relação entre enunciados de um trecho ou parágrafo do texto.
+
+Descritor D12: Estabelecer relações lógico-discursivas presentes no texto, marcadas por conjunções, advérbios, etc.
+  Códigos correlacionados:
+    - CNCA 2025 5EF21_P: Reconhecer relações lógico-discursivas marcadas por conjunções mais usuais em textos de diferentes gêneros.
+    - CNCA 2025 4EF23_P: Reconhecer relações lógico-discursivas marcadas por advérbios e expressões adverbiais de tempo em textos de diferentes gêneros.
+    - PROEA 2025 9EF20_P: Reconhecer, em textos de nível 3 ou discursivas (todas as relações semânticas), não marcadas ou marcadas por conjunções menos usuais (contudo, porquanto, embora etc.).
+    - PROEA 2025 8EF18_P: Reconhecer, em texto de nível 3, relações lógico-discursivas de explicação, alternância, consequência, proporção, concessão marcadas por conjunções mais usuais: pois, porque, ou, que, tanto que, à medida que, apesar de.
+
+Descritor D13: Identificar efeitos de ironia ou humor em textos variados.
+  Códigos correlacionados:
+    - CNCA 2025 4EF14_P: Inferir efeitos de humor em textos que conjugam linguagem verbal e não verbal.
+    - CNCA 2025 5EF09_P: Inferir efeitos de crítica em textos que conjugam linguagem verbal e não verbal.
+
+Descritor D14: Identificar o efeito de sentido decorrente do uso da pontuação e de outras notações.
+  Códigos correlacionados:
+    - CNCA 2025 5EF19_P: Reconhecer o efeito de sentido do uso de aspas, reticências e parênteses em textos de diferentes gêneros.
+    - CNCA 2025 2EF19_P: Reconhecer o efeito de sentido produzido pelo uso de recursos expressivos gráfico-visuais em tirinhas e histórias em quadrinhos.
+
+
+5º Ano - Matemática
+-------------------
+Descritor D02: Identificar propriedades comuns e diferenças entre poliedros e corpos redondos, relacionando figuras tridimensionais com suas planificações.
+  Códigos correlacionados:
+    - CNCA 2025 5EF04_M: Corresponder figuras geométricas espaciais (cilindro, cone, prisma ou pirâmide) à uma de suas planificações.
+
+Descritor D03: Identificar propriedades comuns e diferenças entre figuras bidimensionais pelo número de lados, pelos tipos de ângulos.
+  Códigos correlacionados:
+    - CNCA 2025 5EF05_M: Reconhecer polígonos em relação à quantidade de lados, vértices ou ângulos.
+
+Descritor D06: Estimar a medida de grandezas utilizando unidades de medida convencionais ou não.
+  Códigos correlacionados:
+    - CNCA 2025 5EF06_M: Converter unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade.
+    - PROEA 2025 7EF13_M: Utilizar cálculo de medida de perímetro de polígonos na resolução de problema.
+    - PROEA 2025 8EF07_M: Utilizar cálculo de medida de comprimento de circunferência na resolução de problema.
+    - PROEA 2025 8EF08_M: Utilizar cálculo de medida de área de círculos na resolução de problema.
+
+Descritor D07: Resolver problemas significativos utilizando unidades de medida padronizadas como km/m/cm/mm, kg/g/mg, l/ml.
+  Códigos correlacionados:
+    - CNCA 2025 5EF06_M: Converter unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade.
+
+Descritor D08: Estabelecer relações entre unidades de medida de tempo.
+  Códigos correlacionados:
+    - CNCA 2025 5EF06_M: Converter unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade.
+    - PROEA 2025 7EF13_M: Utilizar cálculo de medida de perímetro de polígonos na resolução de problema.
+    - PROEA 2025 8EF07_M: Utilizar cálculo de medida de comprimento de circunferência na resolução de problema.
+    - PROEA 2025 8EF08_M: Utilizar cálculo de medida de área de círculos na resolução de problema.
+    - PROEA 2025 8EF09_M: Utilizar conversão entre unidades de medida da grandeza capacidade: litro e decímetro cúbico ou litro e metro cúbico, na resolução de problema.
+
+Descritor D10: Num problema, estabelecer trocas entre cédulas e moedas do sistema monetário brasileiro, em função de seus valores.
+  Códigos correlacionados:
+    - CNCA 2025 1EF12_M: Reconhecer valores convencionados de moedas ou de cédulas do sistema monetário brasileiro, em situações do cotidiano.
+    - CNCA 2025 4EF12_M: Utilizar valores do sistema monetário brasileiro em situações do cotidiano, na resolução de problema.
+    - CNCA 2025 2EF12_M: Corresponder coleções distintas de moedas e/ou de cédulas do sistema monetário brasileiro que representam uma mesma quantia, em situações do cotidiano.
+
+Descritor D11: Resolver problema envolvendo o cálculo do perímetro de figuras planas, desenhadas em malhas quadriculadas.
+  Códigos correlacionados:
+    - PROEA 2025 7EF13_M: Utilizar cálculo de medida de perímetro de polígonos na resolução de problema.
+    - CNCA 2025 1EF10_M: Reconhecer figuras geométricas planas (círculo, quadrado, retângulo ou triângulo) desenhadas em diferentes disposições.
+    - PROEA 2025 7EF14_M: Utilizar cálculo de medida de área de figuras planas: quadrados, retângulos, triângulos ou outras figuras planas que podem ser decompostas em quadrados, retângulos e/ou triângulos, na resolução de problema.
+    - CNCA 2025 4EF11_M: Medir área de figuras planas, desenhadas em malha quadriculada, cujos lados se posicionam sobre linhas de grade da malha.
+
+Descritor D12: Resolver problema envolvendo o cálculo ou estimativa de áreas de figuras planas, desenhadas em malhas quadriculadas.
+  Códigos correlacionados:
+    - CNCA 2025 1EF10_M: Reconhecer figuras geométricas planas (círculo, quadrado, retângulo ou triângulo) desenhadas em diferentes disposições.
+    - PROEA 2025 7EF14_M: Utilizar cálculo de medida de área de figuras planas: quadrados, retângulos, triângulos ou outras figuras planas que podem ser decompostas em quadrados, retângulos e/ou triângulos, na resolução de problema.
+
+Descritor D13: Reconhecer e utilizar características do sistema de numeração decimal, tais como agrupamentos e trocas na base 10 e princípio do valor posicional.
+  Códigos correlacionados:
+    - PROEA 2025 8EF01_M: Utilizar o princípio multiplicativo de contagem na resolução de problema.
+    - CNCA 2025 4EF12_M: Utilizar valores do sistema monetário brasileiro em situações do cotidiano, na resolução de problema.
+
+Descritor D16: Reconhecer a composição e a decomposição de números naturais em sua forma polinomial.
+  Códigos correlacionados:
+    - CNCA 2025 2EF09_M: Reconhecer figura geométrica espacial (cone, cilindro, esfera, cubo, bloco retangular ou pirâmide) em objetos do mundo físico, pela sua forma ou sua denominação.
+
+Descritor D17: Calcular o resultado de uma adição ou subtração de números naturais.
+  Códigos correlacionados:
+    - CNCA 2025 3EF09_M: Utilizar a operação de subtração entre números naturais, formados por até quatro algarismos, envolvendo o significado de separar, de retirar, de comparar ou de completar, na resolução de problema.
+    - CNCA 2025 3EF07_M: Utilizar a operação de adição entre números naturais, formados por até quatro algarismos, envolvendo o significado de juntar ou de acrescentar, na resolução de problema.
+    - CNCA 2025 2EF06_M: Utilizar a operação de subtração entre números naturais, formados por até três algarismos, envolvendo o significado de separar ou de retirar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 2EF04_M: Efetuar a operação de adição entre números naturais formados por até três algarismos.
+    - CNCA 2025 2EF05_M: Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 4EF07_M: Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.
+    - CNCA 2025 2EF01_M: Contar a quantidade de objetos de uma coleção contendo até 50 elementos, apresentando o resultado em registro numérico.
+
+Descritor D18: Calcular o resultado de uma multiplicação ou divisão de números naturais.
+  Códigos correlacionados:
+    - CNCA 2025 4EF06_M: Efetuar a operação de multiplicação entre números naturais formados por até quatro algarismos.
+    - CNCA 2025 4EF07_M: Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.
+    - CNCA 2025 2EF01_M: Contar a quantidade de objetos de uma coleção contendo até 50 elementos, apresentando o resultado em registro numérico.
+
+Descritor D19: Resolver problema com números naturais, envolvendo diferentes significados da adição ou subtração: juntar, alteração de um estado inicial (positiva ou negativa), comparação e mais de uma transformação (positiva ou negativa).
+  Códigos correlacionados:
+    - CNCA 2025 2EF05_M: Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 3EF07_M: Utilizar a operação de adição entre números naturais, formados por até quatro algarismos, envolvendo o significado de juntar ou de acrescentar, na resolução de problema.
+
+Descritor D20: Resolver problema com números naturais, envolvendo diferentes significados da multiplicação ou divisão: multiplicação comparativa, ideia de proporcionalidade, configuração retangular e combinatória.
+  Códigos correlacionados:
+    - CNCA 2025 4EF07_M: Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.
+    - CNCA 2025 4EF06_M: Efetuar a operação de multiplicação entre números naturais formados por até quatro algarismos.
+
+Descritor D21: Identificar diferentes representações de um mesmo número racional.
+  Códigos correlacionados:
+    - CNCA 2025 4EF04_M: Identificar o valor posicional de um algarismo em um número natural formado por até cinco algarismos.
+
+Descritor D23: Resolver problema utilizando a escrita decimal de cédulas e moedas do sistema monetário brasileiro.
+  Códigos correlacionados:
+    - CNCA 2025 1EF12_M: Reconhecer valores convencionados de moedas ou de cédulas do sistema monetário brasileiro, em situações do cotidiano.
+    - CNCA 2025 2EF12_M: Corresponder coleções distintas de moedas e/ou de cédulas do sistema monetário brasileiro que representam uma mesma quantia, em situações do cotidiano.
+    - CNCA 2025 4EF12_M: Utilizar valores do sistema monetário brasileiro em situações do cotidiano, na resolução de problema.
+
+Descritor D24: Identificar fração como representação que pode estar associada a diferentes significados.
+  Códigos correlacionados:
+    - CNCA 2025 5EF02_M: Representar fração associada ao significado de parte de um todo.
+
+Descritor D25: Resolver problema com números racionais expressos na forma decimal envolvendo diferentes significados da adição ou subtração.
+  Códigos correlacionados:
+    - CNCA 2025 2EF06_M: Utilizar a operação de subtração entre números naturais, formados por até três algarismos, envolvendo o significado de separar ou de retirar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 2EF05_M: Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 3EF07_M: Utilizar a operação de adição entre números naturais, formados por até quatro algarismos, envolvendo o significado de juntar ou de acrescentar, na resolução de problema.
+
+Descritor D26: Resolver problema envolvendo noções de porcentagem (25%, 50%, 100%).
+  Códigos correlacionados:
+    - PROEA 2025 9EF01_M: Utilizar porcentagem, envolvendo ou não aplicação de percentuais sucessivos, na resolução de problema.
+
+Descritor D27: Ler informações e dados apresentados em tabelas.
+  Códigos correlacionados:
+    - CNCA 2025 2EF14_M: Identificar dados estatísticos dispostos em tabelas de dupla entrada.
+    - CNCA 2025 1EF13_M: Identificar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+    - CNCA 2025 2EF15_M: Interpretar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+
+Descritor D28: Ler informações e dados apresentados em gráficos (particularmente em gráficos de colunas).
+  Códigos correlacionados:
+    - CNCA 2025 1EF13_M: Identificar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+    - CNCA 2025 2EF15_M: Interpretar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+    - CNCA 2025 5EF07_M: Interpretar dados estatísticos dispostos em gráficos de colunas agrupadas, de barras agrupadas ou de linhas.
+
+
+9º Ano - Língua portuguesa
+--------------------------
+Descritor D01: Localizar informações explícitas em um texto.
+  Códigos correlacionados:
+    - CNCA 2025 2EF08_P: Localizar informações explícitas em textos, recuperadas por meio de paráfrase.
+    - CNCA 2025 2EF08_P: Localizar informações explícitas em textos, recuperadas por meio de paráfrase.
+    - CNCA 2025 2EF07_P: Localizar informações explícitas em textos, recuperadas por meio de repetição.
+    - PROEA 2025 8EF01_P: Localizar informações explícitas, em textos de nível 3, recuperando-as por meio de paráfrase, estando a informação em outra posição que não o início do texto.
+    - CNCA 2025 5EF03_P: Localizar informação em textos de nível 2, quando a informação é retomada, no texto, por um processo de referenciação quando o referente está próximo.
+
+Descritor D03: Inferir o sentido de uma palavra ou expressão.
+  Códigos correlacionados:
+    - CNCA 2025 2EF14_P: Inferir o sentido de palavra ou expressão idiomática própria da linguagem informal, com base em pistas co-textuais (sinonímia, palavra do mesmo campo semântico).
+    - CNCA 2025 5EF10_P: Inferir o sentido de palavra ou expressão idiomática e outras expressões metafóricas, sem apoio em pistas co-textuais.
+    - CNCA 2025 1EF05_P: Reconhecer o local de inserção de uma palavra na ordem alfabética.
+    - PROEA 2025 9EF06_P: Inferir o sentido de termos técnicos ou especializados, com apoio de pistas co-textuais.
+    - CNCA 2025 5EF11_P: Inferir informação com base no sentido global do texto.
+    - PROEA 2025 9EF07_P: Inferir o sentido de termos técnicos ou especializados, a partir da leitura global do texto.
+    - PROEA 2025 8EF05_P: Inferir, em textos de nível 3, o sentido de metáforas, a partir da leitura global do texto.
+    - PROEA 2025 9EF08_P: Inferir o sentido de vocabulário erudito, com apoio de pistas co-textuais.
+    - CNCA 2025 5EF23_P: Identificar o referente de uma expressão nominal com pronome adjetivo (possessivo, demonstrativo, indefinido) ou de elipses.
+    - CNCA 2025 4EF13_P: Inferir o sentido de metáforas poéticas em textos do campo artístico literário.
+
+Descritor D04: Inferir uma informação implícita em um texto.
+  Códigos correlacionados:
+    - CNCA 2025 2EF13_P: Inferir informação em texto exclusivamente verbal.
+    - PROEA 2025 9EF10_P: Inferir informação em textos de nível 3 considerando a leitura global do texto.
+    - CNCA 2025 5EF11_P: Inferir informação com base no sentido global do texto.
+    - PROEA 2025 8EF07_P: Inferir informação em textos de nível 3 considerando a relação entre enunciados de um trecho ou parágrafo do texto.
+    - CNCA 2025 1EF13_P: Inferir informação em texto que articula linguagem verbal e não verbal.
+    - CNCA 2025 5EF03_P: Localizar informação em textos de nível 2, quando a informação é retomada, no texto, por um processo de referenciação quando o referente está próximo.
+
+Descritor D06: Identificar o tema de um texto.
+  Códigos correlacionados:
+    - PROEA 2025 9EF22_P: Identificar, em texto de nível 3, o referente de um pronome relativo.
+    - PROEA 2025 9EF25_P: Identificar a tese de um texto de nível 3, a partir de sua leitura global.
+    - CNCA 2025 1EF15_P: Identificar a finalidade de um texto do campo de atuação da vida cotidiana.
+    - PROEA 2025 8EF23_P: Identificar, em um texto de nível 3, a tese quando apresentada por meio de paráfrase.
+    - CNCA 2025 1EF12_P: Reconhecer o assunto de um texto ouvido.
+    - CNCA 2025 2EF17_P: Reconhecer o gênero de um texto do campo de atuação artístico-literário.
+
+Descritor D12: Identificar a finalidade de textos de diferentes gêneros.
+  Códigos correlacionados:
+    - PROEA 2025 8EF09_P: Identificar a finalidade de textos de opinião.
+    - CNCA 2025 5EF17_P: Identificar a finalidade de textos dramáticos.
+    - PROEA 2025 9EF12_P: Identificar a finalidade de textos de opinião que tratam de temas especializados.
+    - CNCA 2025 5EF19_P: Reconhecer o efeito de sentido do uso de aspas, reticências e parênteses em textos de diferentes gêneros.
+    - CNCA 2025 5EF21_P: Reconhecer relações lógico-discursivas marcadas por conjunções mais usuais em textos de diferentes gêneros.
+    - CNCA 2025 4EF23_P: Reconhecer relações lógico-discursivas marcadas por advérbios e expressões adverbiais de tempo em textos de diferentes gêneros.
+    - CNCA 2025 1EF15_P: Identificar a finalidade de um texto do campo de atuação da vida cotidiana.
+    - CNCA 2025 5EF22_P: Identificar o referente de pronomes pessoais do caso reto (anafórico) com referente próximo ou saliente (tópico do texto) ou de substituições lexicais (substantivos por sinônimos) em textos de diferentes gêneros.
+    - CNCA 2025 5EF16_P: Identificar a finalidade de textos dos campos de atuação da vida cotidiana, jornalístico midiático ou de estudos e pesquisas pela compreensão global.
+    - CNCA 2025 5EF15_P: Reconhecer o gênero de textos que circulam nos diferentes campos de atuação.
+
+Descritor D20: Reconhecer diferentes formas de tratar uma informação na comparação de textos que tratam do mesmo tema, em função das condições em que ele foi produzido e daquelas em que será recebido.
+  Códigos correlacionados:
+    - PROEA 2025 9EF14_P: Reconhecer o gênero de textos de opinião que tratam de temas especializados.
+    - PROEA 2025 9EF12_P: Identificar a finalidade de textos de opinião que tratam de temas especializados.
+
+Descritor D02: Estabelecer relações entre partes de um texto, identificando repetições ou substituições que contribuem para a continuidade de um texto.
+  Códigos correlacionados:
+    - CNCA 2025 1EF12_P: Reconhecer o assunto de um texto ouvido.
+
+Descritor D07: Identificar a tese de um texto.
+  Códigos correlacionados:
+    - PROEA 2025 9EF25_P: Identificar a tese de um texto de nível 3, a partir de sua leitura global.
+    - PROEA 2025 8EF23_P: Identificar, em um texto de nível 3, a tese quando apresentada por meio de paráfrase.
+    - PROEA 2025 9EF22_P: Identificar, em texto de nível 3, o referente de um pronome relativo.
+    - PROEA 2025 8EF25_P: Identificar, em texto de nível 3, o argumento de uma tese (explícita no comando), estando o argumento em qualquer parte do texto, sinalizado ou não sinalizado por um operador argumentativo.
+    - PROEA 2025 9EF27_P: Identificar, em texto de nível 3, o contra-argumento de uma tese (explícita no comando), estando o contra-argumento em qualquer parte do texto e não sinalizado por operadores argumentativos.
+    - CNCA 2025 1EF15_P: Identificar a finalidade de um texto do campo de atuação da vida cotidiana.
+    - CNCA 2025 1EF12_P: Reconhecer o assunto de um texto ouvido.
+    - CNCA 2025 2EF17_P: Reconhecer o gênero de um texto do campo de atuação artístico-literário.
+
+Descritor D10: Identificar o conflito gerador do enredo e os elementos que constroem a narrativa.
+  Códigos correlacionados:
+    - CNCA 2025 5EF14_P: Reconhecer o conflito gerador do enredo em narrativas ficcionais.
+    - PROEA 2025 9EF16_P: Identificar elementos de uma narrativa não linear/não canônica de nível 3: personagem principal, tempo/lugar, conflito, narrador.
+
+Descritor D11: Estabelecer relação causa/consequência entre partes e elementos do texto.
+  Códigos correlacionados:
+    - PROEA 2025 8EF07_P: Inferir informação em textos de nível 3 considerando a relação entre enunciados de um trecho ou parágrafo do texto.
+
+Descritor D15: Estabelecer relações lógico-discursivas presentes no texto, marcadas por conjunções, advérbios, etc.
+  Códigos correlacionados:
+    - CNCA 2025 5EF21_P: Reconhecer relações lógico-discursivas marcadas por conjunções mais usuais em textos de diferentes gêneros.
+    - CNCA 2025 4EF23_P: Reconhecer relações lógico-discursivas marcadas por advérbios e expressões adverbiais de tempo em textos de diferentes gêneros.
+    - PROEA 2025 9EF20_P: Reconhecer, em textos de nível 3 ou discursivas (todas as relações semânticas), não marcadas ou marcadas por conjunções menos usuais (contudo, porquanto, embora etc.).
+    - PROEA 2025 8EF18_P: Reconhecer, em texto de nível 3, relações lógico-discursivas de explicação, alternância, consequência, proporção, concessão marcadas por conjunções mais usuais: pois, porque, ou, que, tanto que, à medida que, apesar de.
+
+Descritor D16: Identificar efeitos de ironia ou humor em textos variados.
+  Códigos correlacionados:
+    - CNCA 2025 4EF14_P: Inferir efeitos de humor em textos que conjugam linguagem verbal e não verbal.
+    - CNCA 2025 5EF09_P: Inferir efeitos de crítica em textos que conjugam linguagem verbal e não verbal.
+
+Descritor D17: Reconhecer o efeito de sentido decorrente do uso da pontuação e de outras notações.
+  Códigos correlacionados:
+    - CNCA 2025 5EF19_P: Reconhecer o efeito de sentido do uso de aspas, reticências e parênteses em textos de diferentes gêneros.
+    - CNCA 2025 2EF19_P: Reconhecer o efeito de sentido produzido pelo uso de recursos expressivos gráfico-visuais em tirinhas e histórias em quadrinhos.
+
+Descritor D18: Reconhecer o efeito de sentido decorrente da escolha de uma determinada palavra ou expressão.
+  Códigos correlacionados:
+    - CNCA 2025 2EF14_P: Inferir o sentido de palavra ou expressão idiomática própria da linguagem informal, com base em pistas co-textuais (sinonímia, palavra do mesmo campo semântico).
+    - CNCA 2025 5EF10_P: Inferir o sentido de palavra ou expressão idiomática e outras expressões metafóricas, sem apoio em pistas co-textuais.
+    - CNCA 2025 1EF05_P: Reconhecer o local de inserção de uma palavra na ordem alfabética.
+    - CNCA 2025 5EF19_P: Reconhecer o efeito de sentido do uso de aspas, reticências e parênteses em textos de diferentes gêneros.
+
+Descritor D19: Reconhecer o efeito de sentido decorrente da exploração de recursos ortográficos e/ou morfossintáticos.
+  Códigos correlacionados:
+    - CNCA 2025 2EF19_P: Reconhecer o efeito de sentido produzido pelo uso de recursos expressivos gráfico-visuais em tirinhas e histórias em quadrinhos.
+    - CNCA 2025 5EF19_P: Reconhecer o efeito de sentido do uso de aspas, reticências e parênteses em textos de diferentes gêneros.
+
+
+9º Ano - Matemática
+-------------------
+Descritor D02: Identificar propriedades comuns e diferenças entre figuras bidimensionais e tridimensionais, relacionando-as com as suas planificações.
+  Códigos correlacionados:
+    - CNCA 2025 5EF04_M: Corresponder figuras geométricas espaciais (cilindro, cone, prisma ou pirâmide) à uma de suas planificações.
+
+Descritor D03: Identificar propriedades de triângulos pela comparação de medidas de lados e ângulos.
+  Códigos correlacionados:
+    - PROEA 2025 9EF14_M: Utilizar relações entre medidas de arcos, ângulos centrais e ângulos inscritos em uma circunferência, na resolução de problema.
+    - CNCA 2025 5EF05_M: Reconhecer polígonos em relação à quantidade de lados, vértices ou ângulos.
+    - PROEA 2025 9EF07_M: Utilizar semelhança de triângulos na resolução de problema.
+
+Descritor D06: Reconhecer ângulos como mudança de direção ou giros, identificando ângulos retos e não-retos.
+  Códigos correlacionados:
+    - CNCA 2025 4EF10_M: Reconhecer ângulos retos e ângulos não retos em figuras geométricas planas.
+    - PROEA 2025 9EF14_M: Utilizar relações entre medidas de arcos, ângulos centrais e ângulos inscritos em uma circunferência, na resolução de problema.
+    - CNCA 2025 5EF05_M: Reconhecer polígonos em relação à quantidade de lados, vértices ou ângulos.
+    - PROEA 2025 9EF15_M: Utilizar cálculo de medida de volume de prismas retos ou de cilindros retos, na resolução de problema.
+
+Descritor D08: Resolver problema utilizando propriedades dos polígonos (soma de seus ângulos internos, número de diagonais, cálculo da medida de cada ângulo interno nos polígonos regulares).
+  Códigos correlacionados:
+    - PROEA 2025 7EF13_M: Utilizar cálculo de medida de perímetro de polígonos na resolução de problema.
+    - CNCA 2025 5EF05_M: Reconhecer polígonos em relação à quantidade de lados, vértices ou ângulos.
+
+Descritor D10: Utilizar relações métricas do triângulo retângulo para resolver problemas significativos.
+  Códigos correlacionados:
+    - PROEA 2025 9EF08_M: Utilizar relações métricas do triângulo retângulo na resolução de problema.
+    - CNCA 2025 1EF10_M: Reconhecer figuras geométricas planas (círculo, quadrado, retângulo ou triângulo) desenhadas em diferentes disposições.
+
+Descritor D12: Resolver problema envolvendo o cálculo de perímetro de figuras planas.
+  Códigos correlacionados:
+    - PROEA 2025 7EF13_M: Utilizar cálculo de medida de perímetro de polígonos na resolução de problema.
+    - PROEA 2025 7EF14_M: Utilizar cálculo de medida de área de figuras planas: quadrados, retângulos, triângulos ou outras figuras planas que podem ser decompostas em quadrados, retângulos e/ou triângulos, na resolução de problema.
+    - PROEA 2025 9EF12_M: Utilizar cálculo de medida de perímetro de figura poligonal, representada no plano cartesiano, a partir das coordenadas de seus vértices, na resolução de problema.
+    - PROEA 2025 8EF07_M: Utilizar cálculo de medida de comprimento de circunferência na resolução de problema.
+    - PROEA 2025 8EF08_M: Utilizar cálculo de medida de área de círculos na resolução de problema.
+    - PROEA 2025 8EF02_M: Utilizar cálculo de valor numérico de expressões algébricas na resolução de problema.
+    - PROEA 2025 9EF15_M: Utilizar cálculo de medida de volume de prismas retos ou de cilindros retos, na resolução de problema.
+
+Descritor D13: Resolver problema envolvendo o cálculo de área de figuras planas.
+  Códigos correlacionados:
+    - PROEA 2025 8EF08_M: Utilizar cálculo de medida de área de círculos na resolução de problema.
+    - PROEA 2025 7EF14_M: Utilizar cálculo de medida de área de figuras planas: quadrados, retângulos, triângulos ou outras figuras planas que podem ser decompostas em quadrados, retângulos e/ou triângulos, na resolução de problema.
+    - PROEA 2025 9EF13_M: Utilizar cálculo de medida de área de figura poligonal, representada no plano cartesiano, a partir das coordenadas de seus vértices, na resolução de problema.
+    - PROEA 2025 7EF13_M: Utilizar cálculo de medida de perímetro de polígonos na resolução de problema.
+    - PROEA 2025 8EF07_M: Utilizar cálculo de medida de comprimento de circunferência na resolução de problema.
+    - CNCA 2025 4EF11_M: Medir área de figuras planas, desenhadas em malha quadriculada, cujos lados se posicionam sobre linhas de grade da malha.
+    - PROEA 2025 8EF02_M: Utilizar cálculo de valor numérico de expressões algébricas na resolução de problema.
+    - PROEA 2025 9EF15_M: Utilizar cálculo de medida de volume de prismas retos ou de cilindros retos, na resolução de problema.
+
+Descritor D14: Resolver problema envolvendo noções de volume.
+  Códigos correlacionados:
+    - PROEA 2025 9EF15_M: Utilizar cálculo de medida de volume de prismas retos ou de cilindros retos, na resolução de problema.
+
+Descritor D15: Resolver problema utilizando relações entre diferentes unidades de medida.
+  Códigos correlacionados:
+    - PROEA 2025 7EF13_M: Utilizar cálculo de medida de perímetro de polígonos na resolução de problema.
+    - PROEA 2025 8EF09_M: Utilizar conversão entre unidades de medida da grandeza capacidade: litro e decímetro cúbico ou litro e metro cúbico, na resolução de problema.
+    - PROEA 2025 8EF07_M: Utilizar cálculo de medida de comprimento de circunferência na resolução de problema.
+    - PROEA 2025 8EF08_M: Utilizar cálculo de medida de área de círculos na resolução de problema.
+
+Descritor D18: Efetuar cálculos com números inteiros, envolvendo as operações (adição, subtração, multiplicação, divisão, potenciação).
+  Códigos correlacionados:
+    - CNCA 2025 4EF06_M: Efetuar a operação de multiplicação entre números naturais formados por até quatro algarismos.
+    - CNCA 2025 2EF04_M: Efetuar a operação de adição entre números naturais formados por até três algarismos.
+
+Descritor D19: Resolver problema com números naturais, envolvendo diferentes significados das operações (adição, subtração, multiplicação, divisão, potenciação).
+  Códigos correlacionados:
+    - CNCA 2025 4EF07_M: Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.
+    - CNCA 2025 2EF06_M: Utilizar a operação de subtração entre números naturais, formados por até três algarismos, envolvendo o significado de separar ou de retirar, com ou sem suporte de imagens, na resolução de problema.
+    - CNCA 2025 3EF07_M: Utilizar a operação de adição entre números naturais, formados por até quatro algarismos, envolvendo o significado de juntar ou de acrescentar, na resolução de problema.
+    - CNCA 2025 2EF05_M: Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.
+
+Descritor D20: Resolver problema com números inteiros envolvendo as operações (adição, subtração, multiplicação, divisão, potenciação).
+  Códigos correlacionados:
+    - CNCA 2025 4EF07_M: Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.
+
+Descritor D21: Reconhecer as diferentes representações de um número racional.
+  Códigos correlacionados:
+    - CNCA 2025 4EF04_M: Identificar o valor posicional de um algarismo em um número natural formado por até cinco algarismos.
+
+Descritor D22: Identificar fração como representação que pode estar associada a diferentes significados.
+  Códigos correlacionados:
+    - CNCA 2025 5EF02_M: Representar fração associada ao significado de parte de um todo.
+
+Descritor D25: Efetuar cálculos que envolvam operações com números racionais (adição, subtração, multiplicação, divisão, potenciação).
+  Códigos correlacionados:
+    - CNCA 2025 4EF06_M: Efetuar a operação de multiplicação entre números naturais formados por até quatro algarismos.
+    - CNCA 2025 2EF04_M: Efetuar a operação de adição entre números naturais formados por até três algarismos.
+
+Descritor D26: Resolver problema com números racionais envolvendo as operações (adição, subtração, multiplicação, divisão, potenciação).
+  Códigos correlacionados:
+    - CNCA 2025 4EF07_M: Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.
+
+Descritor D27: Efetuar cálculos simples com valores aproximados de radicais.
+  Códigos correlacionados:
+    - CNCA 2025 1EF13_M: Identificar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+
+Descritor D28: Resolver problema que envolva porcentagem.
+  Códigos correlacionados:
+    - PROEA 2025 9EF01_M: Utilizar porcentagem, envolvendo ou não aplicação de percentuais sucessivos, na resolução de problema.
+
+Descritor D29: Resolver problema que envolva variação proporcional, direta ou inversa, entre grandezas.
+  Códigos correlacionados:
+    - PROEA 2025 9EF02_M: Utilizar proporcionalidade direta e/ou inversa entre, pelo menos, três grandezas, na resolução de problema.
+
+Descritor D30: Calcular o valor numérico de uma expressão algébrica.
+  Códigos correlacionados:
+    - PROEA 2025 8EF02_M: Utilizar cálculo de valor numérico de expressões algébricas na resolução de problema.
+
+Descritor D31: Resolver problema que envolva equação do 2º grau.
+  Códigos correlacionados:
+    - PROEA 2025 8EF05_M: Determinar conjunto solução de equação polinomial de 2º grau, do tipo ax² = b.
+    - PROEA 2025 9EF03_M: Determinar conjunto solução de equação polinomial de 2º grau, do tipo ax² + bx + c = 0, com a ≠ 0 e b ≠ 0.
+    - PROEA 2025 9EF04_M: Utilizar equação polinomial de 2º grau, do tipo ax² + bx + c = 0, com a ≠ 0 e b ≠ 0, representando uma situação por meio de modelagem matemática, na resolução de problema.
+
+Descritor D32: Identificar a expressão algébrica que expressa uma regularidade observada em sequências de números ou figuras (padrões).
+  Códigos correlacionados:
+    - CNCA 2025 1EF07_M: Determinar termos ausentes em sequências de figuras.
+
+Descritor D33: Identificar uma equação ou inequação do 1º grau que expressa um problema.
+  Códigos correlacionados:
+    - PROEA 2025 9EF04_M: Utilizar equação polinomial de 2º grau, do tipo ax² + bx + c = 0, com a ≠ 0 e b ≠ 0, representando uma situação por meio de modelagem matemática, na resolução de problema.
+    - PROEA 2025 8EF05_M: Determinar conjunto solução de equação polinomial de 2º grau, do tipo ax² = b.
+    - PROEA 2025 8EF03_M: Determinar conjunto solução de um sistema de equações polinomiais de 1º grau, com duas incógnitas.
+    - PROEA 2025 9EF03_M: Determinar conjunto solução de equação polinomial de 2º grau, do tipo ax² + bx + c = 0, com a ≠ 0 e b ≠ 0.
+    - PROEA 2025 8EF04_M: Utilizar sistema de equações polinomiais de 1º grau, com duas incógnitas, representando uma situação por meio de modelagem matemática, na resolução de problema.
+
+Descritor D34: Identificar um sistema de equações do 1º grau que expressa um problema.
+  Códigos correlacionados:
+    - PROEA 2025 8EF03_M: Determinar conjunto solução de um sistema de equações polinomiais de 1º grau, com duas incógnitas.
+    - PROEA 2025 8EF04_M: Utilizar sistema de equações polinomiais de 1º grau, com duas incógnitas, representando uma situação por meio de modelagem matemática, na resolução de problema.
+    - CNCA 2025 4EF12_M: Utilizar valores do sistema monetário brasileiro em situações do cotidiano, na resolução de problema.
+
+Descritor D35: Identificar a relação entre as representações algébrica e geométrica de um sistema de equações do 1º grau.
+  Códigos correlacionados:
+    - PROEA 2025 8EF03_M: Determinar conjunto solução de um sistema de equações polinomiais de 1º grau, com duas incógnitas.
+    - PROEA 2025 8EF04_M: Utilizar sistema de equações polinomiais de 1º grau, com duas incógnitas, representando uma situação por meio de modelagem matemática, na resolução de problema.
+
+Descritor D36: Resolver problema envolvendo informações apresentadas em tabelas e/ou gráficos.
+  Códigos correlacionados:
+    - CNCA 2025 1EF13_M: Identificar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+    - CNCA 2025 2EF15_M: Interpretar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+
+Descritor D37: Associar informações apresentadas em listas e/ou tabelas simples aos gráficos que as representam e vice-versa.
+  Códigos correlacionados:
+    - CNCA 2025 1EF13_M: Identificar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+    - CNCA 2025 2EF15_M: Interpretar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.
+
+
