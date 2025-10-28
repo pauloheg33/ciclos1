@@ -194,35 +194,49 @@ function setupDefaultFilters() {
                             // Atualizar escolas
                             updateEscolaOptions();
                             
-                            // Aguardar e selecionar escola
+                            // Aguardar e selecionar escola (priorizar "Todas as Escolas" se disponível)
                             setTimeout(() => {
                                 const escolaSelect = document.getElementById('escola');
                                 if (escolaSelect) {
-                                    escolaSelect.value = '03 DE DEZEMBRO';
-                                    if (escolaSelect.value === '03 DE DEZEMBRO') {
-                                        appData.currentFilters.escola = '03 DE DEZEMBRO';
-                                        console.log('✅ Pré-selecionado: 03 DE DEZEMBRO');
+                                    // Tentar selecionar "Todas as Escolas" primeiro
+                                    if (escolaSelect.querySelector('option[value="TODAS_ESCOLAS"]')) {
+                                        escolaSelect.value = 'TODAS_ESCOLAS';
+                                        appData.currentFilters.escola = 'TODAS_ESCOLAS';
+                                        console.log('✅ Pré-selecionado: Todas as Escolas');
                                         
-                                        // Atualizar turmas
-                                        updateTurmaOptions();
+                                        // Renderizar cards e atualizar botão de relatório
+                                        renderCards();
+                                        updateReportButton();
                                         
-                                        // Aguardar e selecionar turma A
-                                        setTimeout(() => {
-                                            const turmaSelect = document.getElementById('turma');
-                                            if (turmaSelect) {
-                                                turmaSelect.value = 'A';
-                                                if (turmaSelect.value === 'A') {
-                                                    appData.currentFilters.turma = 'A';
-                                                    console.log('✅ Pré-selecionado: Turma A');
-                                                    
-                                                    // Renderizar cards com filtros pré-selecionados
-                                                    renderCards();
-                                                    updateReportButton();
-                                                    
-                                                    console.log('🎯 Pré-seleção completa!');
+                                        console.log('🎯 Pré-seleção completa (Relatório Geral)!');
+                                    } else {
+                                        // Fallback para escola específica
+                                        escolaSelect.value = '03 DE DEZEMBRO';
+                                        if (escolaSelect.value === '03 DE DEZEMBRO') {
+                                            appData.currentFilters.escola = '03 DE DEZEMBRO';
+                                            console.log('✅ Pré-selecionado: 03 DE DEZEMBRO');
+                                            
+                                            // Atualizar turmas
+                                            updateTurmaOptions();
+                                            
+                                            // Aguardar e selecionar turma A
+                                            setTimeout(() => {
+                                                const turmaSelect = document.getElementById('turma');
+                                                if (turmaSelect) {
+                                                    turmaSelect.value = 'A';
+                                                    if (turmaSelect.value === 'A') {
+                                                        appData.currentFilters.turma = 'A';
+                                                        console.log('✅ Pré-selecionado: Turma A');
+                                                        
+                                                        // Renderizar cards com filtros pré-selecionados
+                                                        renderCards();
+                                                        updateReportButton();
+                                                        
+                                                        console.log('🎯 Pré-seleção completa!');
+                                                    }
                                                 }
-                                            }
-                                        }, 200);
+                                            }, 200);
+                                        }
                                     }
                                 }
                             }, 200);
@@ -332,7 +346,11 @@ function updateEscolaOptions() {
     dados.slice(1).forEach(linha => {
         if (linha.Escola && typeof linha.Escola === 'string' && 
             linha.Escola !== null && linha.Escola.trim() !== '') {
-            escolas.add(linha.Escola);
+            // Limpar o nome da escola antes de adicionar ao conjunto
+            const escolaLimpa = cleanSchoolName(linha.Escola);
+            if (escolaLimpa && escolaLimpa !== 'Nome Indefinido' && escolaLimpa !== 'Escola Sem Nome') {
+                escolas.add(escolaLimpa);
+            }
         }
     });
     
@@ -340,6 +358,14 @@ function updateEscolaOptions() {
     console.log('🏫 Escolas para', componente, ':', escolasArray);
     
     if (escolaSelect) {
+        // Adicionar opção "Todas as Escolas" se houver mais de uma escola
+        if (escolasArray.length > 1) {
+            const optionTodas = document.createElement('option');
+            optionTodas.value = 'TODAS_ESCOLAS';
+            optionTodas.textContent = '📊 Todas as Escolas (Relatório Geral)';
+            escolaSelect.appendChild(optionTodas);
+        }
+        
         escolasArray.forEach(escola => {
             const option = document.createElement('option');
             option.value = escola;
@@ -428,14 +454,22 @@ function updateReportButton() {
     if (!reportButton) return;
     
     const { ano, componente, escola } = appData.currentFilters;
-    const hasBasicFilters = ano && componente && escola;
+    // Permitir relatório quando ano e componente estão selecionados, mesmo sem escola específica
+    // ou quando "Todas as Escolas" está selecionada
+    const hasBasicFilters = ano && componente && (escola || escola === 'TODAS_ESCOLAS');
     
     reportButton.disabled = !hasBasicFilters;
     
     if (hasBasicFilters) {
-        reportButton.querySelector('.report-text').textContent = 'Gerar Relatório';
+        if (escola === 'TODAS_ESCOLAS') {
+            reportButton.querySelector('.report-text').textContent = 'Gerar Relatório Geral';
+        } else if (escola) {
+            reportButton.querySelector('.report-text').textContent = 'Gerar Relatório';
+        } else {
+            reportButton.querySelector('.report-text').textContent = 'Gerar Relatório Geral';
+        }
     } else {
-        reportButton.querySelector('.report-text').textContent = 'Selecione os filtros';
+        reportButton.querySelector('.report-text').textContent = 'Selecione ano e componente';
     }
 }
 
@@ -471,12 +505,25 @@ function renderCards() {
     let html = '';
     let schoolCount = 0;
     
+    // Se "Todas as Escolas" está selecionada, mostrar mais escolas
+    const isTodasEscolas = appData.currentFilters.escola === 'TODAS_ESCOLAS';
+    const maxSchools = isTodasEscolas ? 10 : (appData.currentFilters.turma ? 2 : 4);
+    
     for (const [escola, items] of porEscola) {
         schoolCount++;
-        // Aproveitar melhor o espaço da tela com mais habilidades
-        const maxItemsPerSchool = appData.currentFilters.turma ? 
-            Math.min(45, items.length) : // Se turma específica, mostra mais
-            Math.min(30, items.length);   // Se geral, quantidade moderada
+        
+        // Ajustar quantidade de habilidades baseado no contexto
+        let maxItemsPerSchool;
+        if (isTodasEscolas) {
+            // Para relatório geral, mostrar menos habilidades por escola para caber mais escolas
+            maxItemsPerSchool = Math.min(20, items.length);
+        } else if (appData.currentFilters.turma) {
+            // Se turma específica, mostra mais
+            maxItemsPerSchool = Math.min(45, items.length);
+        } else {
+            // Se geral, quantidade moderada
+            maxItemsPerSchool = Math.min(30, items.length);
+        }
         
         const limitedItems = items.slice(0, maxItemsPerSchool);
         
@@ -492,9 +539,8 @@ function renderCards() {
             </div>
         `;
         
-        // Mostrar mais escolas aproveitando o espaço
-        if (schoolCount >= 4 && !appData.currentFilters.turma) break;
-        if (schoolCount >= 2 && appData.currentFilters.turma) break;
+        // Controlar quantas escolas mostrar
+        if (schoolCount >= maxSchools) break;
     }
     
     container.innerHTML = html;
@@ -589,7 +635,10 @@ function getFilteredData() {
     const resultado = [];
     
     dados.slice(1).forEach(linha => {
-        if (escola && linha.Escola !== escola) return;
+        const escolaLimpa = cleanSchoolName(linha.Escola);
+        
+        // Se escola é "TODAS_ESCOLAS", não filtrar por escola específica
+        if (escola && escola !== 'TODAS_ESCOLAS' && escolaLimpa !== escola) return;
         if (turma && linha.Turma !== turma) return;
         
         Object.entries(linha).forEach(([key, value]) => {
@@ -612,7 +661,7 @@ function getFilteredData() {
                 }
                 
                 resultado.push({
-                    escola: linha.Escola,
+                    escola: escolaLimpa,
                     turma: linha.Turma,
                     habilidade: key,
                     percentage: value
@@ -683,6 +732,34 @@ function initTooltipSystem() {
     }
 }
 
+// Função utilitária para limpar nomes de escolas
+function cleanSchoolName(schoolName) {
+    if (!schoolName || typeof schoolName !== 'string') {
+        return 'Nome Indefinido';
+    }
+    
+    // Log para debug
+    console.log('Nome original da escola:', schoolName, 'Códigos:', [...schoolName].map(c => c.charCodeAt(0)));
+    
+    // Remove caracteres de controle, símbolos problemáticos e emojis
+    // Mantém letras, números, espaços e acentos portugueses/brasileiros
+    let cleaned = schoolName
+        .replace(/[\u0000-\u001F\u007F-\u009F]/g, '') // Remove caracteres de controle
+        .replace(/[\u2000-\u206F\u2E00-\u2E7F]/g, '') // Remove pontuação especial e espaços especiais
+        .replace(/[\u1F000-\u1F9FF]/g, '') // Remove emojis
+        .replace(/[^\w\s\u00C0-\u017F\u0100-\u024F\u1E00-\u1EFF]/g, '') // Remove outros símbolos especiais
+        .replace(/\s+/g, ' ') // Normaliza espaços múltiplos
+        .trim(); // Remove espaços das extremidades
+    
+    // Se após limpeza ficou vazio, usar fallback
+    if (!cleaned) {
+        cleaned = 'Escola Sem Nome';
+    }
+    
+    console.log('Nome limpo da escola:', cleaned);
+    return cleaned;
+}
+
 // Debug global
 window.debugApp = () => console.log('Debug:', appData);
 
@@ -727,6 +804,14 @@ async function generateReport() {
         // Resumo estatístico
         yPosition = addStatisticalSummary(doc, dadosFiltrados, margin, yPosition + 5);
         
+        // Se for relatório geral, adicionar resumo por escola
+        const { escola } = appData.currentFilters;
+        const isRelatorioGeral = escola === 'TODAS_ESCOLAS' || !escola;
+        
+        if (isRelatorioGeral) {
+            yPosition = addSchoolSummary(doc, dadosFiltrados, margin, yPosition + 8);
+        }
+        
         // Tabela de habilidades
         yPosition = await addSkillsTable(doc, dadosFiltrados, yPosition + 8);
         
@@ -756,12 +841,19 @@ async function generateReport() {
 }
 
 async function addReportHeader(doc, pageWidth, margin) {
+    const { escola } = appData.currentFilters;
+    const isRelatorioGeral = escola === 'TODAS_ESCOLAS' || !escola;
+    
     // Título principal
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(16);
     doc.setTextColor(44, 62, 80);
     
-    const title = 'Relatório Educacional - Análise de Desempenho por Habilidade';
+    let title = 'Relatório Educacional - Análise de Desempenho por Habilidade';
+    if (isRelatorioGeral) {
+        title = 'Relatório Geral - Análise de Desempenho por Escola e Habilidade';
+    }
+    
     const titleWidth = doc.getTextWidth(title);
     const titleX = (pageWidth - titleWidth) / 2;
     
@@ -772,7 +864,11 @@ async function addReportHeader(doc, pageWidth, margin) {
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
     
-    const subtitle = 'Ciclos CNCA e PROEA 2025';
+    let subtitle = 'Ciclos CNCA e PROEA 2025';
+    if (isRelatorioGeral) {
+        subtitle = 'Ciclos CNCA e PROEA 2025 - Visão Consolidada por Escolas';
+    }
+    
     const subtitleWidth = doc.getTextWidth(subtitle);
     const subtitleX = (pageWidth - subtitleWidth) / 2;
     
@@ -803,17 +899,47 @@ function addFilterInfo(doc, margin, yStart) {
     doc.setTextColor(80, 80, 80);
     
     let y = yStart + 6;
-    const { ano, componente, escola, turma } = appData.currentFilters;
+    const { ano, componente, escola, turma, performanceRange } = appData.currentFilters;
     
     doc.text(`• Ano Escolar: ${ano}`, margin + 3, y);
     y += 4;
     doc.text(`• Componente Curricular: ${componente}`, margin + 3, y);
     y += 4;
-    doc.text(`• Escola: ${escola}`, margin + 3, y);
+    
+    // Tratar diferentes tipos de escola
+    let escolaTexto;
+    if (escola === 'TODAS_ESCOLAS') {
+        escolaTexto = 'Todas as Escolas (Relatório Geral)';
+    } else if (escola) {
+        escolaTexto = escola;
+    } else {
+        escolaTexto = 'Não especificada (Relatório Geral)';
+    }
+    doc.text(`• Escola: ${escolaTexto}`, margin + 3, y);
     
     if (turma) {
         y += 4;
         doc.text(`• Turma: ${turma}`, margin + 3, y);
+    }
+    
+    // Adicionar filtro de performance se aplicado
+    if (performanceRange && performanceRange !== 'todas') {
+        y += 4;
+        let performanceTexto;
+        switch (performanceRange) {
+            case 'critico':
+                performanceTexto = 'Crítico (< 60%)';
+                break;
+            case 'intermediario':
+                performanceTexto = 'Intermediário (60-80%)';
+                break;
+            case 'adequado':
+                performanceTexto = 'Adequado (> 80%)';
+                break;
+            default:
+                performanceTexto = performanceRange;
+        }
+        doc.text(`• Faixa de Desempenho: ${performanceTexto}`, margin + 3, y);
     }
     
     return y;
@@ -843,26 +969,282 @@ function addStatisticalSummary(doc, dados, margin, yStart) {
         else critico++;
     });
     
+    // Contar escolas e turmas únicas para relatórios gerais
+    const escolasUnicas = new Set(dados.map(item => item.escola));
+    const turmasUnicas = new Set(dados.map(item => `${item.escola}-${item.turma}`));
+    const habilidadesUnicas = new Set(dados.map(item => item.habilidade));
+    
     let y = yStart + 8;
     
     // Formatação organizada e limpa
     const estatisticas = [
-        `Total de habilidades: ${total}`,
-        `Média de acerto: ${media}%`,
-        `Adequado (>80%): ${adequado} habilidades`,
-        `Intermediário (60-80%): ${intermediario} habilidades`,
-        `Crítico (<60%): ${critico} habilidades`
+        `Total de registros: ${total}`,
+        `Escolas abrangidas: ${escolasUnicas.size}`,
+        `Turmas abrangidas: ${turmasUnicas.size}`,
+        `Habilidades diferentes: ${habilidadesUnicas.size}`,
+        `Média geral de acerto: ${media}%`,
+        ``,
+        `Distribuição por faixa de desempenho:`,
+        `  • Adequado (>80%): ${adequado} registros (${total > 0 ? ((adequado/total)*100).toFixed(1) : 0}%)`,
+        `  • Intermediário (60-80%): ${intermediario} registros (${total > 0 ? ((intermediario/total)*100).toFixed(1) : 0}%)`,
+        `  • Crítico (<60%): ${critico} registros (${total > 0 ? ((critico/total)*100).toFixed(1) : 0}%)`
     ];
     
     estatisticas.forEach(texto => {
-        doc.text(`• ${texto}`, margin + 5, y);
-        y += 6; // Espaçamento consistente entre linhas
+        if (texto === '') {
+            y += 3; // Espaço em branco
+        } else {
+            doc.text(texto.startsWith('  •') ? texto : `• ${texto}`, margin + (texto.startsWith('  •') ? 8 : 5), y);
+            y += 6; // Espaçamento consistente entre linhas
+        }
     });
     
     return y + 5;
 }
 
+function addSchoolSummary(doc, dados, margin, yStart) {
+    const pageHeight = doc.internal.pageSize.height;
+    
+    // Verificar se precisa de nova página
+    if (yStart > pageHeight - 100) {
+        doc.addPage();
+        yStart = 25;
+    }
+    
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.setTextColor(44, 62, 80);
+    doc.text('Resumo por Escola', margin, yStart);
+    
+    // Agrupar dados por escola
+    const dadosPorEscola = new Map();
+    
+    dados.forEach(item => {
+        if (!dadosPorEscola.has(item.escola)) {
+            dadosPorEscola.set(item.escola, []);
+        }
+        dadosPorEscola.get(item.escola).push(item);
+    });
+    
+    // Preparar dados para tabela de resumo
+    const summaryData = [];
+    
+    // Ordenar escolas alfabeticamente
+    const escolasOrdenadas = Array.from(dadosPorEscola.keys()).sort();
+    
+    escolasOrdenadas.forEach(escola => {
+        const dadosEscola = dadosPorEscola.get(escola);
+        const percentuais = dadosEscola.map(item => parseFloat(item.percentage));
+        const media = percentuais.length > 0 ? 
+            (percentuais.reduce((a, b) => a + b, 0) / percentuais.length).toFixed(1) : 0;
+        
+        // Contar por faixa de desempenho
+        let adequado = 0, intermediario = 0, critico = 0;
+        percentuais.forEach(perc => {
+            if (perc > 80) adequado++;
+            else if (perc >= 60) intermediario++;
+            else critico++;
+        });
+        
+        const turmasUnicas = new Set(dadosEscola.map(item => item.turma));
+        
+        // Usar função de limpeza para o nome da escola
+        const escolaLimpa = cleanSchoolName(escola);
+        
+        summaryData.push([
+            escolaLimpa,
+            turmasUnicas.size.toString(),
+            dadosEscola.length.toString(),
+            `${media}%`,
+            adequado.toString(),
+            critico.toString()
+        ]);
+    });
+    
+    // Configuração da tabela de resumo
+    const summaryConfig = {
+        startY: yStart + 8,
+        head: [['Escola', 'Turmas', 'Hab.', 'Média', 'Adeq.', 'Crít.']],
+        body: summaryData,
+        theme: 'striped',
+        headStyles: {
+            fillColor: [52, 152, 219],
+            textColor: 255,
+            fontStyle: 'bold',
+            fontSize: 8
+        },
+        bodyStyles: {
+            fontSize: 7,
+            textColor: 60,
+            cellPadding: 1.5
+        },
+        alternateRowStyles: {
+            fillColor: [248, 248, 248]
+        },
+        columnStyles: {
+            0: { cellWidth: 'auto', minCellWidth: 40 }, // Escola
+            1: { cellWidth: 18, halign: 'center' }, // Turmas
+            2: { cellWidth: 18, halign: 'center' }, // Habilidades
+            3: { cellWidth: 20, halign: 'center' }, // Média
+            4: { cellWidth: 18, halign: 'center' }, // Adequado
+            5: { cellWidth: 18, halign: 'center' }  // Crítico
+        },
+        margin: { left: 20, right: 20 },
+        styles: {
+            cellPadding: 1,
+            fontSize: 7,
+            lineColor: [200, 200, 200],
+            lineWidth: 0.1
+        }
+    };
+    
+    doc.autoTable(summaryConfig);
+    
+    // Adicionar legenda
+    let legendY = doc.lastAutoTable.finalY + 5;
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(7);
+    doc.setTextColor(120, 120, 120);
+    doc.text('Legenda: Hab. = Total de Habilidades | Adeq. = Adequado (>80%) | Crít. = Crítico (<60%)', margin, legendY);
+    
+    return legendY + 8;
+}
+
 async function addSkillsTable(doc, dados, yStart) {
+    const { escola } = appData.currentFilters;
+    const isRelatorioGeral = escola === 'TODAS_ESCOLAS' || !escola;
+    
+    if (isRelatorioGeral) {
+        // Para relatório geral, agrupar por escola
+        return await addSkillsTableBySchool(doc, dados, yStart);
+    } else {
+        // Para escola específica, usar tabela simples
+        return await addSkillsTableSimple(doc, dados, yStart);
+    }
+}
+
+async function addSkillsTableBySchool(doc, dados, yStart) {
+    // Agrupar dados por escola
+    const dadosPorEscola = new Map();
+    
+    dados.forEach(item => {
+        if (!dadosPorEscola.has(item.escola)) {
+            dadosPorEscola.set(item.escola, []);
+        }
+        dadosPorEscola.get(item.escola).push(item);
+    });
+    
+    let currentY = yStart;
+    const margin = 20;
+    const pageHeight = doc.internal.pageSize.height;
+    
+    // Ordenar escolas alfabeticamente
+    const escolasOrdenadas = Array.from(dadosPorEscola.keys()).sort();
+    
+    for (const escola of escolasOrdenadas) {
+        const dadosEscola = dadosPorEscola.get(escola);
+        
+        // Verificar se precisa de nova página
+        if (currentY > pageHeight - 100) {
+            doc.addPage();
+            currentY = 25;
+        }
+        
+        // Título da escola - usar função de limpeza
+        const escolaLimpa = cleanSchoolName(escola);
+        
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(12);
+        doc.setTextColor(44, 62, 80);
+        doc.text(`ESCOLA: ${escolaLimpa}`, margin, currentY);
+        
+        currentY += 8;
+        
+        // Subtítulo com estatísticas da escola
+        const percentuaisEscola = dadosEscola.map(item => parseFloat(item.percentage));
+        const mediaEscola = percentuaisEscola.length > 0 ? 
+            (percentuaisEscola.reduce((a, b) => a + b, 0) / percentuaisEscola.length).toFixed(1) : 0;
+        
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(100, 100, 100);
+        doc.text(`${dadosEscola.length} habilidades | Media: ${mediaEscola}%`, margin, currentY);
+        
+        currentY += 6;
+        
+        // Preparar dados da tabela para esta escola
+        const tableData = dadosEscola.map(item => {
+            const perc = parseFloat(item.percentage);
+            
+            // Obter código real da habilidade
+            let codigoReal = null;
+            const { ano, componente } = appData.currentFilters;
+            
+            if (ano && componente) {
+                const anoNum = ano.match(/(\d+)º/)?.[1];
+                const tabelaKey = `tabelas_${anoNum}o_ano_${componente}`;
+                const dadosTabela = appData.jsonData[tabelaKey];
+                
+                if (dadosTabela && Array.isArray(dadosTabela) && dadosTabela.length > 0) {
+                    const headerRow = dadosTabela[0];
+                    if (headerRow[item.habilidade]) {
+                        codigoReal = headerRow[item.habilidade];
+                    }
+                }
+            }
+            
+            // Formato: H01: 1EF05_P
+            const habilidadeFormatada = codigoReal ? `${item.habilidade}: ${codigoReal}` : item.habilidade;
+            
+            return [
+                habilidadeFormatada,
+                item.turma || 'N/A',
+                `${perc.toFixed(1)}%`
+            ];
+        });
+        
+        // Configuração da tabela para esta escola
+        const tableConfig = {
+            startY: currentY,
+            head: [['Habilidade', 'Turma', 'Percentual']],
+            body: tableData,
+            theme: 'striped',
+            headStyles: {
+                fillColor: [79, 172, 254],
+                textColor: 255,
+                fontStyle: 'bold',
+                fontSize: 8
+            },
+            bodyStyles: {
+                fontSize: 7,
+                textColor: 60,
+                cellPadding: 1.5
+            },
+            alternateRowStyles: {
+                fillColor: [248, 248, 248]
+            },
+            columnStyles: {
+                0: { cellWidth: 'auto', minCellWidth: 45 },
+                1: { cellWidth: 18, halign: 'center' },
+                2: { cellWidth: 22, halign: 'center' }
+            },
+            margin: { left: 20, right: 20 },
+            styles: {
+                cellPadding: 1,
+                fontSize: 7,
+                lineColor: [200, 200, 200],
+                lineWidth: 0.1
+            }
+        };
+        
+        doc.autoTable(tableConfig);
+        currentY = doc.lastAutoTable.finalY + 15; // Espaço entre escolas
+    }
+    
+    return currentY;
+}
+
+async function addSkillsTableSimple(doc, dados, yStart) {
     // Preparar dados da tabela com códigos completos
     const tableData = dados.map(item => {
         const perc = parseFloat(item.percentage);
@@ -1065,13 +1447,38 @@ function addReportFooter(doc, pageWidth, pageHeight, margin) {
 }
 
 function generateFileName() {
-    const { ano, componente, escola, turma } = appData.currentFilters;
+    const { ano, componente, escola, turma, performanceRange } = appData.currentFilters;
     const timestamp = new Date().toISOString().slice(0, 10);
     
-    let fileName = `Relatorio_${ano.replace('º Ano', 'ano')}_${componente}_${escola}`;
+    let fileName = `Relatorio_${ano.replace('º Ano', 'ano')}_${componente}`;
+    
+    // Determinar tipo de relatório
+    if (escola === 'TODAS_ESCOLAS') {
+        fileName += '_TodasEscolas';
+    } else if (escola) {
+        const escolaLimpa = cleanSchoolName(escola);
+        fileName += `_${escolaLimpa}`;
+    } else {
+        fileName += '_Geral';
+    }
     
     if (turma) {
         fileName += `_Turma${turma}`;
+    }
+    
+    // Adicionar filtro de performance se aplicado
+    if (performanceRange && performanceRange !== 'todas') {
+        switch (performanceRange) {
+            case 'critico':
+                fileName += '_Critico';
+                break;
+            case 'intermediario':
+                fileName += '_Intermediario';
+                break;
+            case 'adequado':
+                fileName += '_Adequado';
+                break;
+        }
     }
     
     fileName += `_${timestamp}.pdf`;
