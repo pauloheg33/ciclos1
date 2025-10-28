@@ -507,9 +507,8 @@ function renderCards() {
     let html = '';
     let schoolCount = 0;
     
-    // Se "Todas as Escolas" está selecionada, mostrar mais escolas
+    // Se "Todas as Escolas" está selecionada, mostrar todas as escolas disponíveis
     const isTodasEscolas = appData.currentFilters.escola === 'TODAS_ESCOLAS';
-    const maxSchools = isTodasEscolas ? 10 : (appData.currentFilters.turma ? 2 : 4);
     
     for (const [escola, items] of porEscola) {
         schoolCount++;
@@ -517,8 +516,8 @@ function renderCards() {
         // Ajustar quantidade de habilidades baseado no contexto
         let maxItemsPerSchool;
         if (isTodasEscolas) {
-            // Para relatório geral, mostrar menos habilidades por escola para caber mais escolas
-            maxItemsPerSchool = Math.min(20, items.length);
+            // Para relatório geral, mostrar quantidade equilibrada por escola
+            maxItemsPerSchool = Math.min(15, items.length);
         } else if (appData.currentFilters.turma) {
             // Se turma específica, mostra mais
             maxItemsPerSchool = Math.min(45, items.length);
@@ -541,8 +540,11 @@ function renderCards() {
             </div>
         `;
         
-        // Controlar quantas escolas mostrar
-        if (schoolCount >= maxSchools) break;
+        // Para "Todas as Escolas", não limitar o número de escolas
+        if (!isTodasEscolas) {
+            const maxSchools = appData.currentFilters.turma ? 2 : 4;
+            if (schoolCount >= maxSchools) break;
+        }
     }
     
     container.innerHTML = html;
