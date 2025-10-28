@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste - Correlação de Dados</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .log { background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 5px; font-family: monospace; }
+        .stats { background: #e3f2fd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Teste de Combinação de Dados de Correlação</h1>
+    
+    <div id="loading" class="log">⏳ Carregando e testando dados...</div>
+    <div id="results"></div>
+
+    <script>
+        async function testCorrelation() {
+            const resultsDiv = document.getElementById('results');
+            const loadingDiv = document.getElementById('loading');
+            
+            try {
+                // Carregar ambos os arquivos
+                const [response1, response2] = await Promise.all([
+                    fetch('./Correção sugerida ao SPAECE.json'),
+                    fetch('./correlacao_total_spaece_2024.json')
+                ]);
+                
+                if (!response1.ok || !response2.ok) {
+                    throw new Error('Erro ao carregar arquivos JSON');
+                }
+                
+                const [data1, data2] = await Promise.all([
+                    response1.json(),
+                    response2.json()
+                ]);
+                
+                // Análise dos dados
+                const spaeceCount1 = data1.filter(item => item.spaece && typeof item.spaece === 'object').length;
+                const spaeceCount2 = data2.filter(item => item.spaece && typeof item.spaece === 'object').length;
+                
+                // Análise de sobreposição
+                const codes1 = new Set(data1.map(item => item.codigo_habilidade));
+                const codes2 = new Set(data2.map(item => item.codigo_habilidade));
+                const intersection = new Set([...codes1].filter(x => codes2.has(x)));
+                
+                loadingDiv.style.display = 'none';
+                
+                resultsDiv.innerHTML = `
+                    <div class="stats success">
+                        <h3>✅ Análise dos Arquivos de Correlação</h3>
+                        
+                        <h4>📁 Correção sugerida ao SPAECE.json</h4>
+                        <ul>
+                            <li><strong>Total de registros:</strong> ${data1.length}</li>
+                            <li><strong>Com correlação SPAECE:</strong> ${spaeceCount1}</li>
+                            <li><strong>Códigos únicos:</strong> ${codes1.size}</li>
+                        </ul>
+                        
+                        <h4>📁 correlacao_total_spaece_2024.json</h4>
+                        <ul>
+                            <li><strong>Total de registros:</strong> ${data2.length}</li>
+                            <li><strong>Com correlação SPAECE:</strong> ${spaeceCount2}</li>
+                            <li><strong>Códigos únicos:</strong> ${codes2.size}</li>
+                        </ul>
+                        
+                        <h4>🔗 Análise de Sobreposição</h4>
+                        <ul>
+                            <li><strong>Códigos em comum:</strong> ${intersection.size}</li>
+                            <li><strong>Códigos únicos arquivo 1:</strong> ${codes1.size - intersection.size}</li>
+                            <li><strong>Códigos únicos arquivo 2:</strong> ${codes2.size - intersection.size}</li>
+                            <li><strong>Total combinado estimado:</strong> ${codes1.size + codes2.size - intersection.size}</li>
+                        </ul>
+                        
+                        <h4>📊 Exemplos de Estruturas SPAECE</h4>
+                        <div class="log">
+                            <strong>Arquivo 1 (Correção sugerida):</strong><br>
+                            ${JSON.stringify(data1.find(item => item.spaece)?.spaece || {}, null, 2)}
+                        </div>
+                        
+                        <div class="log">
+                            <strong>Arquivo 2 (Correlação total):</strong><br>
+                            ${JSON.stringify(data2.find(item => item.spaece)?.spaece || {}, null, 2)}
+                        </div>
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('Erro no teste:', error);
+                loadingDiv.style.display = 'none';
+                resultsDiv.innerHTML = `
+                    <div class="stats error">
+                        <h3>❌ Erro no Teste</h3>
+                        <p><strong>Erro:</strong> ${error.message}</p>
+                        <p>Verifique se os arquivos JSON estão disponíveis e acessíveis.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Executar teste quando a página carregar
+        document.addEventListener('DOMContentLoaded', testCorrelation);
+    </script>
+</body>
+</html>

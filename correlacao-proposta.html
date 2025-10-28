@@ -3,20 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Correlação Proposta entre Habilidades CNCA, BNCC e SPAECE">
-    <meta name="keywords" content="correlação, habilidades, CNCA, BNCC, SPAECE, educação">
-    <meta name="author" content="Sistema Educacional">
+    <title>🔗 Correlação de Habilidades - CNCA, BNCC e SPAECE</title>
     
-    <title>🔗 Correlação Proposta - Habilidades CNCA, BNCC e SPAECE</title>
-    
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="correlacao-styles.css">
     
-    <!-- PDF Generation Libraries -->
     <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
     <script src="https://unpkg.com/jspdf-autotable@3.5.31/dist/jspdf.plugin.autotable.min.js"></script>
-    
     <script src="correlacao-script.js" defer></script>
 </head>
 <body>
@@ -24,16 +17,13 @@
         <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <div class="title-section">
-                    <h1>🔗 Correlação Proposta de Habilidades</h1>
-                    <p class="subtitle">Mapeamento entre CNCA, BNCC e SPAECE - 2025</p>
-                </div>
-                <div class="header-controls">
-                    <button class="back-btn" onclick="window.location.href='index.html'" aria-label="Voltar ao dashboard principal">
-                        ← Dashboard Principal
+                <h1>🔗 Correlação de Habilidades</h1>
+                <div class="header-actions">
+                    <button onclick="window.location.href='index.html'" class="btn-secondary">
+                        ← Voltar
                     </button>
-                    <button class="back-btn" onclick="window.location.href='analise-nova.html'" aria-label="Ir para análise dos indicadores">
-                        📈 Análise dos Indicadores
+                    <button id="export-btn" class="btn-primary">
+                        � Exportar PDF
                     </button>
                 </div>
             </div>
@@ -41,161 +31,74 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Filtros -->
-            <aside class="sidebar" role="complementary" aria-label="Filtros de pesquisa">
-                <div class="filters-section">
-                    <h2>🎯 Filtros</h2>
-                    
-                    <div class="filter-group">
-                        <label for="componente-filter">📚 Componente</label>
-                        <select id="componente-filter" name="componente-filter">
-                            <option value="">Todos os componentes</option>
-                            <option value="Leitura">Leitura</option>
-                            <option value="Matemática">Matemática</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label for="ano-filter">🎓 Ano Escolar</label>
-                        <select id="ano-filter" name="ano-filter">
-                            <option value="">Todos os anos</option>
-                            <option value="2º Ano">2º Ano</option>
-                            <option value="5º Ano">5º Ano</option>
-                            <option value="9º Ano">9º Ano</option>
-                        </select>
-                    </div>
-
-                    <div class="filter-group">
-                        <label for="search-input">🔍 Buscar habilidade</label>
-                        <input type="text" id="search-input" placeholder="Digite código ou descrição..." />
-                    </div>
-
-                    <div class="stats-box">
-                        <h3>📊 Estatísticas</h3>
-                        <div class="stat-item">
-                            <span class="stat-label">Total de habilidades:</span>
-                            <span class="stat-value" id="total-count">-</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Com correlação SPAECE:</span>
-                            <span class="stat-value" id="spaece-count">-</span>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- Content Area -->
-            <section class="content-area" role="main">
-                <div class="intro-section">
-                    <h2>📋 Sobre esta Correlação</h2>
-                    <p>Esta página apresenta a correlação proposta entre as habilidades do <strong>CNCA (Ciclos CNCA)</strong>, 
-                    <strong>BNCC (Base Nacional Comum Curricular)</strong> e <strong>SPAECE (Sistema Permanente de Avaliação da Educação Básica do Ceará)</strong>.</p>
-                    
-                    <div class="legend-box">
-                        <h3>🏷️ Legenda das Colunas</h3>
-                        <div class="legend-grid">
-                            <div class="legend-item cnca">
-                                <span class="legend-color"></span>
-                                <strong>Habilidade CNCA:</strong> Código e descrição da habilidade nos Ciclos CNCA
-                            </div>
-                            <div class="legend-item bncc">
-                                <span class="legend-color"></span>
-                                <strong>Correlação BNCC:</strong> Código da habilidade correspondente na BNCC
-                            </div>
-                            <div class="legend-item spaece">
-                                <span class="legend-color"></span>
-                                <strong>Correlação SPAECE:</strong> Descrição da habilidade equivalente no SPAECE
-                            </div>
-                        </div>
-                    </div>
+            <!-- Filters Bar -->
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <select id="componente-filter">
+                        <option value="">📚 Todos os componentes</option>
+                        <option value="Leitura">📖 Leitura</option>
+                        <option value="Matemática">🔢 Matemática</option>
+                    </select>
                 </div>
 
-                <!-- Tabela de Correlações -->
-                <div class="correlations-container">
-                    <div class="table-header">
-                        <h2>📊 Tabela de Correlações</h2>
-                        <div class="table-controls">
-                            <button id="export-btn" class="export-btn">
-                                📄 Exportar PDF
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="table-wrapper">
-                        <table class="correlations-table" id="correlations-table">
-                            <thead>
-                                <tr>
-                                    <th class="col-cnca">
-                                        <div class="header-content">
-                                            <span class="header-icon">🎯</span>
-                                            <div class="header-text">
-                                                <strong>Habilidade CNCA</strong>
-                                                <small>Código e Descrição</small>
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th class="col-bncc">
-                                        <div class="header-content">
-                                            <span class="header-icon">📚</span>
-                                            <div class="header-text">
-                                                <strong>Correlação BNCC</strong>
-                                                <small>Código da Habilidade</small>
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th class="col-spaece">
-                                        <div class="header-content">
-                                            <span class="header-icon">🎓</span>
-                                            <div class="header-text">
-                                                <strong>Correlação SPAECE</strong>
-                                                <small>Descrição da Habilidade</small>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="correlations-tbody">
-                                <!-- Conteúdo será carregado via JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="filter-group">
+                    <select id="ano-filter">
+                        <option value="">🎓 Todos os anos</option>
+                        <option value="2º Ano">2º Ano</option>
+                        <option value="5º Ano">5º Ano</option>
+                        <option value="9º Ano">9º Ano</option>
+                    </select>
                 </div>
 
-                <!-- Seção de análise -->
-                <div class="analysis-section">
-                    <h2>📈 Análise da Correlação</h2>
-                    <div class="analysis-grid">
-                        <div class="analysis-card">
-                            <h3>🎯 Cobertura BNCC</h3>
-                            <p>Percentual de habilidades CNCA que possuem correlação direta com a BNCC.</p>
-                            <div class="metric" id="bncc-coverage">-</div>
-                        </div>
-                        <div class="analysis-card">
-                            <h3>🎓 Cobertura SPAECE</h3>
-                            <p>Percentual de habilidades CNCA que possuem correlação com o SPAECE.</p>
-                            <div class="metric" id="spaece-coverage">-</div>
-                        </div>
-                        <div class="analysis-card">
-                            <h3>📊 Distribuição por Componente</h3>
-                            <p>Análise da distribuição das correlações por componente curricular.</p>
-                            <div class="component-stats" id="component-stats">-</div>
-                        </div>
-                    </div>
+                <div class="filter-group search-group">
+                    <input type="text" id="search-input" placeholder="🔍 Buscar habilidade..." />
                 </div>
-            </section>
-        </main>
-    </div>
 
-    <!-- Modal de detalhes -->
-    <div id="detail-modal" class="modal" style="display: none;">
-        <div class="modal-backdrop"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modal-title">Detalhes da Habilidade</h2>
-                <button class="modal-close" onclick="closeModal()">×</button>
+                <div class="stats-summary">
+                    <span class="stat-item">
+                        <strong id="total-count">-</strong> total
+                    </span>
+                    <span class="stat-item">
+                        <strong id="spaece-count">-</strong> com SPAECE
+                    </span>
+                </div>
             </div>
-            <div class="modal-body" id="modal-body">
-                <!-- Conteúdo será carregado via JavaScript -->
+
+            <!-- Table Container -->
+            <div class="table-container">
+
+                <table class="correlations-table" id="correlations-table">
+                    <thead>
+                        <tr>
+                            <th class="col-cnca">
+                                🎯 Habilidade CNCA
+                            </th>
+                            <th class="col-bncc">
+                                📚 BNCC
+                            </th>
+                            <th class="col-spaece">
+                                🎓 SPAECE
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="correlations-tbody">
+                        <!-- Conteúdo será carregado via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <!-- Modal de detalhes -->
+        <div id="detail-modal" class="modal" style="display: none;">
+            <div class="modal-backdrop" onclick="closeModal()"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">Detalhes da Habilidade</h3>
+                    <button class="modal-close" onclick="closeModal()">×</button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- Conteúdo será carregado via JavaScript -->
+                </div>
             </div>
         </div>
     </div>

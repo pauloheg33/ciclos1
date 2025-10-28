@@ -36,19 +36,35 @@ async function init() {
 }
 
 async function loadCorrelationData() {
-    console.log('📥 Carregando dados de correlação...');
+    console.log('📥 Carregando dados de correlação de múltiplas fontes...');
     
     try {
-        const response = await fetch('./Correção sugerida ao SPAECE.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        // Carregar ambos os arquivos JSON em paralelo para melhor performance
+        const [response1, response2] = await Promise.all([
+            fetch('./Correção sugerida ao SPAECE.json'),
+            fetch('./correlacao_total_spaece_2024.json')
+        ]);
+        
+        if (!response1.ok) {
+            throw new Error(`Erro ao carregar Correção sugerida ao SPAECE.json: ${response1.status}`);
+        }
+        if (!response2.ok) {
+            throw new Error(`Erro ao carregar correlacao_total_spaece_2024.json: ${response2.status}`);
         }
         
-        const data = await response.json();
-        correlationData = processCorrelationData(data);
+        const [data1, data2] = await Promise.all([
+            response1.json(),
+            response2.json()
+        ]);
+        
+        console.log('📊 Arquivo 1 (Correção sugerida):', data1.length, 'registros');
+        console.log('📊 Arquivo 2 (Correlação total 2024):', data2.length, 'registros');
+        
+        // Combinar e processar dados das duas fontes
+        correlationData = combineAndProcessData(data1, data2);
         filteredData = [...correlationData];
         
-        console.log('✅ Dados carregados:', correlationData.length, 'habilidades');
+        console.log('✅ Dados combinados carregados:', correlationData.length, 'habilidades');
         
     } catch (error) {
         console.error('❌ Erro ao carregar dados:', error);
@@ -57,14 +73,109 @@ async function loadCorrelationData() {
 }
 
 function processCorrelationData(rawData) {
-    return rawData.map(item => ({
-        codigo_habilidade: item.codigo_habilidade || '',
-        descricao_habilidade: item.descricao_habilidade || '',
-        bncc: item.bncc || '',
-        spaece: item.spaece ? item.spaece.descricao || '' : '',
-        componente: item.componente || '',
-        ano: item.ano || ''
-    })).filter(item => item.codigo_habilidade); // Filtrar itens inválidos
+    return rawData.map(item => {
+        // Processar dados SPAECE
+        let spaeceDescricao = '';
+        let spaeceDescritor = '';
+        
+        if (item.spaece && typeof item.spaece === 'object') {
+            spaeceDescricao = item.spaece.descricao_descritor || item.spaece.descricao || '';
+            spaeceDescritor = item.spaece.codigo_descritor || '';
+        }
+        
+        return {
+            codigo_habilidade: item.codigo_habilidade || '',
+            descricao_habilidade: item.descricao_habilidade || '',
+            bncc: item.bncc || '',
+            spaece: spaeceDescricao,
+            spaece_descritor: spaeceDescritor,
+            componente: item.componente || '',
+            ano: item.ano || ''
+        };
+    }).filter(item => item.codigo_habilidade); // Filtrar itens inválidos
+}
+
+function combineAndProcessData(data1, data2) {
+    console.log('🔄 Combinando dados das duas fontes...');
+    
+    // Processar dados do primeiro arquivo (Correção sugerida ao SPAECE.json)
+    const processedData1 = data1.map(item => {
+        let spaeceDescricao = '';
+        let spaeceDescritor = '';
+        
+        if (item.spaece && typeof item.spaece === 'object') {
+            spaeceDescricao = item.spaece.descricao_descritor || item.spaece.descricao || '';
+            spaeceDescritor = item.spaece.codigo_descritor || item.spaece.descritor || '';
+        }
+        
+        return {
+            codigo_habilidade: item.codigo_habilidade || '',
+            descricao_habilidade: item.descricao_habilidade || '',
+            bncc: item.bncc || '',
+            spaece: spaeceDescricao,
+            spaece_descritor: spaeceDescritor,
+            componente: item.componente || '',
+            ano: item.ano || '',
+            fonte: '2024_correcao_sugerida'
+        };
+    });
+    
+    // Processar dados do segundo arquivo (correlacao_total_spaece_2024.json)
+    const processedData2 = data2.map(item => {
+        let spaeceDescricao = '';
+        let spaeceDescritor = '';
+        
+        if (item.spaece && typeof item.spaece === 'object') {
+            spaeceDescricao = item.spaece.descricao || '';
+            spaeceDescritor = item.spaece.descritor || '';
+        }
+        
+        return {
+            codigo_habilidade: item.codigo_habilidade || '',
+            descricao_habilidade: item.descricao_habilidade || '',
+            bncc: item.bncc || '',
+            spaece: spaeceDescricao,
+            spaece_descritor: spaeceDescritor,
+            componente: item.componente || '',
+            ano: item.ano || '',
+            fonte: '2024_correlacao_total'
+        };
+    });
+    
+    // Criar um mapa para evitar duplicatas, priorizando dados mais completos
+    const combinedMap = new Map();
+    
+    // Adicionar dados do segundo arquivo primeiro (base)
+    processedData2.forEach(item => {
+        if (item.codigo_habilidade) {
+            combinedMap.set(item.codigo_habilidade, item);
+        }
+    });
+    
+    // Sobrescrever/atualizar com dados do primeiro arquivo se tiverem mais informações SPAECE
+    processedData1.forEach(item => {
+        if (item.codigo_habilidade) {
+            const existingItem = combinedMap.get(item.codigo_habilidade);
+            
+            // Se não existe ou se o item atual tem mais informações SPAECE, usar o atual
+            if (!existingItem || (item.spaece && !existingItem.spaece)) {
+                combinedMap.set(item.codigo_habilidade, {
+                    ...existingItem,
+                    ...item,
+                    // Manter informação sobre as fontes
+                    fonte: existingItem ? `${existingItem.fonte}+${item.fonte}` : item.fonte
+                });
+            }
+        }
+    });
+    
+    const combinedData = Array.from(combinedMap.values())
+        .filter(item => item.codigo_habilidade);
+    
+    console.log('✅ Dados combinados:', combinedData.length, 'habilidades únicas');
+    console.log('📊 Com correlação SPAECE:', combinedData.filter(item => item.spaece).length);
+    
+    return combinedData;
 }
 
 function setupFilters() {
@@ -214,12 +325,33 @@ function showDetails(codigoHabilidade) {
         <div class="detail-section">
             <h3>🎓 Correlação SPAECE</h3>
             <div class="detail-content">
-                ${item.spaece ? `<strong>Descrição:</strong> ${item.spaece}` : '<em>Sem correlação identificada</em>'}
+                ${item.spaece ? `
+                    <strong>Descritor:</strong> ${item.spaece_descritor || 'Não informado'}<br>
+                    <strong>Descrição:</strong> ${item.spaece}
+                ` : '<em>Sem correlação identificada</em>'}
+            </div>
+        </div>
+        
+        <div class="detail-section">
+            <h3>📋 Informações da Fonte</h3>
+            <div class="detail-content">
+                <strong>Fonte dos dados:</strong> ${getFonteDescription(item.fonte || 'desconhecida')}
             </div>
         </div>
     `;
     
     modal.style.display = 'flex';
+}
+
+function getFonteDescription(fonte) {
+    const fontes = {
+        '2024_correcao_sugerida': '📝 Correção Sugerida ao SPAECE (2024)',
+        '2024_correlacao_total': '📊 Correlação Total SPAECE (2024)',
+        '2024_correcao_sugerida+2024_correlacao_total': '📝📊 Dados Combinados (Ambas as fontes)',
+        '2024_correlacao_total+2024_correcao_sugerida': '📝📊 Dados Combinados (Ambas as fontes)'
+    };
+    
+    return fontes[fonte] || `📄 ${fonte}`;
 }
 
 function closeModal() {
@@ -313,12 +445,13 @@ async function exportToPDF() {
         const tableData = filteredData.map(item => [
             `${item.codigo_habilidade}\n${item.descricao_habilidade}\n(${item.componente} - ${item.ano})`,
             item.bncc || 'Sem correlação',
-            item.spaece || 'Sem correlação'
+            item.spaece ? `${item.spaece_descritor || ''}\n${item.spaece}` : 'Sem correlação',
+            getFonteDescription(item.fonte || 'desconhecida').replace(/📝|📊|📄/g, '').trim()
         ]);
         
         const tableConfig = {
             startY: y,
-            head: [['Habilidade CNCA', 'Código BNCC', 'Descrição SPAECE']],
+            head: [['Habilidade CNCA', 'Código BNCC', 'SPAECE', 'Fonte']],
             body: tableData,
             theme: 'striped',
             headStyles: {
@@ -336,9 +469,10 @@ async function exportToPDF() {
                 fillColor: [248, 248, 248]
             },
             columnStyles: {
-                0: { cellWidth: 'auto', minCellWidth: 60 },
-                1: { cellWidth: 35, halign: 'center' },
-                2: { cellWidth: 'auto', minCellWidth: 50 }
+                0: { cellWidth: 'auto', minCellWidth: 50 },
+                1: { cellWidth: 30, halign: 'center' },
+                2: { cellWidth: 'auto', minCellWidth: 40 },
+                3: { cellWidth: 35, halign: 'center', fontSize: 7 }
             },
             margin: { left: margin, right: margin },
             styles: {
