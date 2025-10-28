@@ -1,0 +1,1155 @@
+[
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "1EF05_P",
+    "descricao_habilidade": "Reconhecer o local de inserção de uma palavra na ordem alfabética.",
+    "bncc": "EF01LP10",
+    "spaece": {
+      "codigo_descritor": "D2EF01",
+      "descricao_descritor": "Identificar a posição de palavras na ordem alfabética."
+    }
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "1EF06_P",
+    "descricao_habilidade": "Identificar rimas.",
+    "bncc": "EF12LP19",
+    "spaece": {
+      "codigo_descritor": "D2EF02",
+      "descricao_descritor": "Reconhecer palavras que apresentam rimas."
+    }
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "1EF07_P",
+    "descricao_habilidade": "Identificar semelhanças entre sílabas (inicial, medial, final) de palavras.",
+    "bncc": "EF01LP09",
+    "spaece": {
+      "codigo_descritor": "D2EF03",
+      "descricao_descritor": "Perceber semelhanças entre sílabas de palavras."
+    }
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "1EF08_P",
+    "descricao_habilidade": "Ler palavras formadas exclusivamente por sílabas canônicas.",
+    "bncc": "EF02LP04"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "1EF09_P",
+    "descricao_habilidade": "Ler palavras formadas por sílabas não canônicas.",
+    "bncc": "EF02LP04"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "1EF12_P",
+    "descricao_habilidade": "Reconhecer o assunto de um texto ouvido.",
+    "bncc": "EF35LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "1EF13_P",
+    "descricao_habilidade": "Inferir informação em texto que articula linguagem verbal e não verbal.",
+    "bncc": "EF15LP14"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "1EF14_P",
+    "descricao_habilidade": "Reconhecer o gênero de um texto que circula no campo de atuação da vida cotidiana.",
+    "bncc": "EF15LP02"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "1EF15_P",
+    "descricao_habilidade": "Identificar a finalidade de um texto do campo de atuação da vida cotidiana.",
+    "bncc": "EF15LP01"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "2EF06_P",
+    "descricao_habilidade": "Ler frases (ordem direta, estrutura canônica: sujeito, verbo, objeto - mais de um complemento).",
+    "bncc": "EF01LP02"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "2EF07_P",
+    "descricao_habilidade": "Localizar informações explícitas em textos, recuperadas por meio de repetição.",
+    "bncc": "EF15LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "2EF08_P",
+    "descricao_habilidade": "Localizar informações explícitas em textos, recuperadas por meio de paráfrase.",
+    "bncc": "EF15LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "2EF10_P",
+    "descricao_habilidade": "Reconhecer o assunto de um texto quando o assunto está indicado no título.",
+    "bncc": "EF35LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "2EF11_P",
+    "descricao_habilidade": "Reconhecer o assunto de um texto quando o assunto é tópico do primeiro parágrafo.",
+    "bncc": "EF35LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "2EF13_P",
+    "descricao_habilidade": "Inferir informação em texto exclusivamente verbal.",
+    "bncc": "EF35LP04"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "2EF14_P",
+    "descricao_habilidade": "Inferir o sentido de palavra ou expressão idiomática própria da linguagem informal, com base em pistas co-textuais (sinonímia, palavra do mesmo campo semântico).",
+    "bncc": "EF35LP05"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "2EF15_P",
+    "descricao_habilidade": "Reconhecer o personagem principal de narrativas ficcionais, quando o personagem é citado no título ou é tópico do primeiro parágrafo.",
+    "bncc": "EF01LP26"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "2EF17_P",
+    "descricao_habilidade": "Reconhecer o gênero de um texto do campo de atuação artístico-literário.",
+    "bncc": "EF15LP02"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "2º Ano",
+    "codigo_habilidade": "2EF19_P",
+    "descricao_habilidade": "Reconhecer o efeito de sentido produzido pelo uso de recursos expressivos gráfico-visuais em tirinhas e histórias em quadrinhos.",
+    "bncc": "EF15LP14"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "2EF08_P",
+    "descricao_habilidade": "Localizar informações explícitas em textos, recuperadas por meio de paráfrase.",
+    "bncc": "EF15LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "3EF06_P",
+    "descricao_habilidade": "Ler frases (sujeito, verbo, objeto direto e objeto indireto ou frase na ordem indireta).",
+    "bncc": "EF01LP02"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "4EF13_P",
+    "descricao_habilidade": "Inferir o sentido de metáforas poéticas em textos do campo artístico literário.",
+    "bncc": "EF35LP05"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "4EF14_P",
+    "descricao_habilidade": "Inferir efeitos de humor em textos que conjugam linguagem verbal e não verbal.",
+    "bncc": "EF15LP18"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "4EF16_P",
+    "descricao_habilidade": "Reconhecer o narrador em narrativas ficcionais, quando se trata do narrador em primeira pessoa.",
+    "bncc": "EF35LP29"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "4EF17_P",
+    "descricao_habilidade": "Identificar a opinião de um personagem em uma narrativa ficcional, estando a opinião marcada por um verbo opinativo.",
+    "bncc": "EF04LP15"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "4EF23_P",
+    "descricao_habilidade": "Reconhecer relações lógico-discursivas marcadas por advérbios e expressões adverbiais de tempo em textos de diferentes gêneros.",
+    "bncc": "EF05LP07"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF03_P",
+    "descricao_habilidade": "Localizar informação em textos de nível 2, quando a informação é retomada, no texto, por um processo de referenciação quando o referente está próximo.",
+    "bncc": "EF15LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF04_P",
+    "descricao_habilidade": "Reconhecer o assunto de textos de qualquer campo de atuação quando o assunto é indicado indiretamente pelo título e/ou é tópico do primeiro parágrafo do texto.",
+    "bncc": "EF35LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF05_P",
+    "descricao_habilidade": "Inferir o assunto de textos dos campos de atuação da vida cotidiana, jornalístico midiático ou de estudos e pesquisas pela compreensão global.",
+    "bncc": "EF35LP05"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF06_P",
+    "descricao_habilidade": "Inferir, em textos de nível 2, o sentido de palavras ou expressões não coloquiais, com apoio de pistas co-textuais (sinonímia, antonímia, palavras do mesmo campo semântico e outras sinalizações).",
+    "bncc": "EF35LP05"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF09_P",
+    "descricao_habilidade": "Inferir efeitos de crítica em textos que conjugam linguagem verbal e não verbal.",
+    "bncc": "EF15LP18"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF10_P",
+    "descricao_habilidade": "Inferir o sentido de palavra ou expressão idiomática e outras expressões metafóricas, sem apoio em pistas co-textuais.",
+    "bncc": "EF35LP05"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF11_P",
+    "descricao_habilidade": "Inferir informação com base no sentido global do texto.",
+    "bncc": "EF35LP04"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF14_P",
+    "descricao_habilidade": "Reconhecer o conflito gerador do enredo em narrativas ficcionais.",
+    "bncc": "EF35LP29"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF15_P",
+    "descricao_habilidade": "Reconhecer o gênero de textos que circulam nos diferentes campos de atuação.",
+    "bncc": "EF15LP02"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF16_P",
+    "descricao_habilidade": "Identificar a finalidade de textos dos campos de atuação da vida cotidiana, jornalístico midiático ou de estudos e pesquisas pela compreensão global.",
+    "bncc": "EF15LP01"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF17_P",
+    "descricao_habilidade": "Identificar a finalidade de textos dramáticos.",
+    "bncc": "EF15LP01"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF18_P",
+    "descricao_habilidade": "Reconhecer o efeito de sentido produzido pela diagramação das letras na página em poemas visuais.",
+    "bncc": "EF02LP29"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF19_P",
+    "descricao_habilidade": "Reconhecer o efeito de sentido do uso de aspas, reticências e parênteses em textos de diferentes gêneros.",
+    "bncc": "EF05LP04"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF21_P",
+    "descricao_habilidade": "Reconhecer relações lógico-discursivas marcadas por conjunções mais usuais em textos de diferentes gêneros.",
+    "bncc": "EF05LP07"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF22_P",
+    "descricao_habilidade": "Identificar o referente de pronomes pessoais do caso reto (anafórico) com referente próximo ou saliente (tópico do texto) ou de substituições lexicais (substantivos por sinônimos) em textos de diferentes gêneros.",
+    "bncc": "EF35LP14"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "5º Ano",
+    "codigo_habilidade": "5EF23_P",
+    "descricao_habilidade": "Identificar o referente de uma expressão nominal com pronome adjetivo (possessivo, demonstrativo, indefinido) ou de elipses.",
+    "bncc": "EF35LP14"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF01_P",
+    "descricao_habilidade": "Localizar informações explícitas, em textos de nível 3, recuperando-as por meio de paráfrase, estando a informação em outra posição que não o início do texto.",
+    "bncc": "EF69LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF03_P",
+    "descricao_habilidade": "Reconhecer o assunto de textos de nível 3, considerando a recorrência de tópicos ou de um tópico.",
+    "bncc": "EF69LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF05_P",
+    "descricao_habilidade": "Inferir, em textos de nível 3, o sentido de metáforas, a partir da leitura global do texto.",
+    "bncc": "EF89LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF07_P",
+    "descricao_habilidade": "Inferir informação em textos de nível 3 considerando a relação entre enunciados de um trecho ou parágrafo do texto.",
+    "bncc": "EF69LP20"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF09_P",
+    "descricao_habilidade": "Identificar a finalidade de textos de opinião.",
+    "bncc": "EF89LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF11_P",
+    "descricao_habilidade": "Reconhecer o gênero de textos de opinião.",
+    "bncc": "EF69LP17"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF13_P",
+    "descricao_habilidade": "Identificar as partes estruturantes de uma narrativa linear de nível 3 (orientação, conflito/complicação, clímax/desfecho).",
+    "bncc": "EF69LP47"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF15_P",
+    "descricao_habilidade": "Identificar opinião em textos de nível 3, de estrutura expositiva ou estando os enunciados opinativos marcados por frase exclamativa ou estrutura predicativa.",
+    "bncc": "EF89LP31"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF18_P",
+    "descricao_habilidade": "Reconhecer, em texto de nível 3, relações lógico-discursivas de explicação, alternância, consequência, proporção, concessão marcadas por conjunções mais usuais: pois, porque, ou, que, tanto que, à medida que, apesar de.",
+    "bncc": "EF08LP13"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF20_P",
+    "descricao_habilidade": "Identificar, em texto de nível 3, o referente de um pronome relativo ou de pronome pessoal do caso oblíquo (o, a, lhe etc.).",
+    "bncc": "EF08LP15"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF21_P",
+    "descricao_habilidade": "Reconhecer, em textos de nível 3, o efeito de sentido de seleção lexical que visa a persuadir o leitor em textos argumentativos.",
+    "bncc": "EF89LP06"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF23_P",
+    "descricao_habilidade": "Identificar, em um texto de nível 3, a tese quando apresentada por meio de paráfrase.",
+    "bncc": "EF89LP04"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF25_P",
+    "descricao_habilidade": "Identificar, em texto de nível 3, o argumento de uma tese (explícita no comando), estando o argumento em qualquer parte do texto, sinalizado ou não sinalizado por um operador argumentativo.",
+    "bncc": "EF89LP04"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF02_P",
+    "descricao_habilidade": "Localizar informação a partir de procedimento de referenciação quando o referente está distante.",
+    "bncc": "EF69LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF04_P",
+    "descricao_habilidade": "Reconhecer o assunto de textos de nível 3, a partir da leitura global do texto.",
+    "bncc": "EF69LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF06_P",
+    "descricao_habilidade": "Inferir o sentido de termos técnicos ou especializados, com apoio de pistas co-textuais.",
+    "bncc": "EF89LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF07_P",
+    "descricao_habilidade": "Inferir o sentido de termos técnicos ou especializados, a partir da leitura global do texto.",
+    "bncc": "EF89LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF08_P",
+    "descricao_habilidade": "Inferir o sentido de vocabulário erudito, com apoio de pistas co-textuais.",
+    "bncc": "EF89LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF10_P",
+    "descricao_habilidade": "Inferir informação em textos de nível 3 considerando a leitura global do texto.",
+    "bncc": "EF89LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF12_P",
+    "descricao_habilidade": "Identificar a finalidade de textos de opinião que tratam de temas especializados.",
+    "bncc": "EF89LP03"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF14_P",
+    "descricao_habilidade": "Reconhecer o gênero de textos de opinião que tratam de temas especializados.",
+    "bncc": "EF69LP17"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF16_P",
+    "descricao_habilidade": "Identificar elementos de uma narrativa não linear/não canônica de nível 3: personagem principal, tempo/lugar, conflito, narrador.",
+    "bncc": "EF69LP47"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF18_P",
+    "descricao_habilidade": "Identificar opinião em textos de nível 3, de estrutura expositiva ou híbrida, estando a opinião implícita numa adjetivação.",
+    "bncc": "EF89LP31"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF20_P",
+    "descricao_habilidade": "Reconhecer, em textos de nível 3 ou discursivas (todas as relações semânticas), não marcadas ou marcadas por conjunções menos usuais (contudo, porquanto, embora etc.).",
+    "bncc": "EF09LP11"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF22_P",
+    "descricao_habilidade": "Identificar, em texto de nível 3, o referente de um pronome relativo.",
+    "bncc": "EF08LP15"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF25_P",
+    "descricao_habilidade": "Identificar a tese de um texto de nível 3, a partir de sua leitura global.",
+    "bncc": "EF89LP04"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF27_P",
+    "descricao_habilidade": "Identificar, em texto de nível 3, o contra-argumento de uma tese (explícita no comando), estando o contra-argumento em qualquer parte do texto e não sinalizado por operadores argumentativos.",
+    "bncc": "EF89LP04"
+  },
+  {
+    "componente": "Leitura",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF28_P",
+    "descricao_habilidade": "Reconhecer, em texto de nível 3, o dado estatístico e a citação de autoridade como estratégias argumentativas.",
+    "bncc": "EF89LP04"
+  },
+  {
+    "codigo_habilidade": "2EF01_M",
+    "descricao_habilidade": "Contar a quantidade de objetos de uma coleção contendo até 50 elementos, apresentando o resultado em registro numérico.",
+    "bncc": "EF01MA04, EF02MA02",
+    "spaece": {
+      "descritor": "D01",
+      "descricao": "Contar elementos de uma coleção, organizando mentalmente ou com apoio de imagens."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF02_M",
+    "descricao_habilidade": "Comparar quantidades de objetos de duas coleções, contendo até 50 elementos cada, com suporte de imagens, indicando qual tem mais objetos e quantos a mais, qual tem menos objetos e quantos a menos ou se têm a mesma quantidade de objetos e qual é essa quantidade.",
+    "bncc": "EF01MA03, EF02MA03",
+    "spaece": {
+      "descritor": "D02",
+      "descricao": "Comparar coleções com base em correspondência um a um ou estimativa."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF03_M",
+    "descricao_habilidade": "Comparar números naturais formados por até três algarismos, indicando o menor, o maior, a ordenação crescente ou a decrescente deles.",
+    "bncc": "EF01MA05, EF02MA01",
+    "spaece": {
+      "descritor": "D03",
+      "descricao": "Comparar números naturais até a ordem das centenas usando símbolos de comparação."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF04_M",
+    "descricao_habilidade": "Efetuar a operação de adição entre números naturais formados por até três algarismos.",
+    "bncc": "EF02MA06",
+    "spaece": {
+      "descritor": "D05",
+      "descricao": "Resolver problemas com adição de números naturais com e sem reagrupamento."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF05_M",
+    "descricao_habilidade": "Utilizar a operação de adição entre números naturais, formados por até três algarismos, envolvendo o significado de juntar ou de acrescentar, com ou sem suporte de imagens, na resolução de problema.",
+    "bncc": "EF01MA08, EF02MA06",
+    "spaece": {
+      "descritor": "D06",
+      "descricao": "Resolver problemas significativos que envolvam adição de números naturais."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF06_M",
+    "descricao_habilidade": "Utilizar a operação de subtração entre números naturais, formados por até três algarismos, envolvendo o significado de separar ou de retirar, com ou sem suporte de imagens, na resolução de problema.",
+    "bncc": "EF01MA08, EF02MA06",
+    "spaece": {
+      "descritor": "D07",
+      "descricao": "Resolver problemas com subtração de números naturais com e sem reagrupamento."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "1EF07_M",
+    "descricao_habilidade": "Determinar termos ausentes em sequências de figuras.",
+    "bncc": "EF01MA10",
+    "spaece": {
+      "descritor": "D10",
+      "descricao": "Completar ou identificar elementos ausentes em sequências numéricas."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF07_M",
+    "descricao_habilidade": "Determinar termos ausentes em sequências repetitivas de números naturais formados por até três algarismos.",
+    "bncc": "EF02MA11",
+    "spaece": {
+      "descritor": "D10",
+      "descricao": "Completar ou identificar elementos ausentes em sequências numéricas."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF08_M",
+    "descricao_habilidade": "Interpretar localização de pessoas, animais ou objetos no espaço, considerando um ou mais de um ponto de referência e noções de orientação (à direita, à esquerda, em frente, atrás, em cima e/ou embaixo).",
+    "bncc": "EF01MA12, EF02MA12",
+    "spaece": {
+      "descritor": "D18",
+      "descricao": "Identificar posições e deslocamentos em mapas ou quadros de localização."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF09_M",
+    "descricao_habilidade": "Reconhecer figura geométrica espacial (cone, cilindro, esfera, cubo, bloco retangular ou pirâmide) em objetos do mundo físico, pela sua forma ou sua denominação.",
+    "bncc": "EF01MA13, EF02MA14",
+    "spaece": {
+      "descritor": "D21",
+      "descricao": "Reconhecer figuras espaciais como cubo, cilindro, cone e esfera."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "1EF10_M",
+    "descricao_habilidade": "Reconhecer figuras geométricas planas (círculo, quadrado, retângulo ou triângulo) desenhadas em diferentes disposições.",
+    "bncc": "EF01MA14",
+    "spaece": {
+      "descritor": "D20",
+      "descricao": "Reconhecer figuras geométricas planas como círculo, quadrado, retângulo e triângulo."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF10_M",
+    "descricao_habilidade": "Medir comprimento, usando unidades de medidas padronizadas (metro, centímetro ou milímetro).",
+    "bncc": "EF02MA16",
+    "spaece": {
+      "descritor": "D25",
+      "descricao": "Medir comprimentos com unidades convencionais."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF11_M",
+    "descricao_habilidade": "Reconhecer horário em relógio digital (hora e minuto).",
+    "bncc": "EF02MA19",
+    "spaece": {
+      "descritor": "D26",
+      "descricao": "Ler horas em relógios digitais e analógicos."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "1EF12_M",
+    "descricao_habilidade": "Reconhecer valores convencionados de moedas ou de cédulas do sistema monetário brasileiro, em situações do cotidiano.",
+    "bncc": "EF01MA19",
+    "spaece": {
+      "descritor": "D28",
+      "descricao": "Reconhecer valores de moedas e cédulas do sistema monetário brasileiro."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF12_M",
+    "descricao_habilidade": "Corresponder coleções distintas de moedas e/ou de cédulas do sistema monetário brasileiro que representam uma mesma quantia, em situações do cotidiano.",
+    "bncc": "EF02MA20",
+    "spaece": {
+      "descritor": "D29",
+      "descricao": "Resolver situações de compra e venda com cédulas e moedas."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF13_M",
+    "descricao_habilidade": "Classificar chance de ocorrência de evento, associado a um experimento aleatório, empregando termos como: impossível, certo, pouco provável ou muito provável, em situações do cotidiano.",
+    "bncc": "EF02MA21",
+    "spaece": {
+      "descritor": "D33",
+      "descricao": "Classificar eventos quanto à chance de ocorrer: possível, impossível ou certo."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "1EF13_M",
+    "descricao_habilidade": "Identificar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.",
+    "bncc": "EF01MA21",
+    "spaece": {
+      "descritor": "D34",
+      "descricao": "Identificar informações em tabelas simples."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF14_M",
+    "descricao_habilidade": "Identificar dados estatísticos dispostos em tabelas de dupla entrada.",
+    "bncc": "EF02MA22",
+    "spaece": {
+      "descritor": "D34",
+      "descricao": "Identificar informações em tabelas simples."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "2EF15_M",
+    "descricao_habilidade": "Interpretar dados estatísticos dispostos em tabelas simples, em gráficos de colunas ou de barras simples.",
+    "bncc": "EF02MA22",
+    "spaece": {
+      "descritor": "D35",
+      "descricao": "Interpretar dados apresentados em tabelas e gráficos simples."
+    },
+    "componente": "Matemática",
+    "ano": "2º Ano"
+  },
+  {
+    "codigo_habilidade": "4EF01_M",
+    "descricao_habilidade": "Comparar números naturais formados por até cinco algarismos, indicando o menor, o maior, a ordenação crescente ou a decrescente deles.",
+    "bncc": "EF04MA01",
+    "spaece": {
+      "codigo_descritor": "D5EF01",
+      "descricao_descritor": "Comparar e ordenar números naturais com até cinco ordens."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "5EF01_M",
+    "descricao_habilidade": "Comparar números racionais positivos, em representação fracionária com denominadores iguais, indicando o menor, o maior, a ordenação crescente ou a decrescente deles.",
+    "bncc": "EF05MA05",
+    "spaece": {
+      "codigo_descritor": "D5EF02",
+      "descricao_descritor": "Comparar frações e/ou números decimais positivos."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "4EF02_M",
+    "descricao_habilidade": "Corresponder composições a decomposições de números naturais formados por até cinco algarismos.",
+    "bncc": "EF03MA02, EF04MA02",
+    "spaece": {
+      "descritor": "D02",
+      "descricao": "Relacionar composições e decomposições de números naturais."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "4EF03_M",
+    "descricao_habilidade": "Identificar a ordem ocupada por um algarismo ou o algarismo que ocupa uma determinada ordem, em um número natural formado por até cinco algarismos.",
+    "bncc": "EF03MA02, EF04MA02",
+    "spaece": {
+      "descritor": "D01",
+      "descricao": "Identificar ordem e posição de algarismos em números naturais."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "4EF04_M",
+    "descricao_habilidade": "Identificar o valor posicional de um algarismo em um número natural formado por até cinco algarismos.",
+    "bncc": "EF03MA02, EF04MA02",
+    "spaece": {
+      "descritor": "D01",
+      "descricao": "Identificar ordem e posição de algarismos em números naturais."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "3EF07_M",
+    "descricao_habilidade": "Utilizar a operação de adição entre números naturais, formados por até quatro algarismos, envolvendo o significado de juntar ou de acrescentar, na resolução de problema.",
+    "bncc": "EF03MA06",
+    "spaece": {
+      "descritor": "D05",
+      "descricao": "Resolver problemas com adição de números naturais."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "3EF09_M",
+    "descricao_habilidade": "Utilizar a operação de subtração entre números naturais, formados por até quatro algarismos, envolvendo o significado de separar, de retirar, de comparar ou de completar, na resolução de problema.",
+    "bncc": "EF03MA06",
+    "spaece": {
+      "descritor": "D07",
+      "descricao": "Resolver problemas com subtração de números naturais."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "4EF06_M",
+    "descricao_habilidade": "Efetuar a operação de multiplicação entre números naturais formados por até quatro algarismos.",
+    "bncc": "EF04MA06",
+    "spaece": {
+      "descritor": "D08",
+      "descricao": "Efetuar multiplicações de números naturais."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "4EF07_M",
+    "descricao_habilidade": "Utilizar a operação de multiplicação entre números naturais, formados por até quatro algarismos, envolvendo o significado de adição de parcelas iguais, de organização retangular ou de proporcionalidade, na resolução de problema.",
+    "bncc": "EF04MA06",
+    "spaece": {
+      "descritor": "D08",
+      "descricao": "Resolver problemas com multiplicação de números naturais."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "4EF08_M",
+    "descricao_habilidade": "Efetuar a operação de divisão de um número natural, formado por até quatro algarismos, por outro, formado por até dois algarismos.",
+    "bncc": "EF04MA07",
+    "spaece": {
+      "descritor": "D09",
+      "descricao": "Efetuar divisões exatas entre números naturais."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "4EF09_M",
+    "descricao_habilidade": "Utilizar a operação de divisão de um número natural, formado por até quatro algarismos, por outro, formado por até dois algarismos, envolvendo o significado de repartição equitativa ou de medida, na resolução de problema.",
+    "bncc": "EF03MA08, EF04MA07",
+    "spaece": {
+      "descritor": "D09",
+      "descricao": "Resolver problemas com divisão exata de números naturais."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "5EF02_M",
+    "descricao_habilidade": "Representar fração associada ao significado de parte de um todo.",
+    "bncc": "EF05MA03",
+    "spaece": {
+      "descritor": "D14",
+      "descricao": "Relacionar fração a parte de um todo."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "5EF03_M",
+    "descricao_habilidade": "Identificar objeto ou sua localização em representação no plano, referenciada por linhas e colunas.",
+    "bncc": "EF05MA14",
+    "spaece": {
+      "descritor": "D18",
+      "descricao": "Localizar objetos e posições em representações espaciais."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "5EF04_M",
+    "descricao_habilidade": "Corresponder figuras geométricas espaciais (cilindro, cone, prisma ou pirâmide) à uma de suas planificações.",
+    "bncc": "EF03MA14, EF04MA17",
+    "spaece": {
+      "descritor": "D21",
+      "descricao": "Reconhecer e nomear figuras geométricas espaciais."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "4EF10_M",
+    "descricao_habilidade": "Reconhecer ângulos retos e ângulos não retos em figuras geométricas planas.",
+    "bncc": "EF04MA18",
+    "spaece": {
+      "descritor": "D23",
+      "descricao": "Identificar ângulos retos e não retos."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "5EF05_M",
+    "descricao_habilidade": "Reconhecer polígonos em relação à quantidade de lados, vértices ou ângulos.",
+    "bncc": "EF05MA17",
+    "spaece": {
+      "descritor": "D22",
+      "descricao": "Classificar polígonos pelo número de lados."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "4EF11_M",
+    "descricao_habilidade": "Medir área de figuras planas, desenhadas em malha quadriculada, cujos lados se posicionam sobre linhas de grade da malha.",
+    "bncc": "EF04MA21",
+    "spaece": {
+      "descritor": "D26",
+      "descricao": "Medir área de figuras planas com unidades não convencionais."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "5EF06_M",
+    "descricao_habilidade": "Converter unidades de medida padronizadas mais usuais das grandezas comprimento, massa, tempo ou capacidade.",
+    "bncc": "EF05MA19",
+    "spaece": {
+      "descritor": "D27",
+      "descricao": "Converter unidades de medida de comprimento ou massa."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "4EF12_M",
+    "descricao_habilidade": "Utilizar valores do sistema monetário brasileiro em situações do cotidiano, na resolução de problema.",
+    "bncc": "EF03MA24, EF04MA25",
+    "spaece": {
+      "descritor": "D29",
+      "descricao": "Resolver problemas com valores monetários do sistema brasileiro."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "4EF13_M",
+    "descricao_habilidade": "Identificar, dentre resultados possíveis de um experimento aleatório, os que apresentam maiores ou menores chances de ocorrência.",
+    "bncc": "EF04MA26",
+    "spaece": {
+      "descritor": "D33",
+      "descricao": "Classificar chance de eventos como possível, impossível ou certo."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "codigo_habilidade": "5EF07_M",
+    "descricao_habilidade": "Interpretar dados estatísticos dispostos em gráficos de colunas agrupadas, de barras agrupadas ou de linhas.",
+    "bncc": "EF04MA27, EF05MA24",
+    "spaece": {
+      "descritor": "D35",
+      "descricao": "Interpretar dados estatísticos simples em gráficos."
+    },
+    "componente": "Matemática",
+    "ano": "5º Ano"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF01_M",
+    "descricao_habilidade": "Utilizar o princípio multiplicativo de contagem na resolução de problema.",
+    "bncc": "EF08MA03",
+    "spaece": {
+      "codigo_descritor": "D9EF01",
+      "descricao_descritor": "Aplicar o princípio multiplicativo de contagem."
+    }
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF01_M",
+    "descricao_habilidade": "Utilizar porcentagem, envolvendo ou não aplicação de percentuais sucessivos, na resolução de problema.",
+    "bncc": "EF07MA02, EF09MA05",
+    "spaece": {
+      "codigo_descritor": "D9EF02",
+      "descricao_descritor": "Resolver problemas envolvendo porcentagem com e sem aplicação de juros simples."
+    }
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF02_M",
+    "descricao_habilidade": "Utilizar proporcionalidade direta e/ou inversa entre, pelo menos, três grandezas, na resolução de problema.",
+    "bncc": "EF09MA08"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF02_M",
+    "descricao_habilidade": "Utilizar cálculo de valor numérico de expressões algébricas na resolução de problema.",
+    "bncc": "EF08MA06"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF03_M",
+    "descricao_habilidade": "Determinar conjunto solução de um sistema de equações polinomiais de 1º grau, com duas incógnitas.",
+    "bncc": "EF08MA08"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF04_M",
+    "descricao_habilidade": "Utilizar sistema de equações polinomiais de 1º grau, com duas incógnitas, representando uma situação por meio de modelagem matemática, na resolução de problema.",
+    "bncc": "EF08MA08"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF05_M",
+    "descricao_habilidade": "Determinar conjunto solução de equação polinomial de 2º grau, do tipo ax² = b.",
+    "bncc": "EF08MA09"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF03_M",
+    "descricao_habilidade": "Determinar conjunto solução de equação polinomial de 2º grau, do tipo ax² + bx + c = 0, com a ≠ 0 e b ≠ 0.",
+    "bncc": "EF09MA09"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF04_M",
+    "descricao_habilidade": "Utilizar equação polinomial de 2º grau, do tipo ax² + bx + c = 0, com a ≠ 0 e b ≠ 0, representando uma situação por meio de modelagem matemática, na resolução de problema.",
+    "bncc": "EF09MA09"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF05_M",
+    "descricao_habilidade": "Utilizar grandeza representada como razão entre duas grandezas de espécies diferentes, na resolução de problema.",
+    "bncc": "EF09MA07"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF06_M",
+    "descricao_habilidade": "Associar figura geométrica espacial à uma de suas vistas ortogonais (superior, frontal ou lateral).",
+    "bncc": "EF09MA17"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF07_M",
+    "descricao_habilidade": "Utilizar semelhança de triângulos na resolução de problema.",
+    "bncc": "EF09MA12"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF08_M",
+    "descricao_habilidade": "Utilizar relações métricas do triângulo retângulo na resolução de problema.",
+    "bncc": "EF09MA14"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF09_M",
+    "descricao_habilidade": "Utilizar o teorema de Tales na resolução de problema.",
+    "bncc": "EF09MA14"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF10_M",
+    "descricao_habilidade": "Determinar as coordenadas do ponto médio de um segmento de reta, a partir das coordenadas de seus pontos extremos no plano cartesiano.",
+    "bncc": "EF09MA16"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF11_M",
+    "descricao_habilidade": "Determinar a distância entre dois pontos quaisquer, dadas as coordenadas desses pontos no plano cartesiano.",
+    "bncc": "EF09MA16"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF12_M",
+    "descricao_habilidade": "Utilizar cálculo de medida de perímetro de figura poligonal, representada no plano cartesiano, a partir das coordenadas de seus vértices, na resolução de problema.",
+    "bncc": "EF09MA16"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF13_M",
+    "descricao_habilidade": "Utilizar cálculo de medida de área de figura poligonal, representada no plano cartesiano, a partir das coordenadas de seus vértices, na resolução de problema.",
+    "bncc": "EF09MA16"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF14_M",
+    "descricao_habilidade": "Utilizar relações entre medidas de arcos, ângulos centrais e ângulos inscritos em uma circunferência, na resolução de problema.",
+    "bncc": "EF09MA11"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF06_M",
+    "descricao_habilidade": "Utilizar o conceito de mediatriz ou de bissetriz, como lugar geométrico, na resolução de problema.",
+    "bncc": "EF08MA17"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "7EF13_M",
+    "descricao_habilidade": "Utilizar cálculo de medida de perímetro de polígonos na resolução de problema.",
+    "bncc": "EF04MA20, EF06MA29"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF07_M",
+    "descricao_habilidade": "Utilizar cálculo de medida de comprimento de circunferência na resolução de problema.",
+    "bncc": "EF07MA33"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "7EF14_M",
+    "descricao_habilidade": "Utilizar cálculo de medida de área de figuras planas: quadrados, retângulos, triângulos ou outras figuras planas que podem ser decompostas em quadrados, retângulos e/ou triângulos, na resolução de problema.",
+    "bncc": "EF07MA32"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF08_M",
+    "descricao_habilidade": "Utilizar cálculo de medida de área de círculos na resolução de problema.",
+    "bncc": "EF08MA19"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF15_M",
+    "descricao_habilidade": "Utilizar cálculo de medida de volume de prismas retos ou de cilindros retos, na resolução de problema.",
+    "bncc": "EF09MA19"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF09_M",
+    "descricao_habilidade": "Utilizar conversão entre unidades de medida da grandeza capacidade: litro e decímetro cúbico ou litro e metro cúbico, na resolução de problema.",
+    "bncc": "EF08MA20"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF10_M",
+    "descricao_habilidade": "Determinar a probabilidade de ocorrência de um evento, associado a um experimento aleatório, em um espaço amostral equiprovável, em que pelo menos um dos quantitativos necessários para o cálculo da probabilidade demande técnicas de contagem.",
+    "bncc": "EF08MA22"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "9EF16_M",
+    "descricao_habilidade": "Determinar a probabilidade de ocorrência de dois eventos, independentes ou dependentes, associados a um experimento aleatório, em um espaço amostral equiprovável.",
+    "bncc": "EF09MA20"
+  },
+  {
+    "componente": "Matemática",
+    "ano": "9º Ano",
+    "codigo_habilidade": "8EF12_M",
+    "descricao_habilidade": "Interpretar o significado das medidas de tendência central (média aritmética simples, moda ou mediana) ou da amplitude de um conjunto de dados estatísticos.",
+    "bncc": "EF08MA25"
+  }
+]
