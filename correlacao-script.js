@@ -169,11 +169,36 @@ function combineAndProcessData(data1, data2) {
         }
     });
     
-    const combinedData = Array.from(combinedMap.values())
+    let combinedData = Array.from(combinedMap.values())
         .filter(item => item.codigo_habilidade);
     
+    // Aplicar correlações adicionais da Matriz SPAECE 2024
+    if (typeof findSpaeceCorrelation === 'function') {
+        combinedData = combinedData.map(item => {
+            // Se já tem correlação SPAECE, manter
+            if (item.spaece && item.spaece.trim() !== '') {
+                return item;
+            }
+            
+            // Tentar encontrar correlação usando a matriz SPAECE 2024
+            const correlacao = findSpaeceCorrelation(item, item.componente, item.ano);
+            if (correlacao) {
+                return {
+                    ...item,
+                    spaece: correlacao.descricao,
+                    spaece_descritor: correlacao.descritor,
+                    fonte: item.fonte + '+matriz2024'
+                };
+            }
+            
+            return item;
+        });
+    }
+    
     console.log('✅ Dados combinados:', combinedData.length, 'habilidades únicas');
-    console.log('📊 Com correlação SPAECE:', combinedData.filter(item => item.spaece).length);
+    console.log('📊 Com correlação SPAECE original:', combinedData.filter(item => item.spaece && !item.fonte.includes('matriz2024')).length);
+    console.log('🎯 Com correlação SPAECE da Matriz 2024:', combinedData.filter(item => item.fonte.includes('matriz2024')).length);
+    console.log('📈 Total com correlação SPAECE:', combinedData.filter(item => item.spaece).length);
     
     return combinedData;
 }
@@ -345,11 +370,19 @@ function showDetails(codigoHabilidade) {
 
 function getFonteDescription(fonte) {
     const fontes = {
-        '2024_correcao_sugerida': '📝 Correção Sugerida ao SPAECE (2024)',
-        '2024_correlacao_total': '📊 Correlação Total SPAECE (2024)',
-        '2024_correcao_sugerida+2024_correlacao_total': '📝📊 Dados Combinados (Ambas as fontes)',
-        '2024_correlacao_total+2024_correcao_sugerida': '📝📊 Dados Combinados (Ambas as fontes)'
+        '2024_correcao_sugerida': '📝 Correção Sugerida ao SPAECE',
+        '2024_correlacao_total': '📊 Correlação Total SPAECE',
+        '2024_correcao_sugerida+2024_correlacao_total': '📝📊 Dados Combinados',
+        '2024_correlacao_total+2024_correcao_sugerida': '📝📊 Dados Combinados',
+        'combinado': '🔗 Dados Combinados',
+        'correcao_sugerida': '📝 Correção Sugerida',
+        'correlacao_total_2024': '📊 Correlação Total'
     };
+    
+    if (fonte && fonte.includes('+matriz2024')) {
+        const baseFonte = fonte.replace('+matriz2024', '');
+        return `${fontes[baseFonte] || baseFonte} + 🎯 Matriz SPAECE 2024`;
+    }
     
     return fontes[fonte] || `📄 ${fonte}`;
 }

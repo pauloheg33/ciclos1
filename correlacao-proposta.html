@@ -10,6 +10,7 @@
     
     <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
     <script src="https://unpkg.com/jspdf-autotable@3.5.31/dist/jspdf.plugin.autotable.min.js"></script>
+    <script src="matriz-spaece-2024.js" defer></script>
     <script src="correlacao-script.js" defer></script>
 </head>
 <body>
@@ -29,41 +30,50 @@
             </div>
         </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Filters Bar -->
-            <div class="filters-bar">
-                <div class="filter-group">
-                    <select id="componente-filter">
-                        <option value="">📚 Todos os componentes</option>
-                        <option value="Leitura">📖 Leitura</option>
-                        <option value="Matemática">🔢 Matemática</option>
-                    </select>
-                </div>
+        <!-- Filters Section -->
+        <section class="filters-section">
+            <div class="filters-container">
+                <div class="filters-row">
+                    <div class="filter-item">
+                        <label>📚 Componente:</label>
+                        <select id="componente-filter">
+                            <option value="">Todos os componentes</option>
+                            <option value="Leitura">📖 Leitura</option>
+                            <option value="Matemática">🔢 Matemática</option>
+                        </select>
+                    </div>
 
-                <div class="filter-group">
-                    <select id="ano-filter">
-                        <option value="">🎓 Todos os anos</option>
-                        <option value="2º Ano">2º Ano</option>
-                        <option value="5º Ano">5º Ano</option>
-                        <option value="9º Ano">9º Ano</option>
-                    </select>
-                </div>
+                    <div class="filter-item">
+                        <label>🎓 Ano Escolar:</label>
+                        <select id="ano-filter">
+                            <option value="">Todos os anos</option>
+                            <option value="2º Ano">2º Ano</option>
+                            <option value="5º Ano">5º Ano</option>
+                            <option value="9º Ano">9º Ano</option>
+                        </select>
+                    </div>
 
-                <div class="filter-group search-group">
-                    <input type="text" id="search-input" placeholder="🔍 Buscar habilidade..." />
-                </div>
+                    <div class="filter-item search-item">
+                        <label>🔍 Buscar:</label>
+                        <input type="text" id="search-input" placeholder="Digite código ou descrição..." />
+                    </div>
 
-                <div class="stats-summary">
-                    <span class="stat-item">
-                        <strong id="total-count">-</strong> total
-                    </span>
-                    <span class="stat-item">
-                        <strong id="spaece-count">-</strong> com SPAECE
-                    </span>
+                    <div class="stats-item">
+                        <div class="stat">
+                            <span class="stat-number" id="total-count">-</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" id="spaece-count">-</span>
+                            <span class="stat-label">com SPAECE</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
+        <!-- Main Content -->
+        <main class="main-content">
             <!-- Table Container -->
             <div class="table-container">
 
