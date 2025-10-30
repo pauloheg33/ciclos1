@@ -426,7 +426,7 @@ function updateEscolasFilter() {
 
 // Função para aplicar filtros padrão
 function setDefaultFilters() {
-    console.log('🎯 Aplicando filtros padrão apenas se necessário...');
+    console.log('🎯 Aplicando filtros padrão conforme especificação...');
     
     const defaultValues = {
         avaliacao: 'Avaliação Contínua da Aprendizagem - Ciclo III / 2025',
@@ -437,24 +437,43 @@ function setDefaultFilters() {
         performance: 'all'
     };
     
-    // Aplicar filtros padrão apenas se os campos estiverem vazios
+    // SEMPRE aplicar filtros padrão (não verificar se estão vazios)
     const avaliacaoEl = document.getElementById('avaliacao');
     const anoEl = document.getElementById('ano-escolar');
     const componenteEl = document.getElementById('componente');
     const redeEl = document.getElementById('rede');
     const performanceEl = document.getElementById('performance-range');
     
-    if (!avaliacaoEl.value) avaliacaoEl.value = defaultValues.avaliacao;
-    if (!anoEl.value) anoEl.value = defaultValues.anoEscolar;
-    if (!componenteEl.value) componenteEl.value = defaultValues.componente;
-    if (!redeEl.value) redeEl.value = defaultValues.rede;
-    if (!performanceEl.value) performanceEl.value = defaultValues.performance;
+    // Aplicar valores padrão sempre
+    if (avaliacaoEl) {
+        avaliacaoEl.value = defaultValues.avaliacao;
+        console.log('✅ Avaliação definida:', defaultValues.avaliacao);
+    }
+    if (anoEl) {
+        anoEl.value = defaultValues.anoEscolar;
+        console.log('✅ Ano escolar definido:', defaultValues.anoEscolar);
+    }
+    if (componenteEl) {
+        componenteEl.value = defaultValues.componente;
+        console.log('✅ Componente definido:', defaultValues.componente);
+    }
+    if (redeEl) {
+        redeEl.value = defaultValues.rede;
+        console.log('✅ Rede definida:', defaultValues.rede);
+    }
+    if (performanceEl) {
+        performanceEl.value = defaultValues.performance;
+        console.log('✅ Performance definida:', defaultValues.performance);
+    }
     
-    // Atualizar escolas após aplicar filtros de ano e componente (se necessário)
+    // Atualizar escolas após aplicar filtros de ano e componente
     setTimeout(() => {
         updateEscolasFilter();
         const escolaEl = document.getElementById('escola');
-        if (!escolaEl.value) escolaEl.value = defaultValues.escola;
+        if (escolaEl) {
+            escolaEl.value = defaultValues.escola;
+            console.log('✅ Escola definida:', defaultValues.escola);
+        }
     }, 100);
 }
 
@@ -650,6 +669,12 @@ function goToDashboard() {
 document.addEventListener('DOMContentLoaded', function() {
     // Carregar dados iniciais
     loadYAMLData();
+    
+    // Aplicar filtros padrão imediatamente (backup)
+    setTimeout(() => {
+        setDefaultFilters();
+        updateAnalytics();
+    }, 500);
     
     // Adicionar listeners aos filtros
     document.getElementById('avaliacao').addEventListener('change', updateAnalytics);
