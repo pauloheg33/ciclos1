@@ -542,9 +542,8 @@ function updateCycleCard(cardId, data, title, subtitle) {
     // Atualizar título
     card.querySelector('h2').textContent = title;
     
-    // Atualizar percentual com a soma de aprendizado intermediário + adequado
-    const somaIntermediarioAdequado = (data.intermediario || 0) + (data.adequado || 0);
-    card.querySelector('.percentage-large').textContent = `${somaIntermediarioAdequado}%`;
+    // Atualizar percentual com a MÉDIA DE DESEMPENHO real (não soma das categorias)
+    card.querySelector('.percentage-large').textContent = `${data.media || 0}%`;
     
     // Atualizar barra de progresso
     const progressBar = card.querySelector('.progress-bar-horizontal');
@@ -583,10 +582,12 @@ function updateAnalytics() {
     const cicloIIIPerformance = calculateCicloIIIPerformance();
     
     // Dados fixos como fallback quando não há dados específicos
+    // Distribuição: defasagem + intermediário + adequado = 100%
+    // Média de desempenho é independente (percentual médio de acerto)
     const dadosFixos = {
-        cicloI: { adequado: 50, intermediario: 35, defasagem: 15, media: 84 },
-        cicloII: { adequado: 45, intermediario: 40, defasagem: 15, media: 80 },
-        cicloIII: { adequado: 40, intermediario: 35, defasagem: 25, media: 72 }
+        cicloI: { defasagem: 20, intermediario: 32, adequado: 48, media: 77 },
+        cicloII: { defasagem: 27, intermediario: 44, adequado: 29, media: 70 },
+        cicloIII: { defasagem: 40, intermediario: 41, adequado: 19, media: 63 }
     };
     
     // Atualizar cards com dados reais ou fixos
